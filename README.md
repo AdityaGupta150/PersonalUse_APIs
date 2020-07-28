@@ -1,0 +1,1 @@
+A collection of 'probably' all APIs i will be using for my webApps, or for utilising REST requests
