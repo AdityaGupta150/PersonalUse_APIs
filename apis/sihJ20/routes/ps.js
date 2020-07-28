@@ -2,11 +2,6 @@ const router = require('express').Router()
 
 const mongoose = require('mongoose')
 
-// mongoose.connect("mongodb://localhost/Hack", {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
-// mongoose.connection
-//   .once('open', () => console.log("Connected to MongoDB,", "Hack Database"))
-//   .on('error', (err) => console.error(err))
-
 const probModel = require('../models/schema/psSchema')
 
 module.exports = mongoose

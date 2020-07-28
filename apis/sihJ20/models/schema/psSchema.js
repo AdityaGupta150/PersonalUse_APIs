@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 const { Number } = require('core-js')
 
-// mongoose.connect("mongodb://localhost/Hack", {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
-// mongoose.connection
-//   .once('open', () => console.log("Connected to MongoDB,", "Hack DB"))
-//   .on('error', (err) => console.error(err))
-
 const Schema = mongoose.Schema
 
 const psSchema = new Schema({
