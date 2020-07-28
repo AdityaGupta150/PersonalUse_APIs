@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Problems
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    body
+        form(action="/ps/add", method="post")
+            br
+            br
+            input(type="text", class="form-control", name="title", placeholder="Title", required, autofocus, onfocus="this.value=''")
+            br
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Statement</span>
+            </div>
+            <textarea class="form-control" name="statement" aria-label="Statement"></textarea>
+            </div>
+            br
+            input(type="text", class="form-control", name="source", placeholder="Source")
+            br
+            input(type="text", class="form-control", name="probId", placeholder="Problem ID", onfocus="this.value=''")
+            br
+            input(type="checkbox", class="form-control", name="isStarred", placeholder="Star It ?")
+            br
+            br
+            input(type="submit", name="Submit", value="Add")
