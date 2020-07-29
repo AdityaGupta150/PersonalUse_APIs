@@ -268,6 +268,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/ansi-regex-npm-3.0.0-be0b845911-2e3c40d429.zip/node_modules/ansi-regex/",
+          "packageDependencies": [
+            ["ansi-regex", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:4.1.0", {
           "packageLocation": "./.yarn/cache/ansi-regex-npm-4.1.0-4a7d8413fe-53b6fe447c.zip/node_modules/ansi-regex/",
           "packageDependencies": [
@@ -432,7 +439,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/unplugged/bcrypt-npm-5.0.0-b432f1b517/node_modules/bcrypt/",
           "packageDependencies": [
             ["bcrypt", "npm:5.0.0"],
-            ["node-addon-api", "npm:3.0.1"],
+            ["node-addon-api", "npm:3.0.0"],
             ["node-pre-gyp", "npm:0.15.0"]
           ],
           "linkType": "HARD",
@@ -1160,6 +1167,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/extsprintf-npm-1.3.0-61a92b324c-892efd56aa.zip/node_modules/extsprintf/",
           "packageDependencies": [
             ["extsprintf", "npm:1.3.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.4.0", {
+          "packageLocation": "./.yarn/cache/extsprintf-npm-1.4.0-2b015bcaab-092e011574.zip/node_modules/extsprintf/",
+          "packageDependencies": [
+            ["extsprintf", "npm:1.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -2255,10 +2269,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["node-addon-api", [
-        ["npm:3.0.1", {
-          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-3.0.1-c3a4b3da1a/node_modules/node-addon-api/",
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-3.0.0-b51323d354/node_modules/node-addon-api/",
           "packageDependencies": [
-            ["node-addon-api", "npm:3.0.1"],
+            ["node-addon-api", "npm:3.0.0"],
             ["node-gyp", "npm:7.0.0"]
           ],
           "linkType": "HARD",
@@ -3307,6 +3321,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
+        ["npm:2.1.1", {
+          "packageLocation": "./.yarn/cache/string-width-npm-2.1.1-0c2c6ae53f-906b4887c3.zip/node_modules/string-width/",
+          "packageDependencies": [
+            ["string-width", "npm:2.1.1"],
+            ["is-fullwidth-code-point", "npm:2.0.0"],
+            ["strip-ansi", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.1.0", {
           "packageLocation": "./.yarn/cache/string-width-npm-3.1.0-e031bfa4e0-54c5d1842d.zip/node_modules/string-width/",
           "packageDependencies": [
@@ -3344,6 +3367,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["strip-ansi", "npm:3.0.1"],
             ["ansi-regex", "npm:2.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/strip-ansi-npm-4.0.0-d4de985014-9ac63872c2.zip/node_modules/strip-ansi/",
+          "packageDependencies": [
+            ["strip-ansi", "npm:4.0.0"],
+            ["ansi-regex", "npm:3.0.0"]
           ],
           "linkType": "HARD",
         }],
@@ -3668,7 +3699,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["verror", "npm:1.10.0"],
             ["assert-plus", "npm:1.0.0"],
             ["core-util-is", "npm:1.0.2"],
-            ["extsprintf", "npm:1.3.0"]
+            ["extsprintf", "npm:1.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3697,7 +3728,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/wide-align-npm-1.1.3-48c7d4953c-4f850f84da.zip/node_modules/wide-align/",
           "packageDependencies": [
             ["wide-align", "npm:1.1.3"],
-            ["string-width", "npm:1.0.2"]
+            ["string-width", "npm:2.1.1"]
           ],
           "linkType": "HARD",
         }]
