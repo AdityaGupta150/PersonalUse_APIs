@@ -13,22 +13,22 @@ __metadata:
   linkType: hard
 
 "@babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
-  version: 7.10.5
-  resolution: "@babel/parser@npm:7.10.5"
+  version: 7.11.0
+  resolution: "@babel/parser@npm:7.11.0"
   bin:
     parser: ./bin/babel-parser.js
-  checksum: c7b4d7183fb89a6b74a4d6c690a9ffd0c33942814ae902a909642fb77495b9ca9ab5420d7f86c2a82e6721469477830e42c7e9f5a49f7471d4ba13819f7913b6
+  checksum: c9b8b5fcba74c34e175ef1ecc1c65f4c1f718b00d96e8878c56b95f332c60c0e978a27bb4e99851603f20aa74fa8fcee0f2bff0bf2c08c90281be8d2d04469ac
   languageName: node
   linkType: hard
 
 "@babel/types@npm:^7.6.1, @babel/types@npm:^7.9.6":
-  version: 7.10.5
-  resolution: "@babel/types@npm:7.10.5"
+  version: 7.11.0
+  resolution: "@babel/types@npm:7.11.0"
   dependencies:
     "@babel/helper-validator-identifier": ^7.10.4
     lodash: ^4.17.19
     to-fast-properties: ^2.0.0
-  checksum: 00bdeb6f4687357750252f27d6f1a597596c6f727992df7b0c3d8f7ca6347a656f687c000e3ac141d7fc75f0171aa137126ecbe899f87b4ae5dd903bdccc1f01
+  checksum: 46e2fcd49d1c6d3261fcc3e88906fa39661a193365325ca94b9b1d59f949cef8546e3aba3e13a122b1bf2a493120ad00c06533ae0c428ad60ce81ee2a2649964
   languageName: node
   linkType: hard
 
@@ -106,7 +106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^6.5.5":
+"ajv@npm:^6.12.3":
   version: 6.12.3
   resolution: "ajv@npm:6.12.3"
   dependencies:
@@ -1120,12 +1120,12 @@ fsevents@~2.1.2:
   linkType: hard
 
 "har-validator@npm:~5.1.3":
-  version: 5.1.3
-  resolution: "har-validator@npm:5.1.3"
+  version: 5.1.5
+  resolution: "har-validator@npm:5.1.5"
   dependencies:
-    ajv: ^6.5.5
+    ajv: ^6.12.3
     har-schema: ^2.0.0
-  checksum: 64cb2294c1eceba077280e31d7059e54a99aca442ade03b7e14af3d715f7f1c01c6e1a6df21252b0aff9bea7b06fc10539bb99ebe1acf46321e97f197bbb932b
+  checksum: 01b905cdaa7632c926a962c8127a77b98387935ef3aa0b44dae871eae2592ba6da948a3bdbb3eeceb90fa1599300f16716e50147965a7ea7c4e7c4e57ac69727
   languageName: node
   linkType: hard
 
@@ -1184,19 +1184,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"http-errors@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "http-errors@npm:1.8.0"
-  dependencies:
-    depd: ~1.1.2
-    inherits: 2.0.4
-    setprototypeof: 1.2.0
-    statuses: ">= 1.5.0 < 2"
-    toidentifier: 1.0.0
-  checksum: 95ad78508b2929923dac83edd7ce513db87c4214df83a6664559810566da73d9a6892ffdcd76738d9ab9d33172b4c7e304436a4031d471569a7344396fea0ecb
-  languageName: node
-  linkType: hard
-
 "http-errors@npm:~1.7.2":
   version: 1.7.3
   resolution: "http-errors@npm:1.7.3"
@@ -1207,6 +1194,19 @@ fsevents@~2.1.2:
     statuses: ">= 1.5.0 < 2"
     toidentifier: 1.0.0
   checksum: 563ae4a3f19c89029212922bade6ffcd0e4b7fa52e539f08c8f6941de7eaccb00bf76cb7692662192f2f0d567d4ac1f9d6a3d0ee70b166c8540cf791497f90ea
+  languageName: node
+  linkType: hard
+
+"http-errors@npm:~1.8.0":
+  version: 1.8.0
+  resolution: "http-errors@npm:1.8.0"
+  dependencies:
+    depd: ~1.1.2
+    inherits: 2.0.4
+    setprototypeof: 1.2.0
+    statuses: ">= 1.5.0 < 2"
+    toidentifier: 1.0.0
+  checksum: 95ad78508b2929923dac83edd7ce513db87c4214df83a6664559810566da73d9a6892ffdcd76738d9ab9d33172b4c7e304436a4031d471569a7344396fea0ecb
   languageName: node
   linkType: hard
 
@@ -2108,12 +2108,11 @@ fsevents@~2.1.2:
     debug: ~2.6.9
     dotenv: ^8.2.0
     express: 5.0.0-alpha.8
-    http-errors: ^1.8.0
+    http-errors: ~1.8.0
     mongoose: ^5.9.26
     morgan: ~1.9.1
     nodemon: ^2.0.4
     pug: 3.0.0
-    request: ^2.88.2
   languageName: unknown
   linkType: soft
 

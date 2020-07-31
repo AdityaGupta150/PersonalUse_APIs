@@ -13,11 +13,10 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "5.0.0-alpha.8",
-    "http-errors": "^1.8.0",
+    "http-errors": "~1.8.0",
     "mongoose": "^5.9.26",
     "morgan": "~1.9.1",
-    "pug": "3.0.0",
-    "request": "^2.88.2"
+    "pug": "3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

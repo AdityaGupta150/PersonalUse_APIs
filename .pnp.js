@@ -76,10 +76,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [
         "pug",
         "npm:3.0.0"
-      ],
-      [
-        "request",
-        "npm:2.88.2"
       ]
     ],
     "locationBlacklistData": [
@@ -100,8 +96,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mongoose", "npm:5.9.26"],
             ["morgan", "npm:1.9.1"],
             ["nodemon", "npm:2.0.4"],
-            ["pug", "npm:3.0.0"],
-            ["request", "npm:2.88.2"]
+            ["pug", "npm:3.0.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -116,19 +111,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@babel/parser", [
-        ["npm:7.10.5", {
-          "packageLocation": "./.yarn/cache/@babel-parser-npm-7.10.5-eebd996481-c7b4d7183f.zip/node_modules/@babel/parser/",
+        ["npm:7.11.0", {
+          "packageLocation": "./.yarn/cache/@babel-parser-npm-7.11.0-8f5cc446ee-c9b8b5fcba.zip/node_modules/@babel/parser/",
           "packageDependencies": [
-            ["@babel/parser", "npm:7.10.5"]
+            ["@babel/parser", "npm:7.11.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@babel/types", [
-        ["npm:7.10.5", {
-          "packageLocation": "./.yarn/cache/@babel-types-npm-7.10.5-41ba4293dd-00bdeb6f46.zip/node_modules/@babel/types/",
+        ["npm:7.11.0", {
+          "packageLocation": "./.yarn/cache/@babel-types-npm-7.11.0-3a64f51f6c-46e2fcd49d.zip/node_modules/@babel/types/",
           "packageDependencies": [
-            ["@babel/types", "npm:7.10.5"],
+            ["@babel/types", "npm:7.11.0"],
             ["@babel/helper-validator-identifier", "npm:7.10.4"],
             ["lodash", "npm:4.17.19"],
             ["to-fast-properties", "npm:2.0.0"]
@@ -395,7 +390,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/babel-walk-npm-3.0.0-canary-5-61b07ed745-838422f23b.zip/node_modules/babel-walk/",
           "packageDependencies": [
             ["babel-walk", "npm:3.0.0-canary-5"],
-            ["@babel/types", "npm:7.10.5"]
+            ["@babel/types", "npm:7.11.0"]
           ],
           "linkType": "HARD",
         }]
@@ -736,8 +731,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/constantinople-npm-4.0.1-925d9c26ce-01a2b83204.zip/node_modules/constantinople/",
           "packageDependencies": [
             ["constantinople", "npm:4.0.1"],
-            ["@babel/parser", "npm:7.10.5"],
-            ["@babel/types", "npm:7.10.5"]
+            ["@babel/parser", "npm:7.11.0"],
+            ["@babel/types", "npm:7.11.0"]
           ],
           "linkType": "HARD",
         }]
@@ -1404,10 +1399,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["har-validator", [
-        ["npm:5.1.3", {
-          "packageLocation": "./.yarn/cache/har-validator-npm-5.1.3-f192d43c41-64cb2294c1.zip/node_modules/har-validator/",
+        ["npm:5.1.5", {
+          "packageLocation": "./.yarn/cache/har-validator-npm-5.1.5-bd9ac162f5-01b905cdaa.zip/node_modules/har-validator/",
           "packageDependencies": [
-            ["har-validator", "npm:5.1.3"],
+            ["har-validator", "npm:5.1.5"],
             ["ajv", "npm:6.12.3"],
             ["har-schema", "npm:2.0.0"]
           ],
@@ -2527,8 +2522,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mongoose", "npm:5.9.26"],
             ["morgan", "npm:1.9.1"],
             ["nodemon", "npm:2.0.4"],
-            ["pug", "npm:3.0.0"],
-            ["request", "npm:2.88.2"]
+            ["pug", "npm:3.0.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -2889,7 +2883,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["extend", "npm:3.0.2"],
             ["forever-agent", "npm:0.6.1"],
             ["form-data", "npm:2.3.3"],
-            ["har-validator", "npm:5.1.3"],
+            ["har-validator", "npm:5.1.5"],
             ["http-signature", "npm:1.2.0"],
             ["is-typedarray", "npm:1.0.0"],
             ["isstream", "npm:0.1.2"],
@@ -3609,8 +3603,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/with-npm-7.0.2-135a242adb-e805a04c68.zip/node_modules/with/",
           "packageDependencies": [
             ["with", "npm:7.0.2"],
-            ["@babel/parser", "npm:7.10.5"],
-            ["@babel/types", "npm:7.10.5"],
+            ["@babel/parser", "npm:7.11.0"],
+            ["@babel/types", "npm:7.11.0"],
             ["assert-never", "npm:1.2.1"],
             ["babel-walk", "npm:3.0.0-canary-5"]
           ],
