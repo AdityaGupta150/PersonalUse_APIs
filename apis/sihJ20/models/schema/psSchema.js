@@ -20,8 +20,8 @@ const psSchema = new Schema({
 
     probId: {
         type: String,
-        required: false,
-        // unique: true         //May not be unique, when empty, but try to emulate this on the server side
+        required: true,
+        unique: true         //May not be unique, when empty, but try to emulate this on the server side
     },
 
     stars: {

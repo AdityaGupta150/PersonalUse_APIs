@@ -5,8 +5,31 @@ const mongoose = require('mongoose')
 const probModel = require('../models/schema/psSchema')
 
 module.exports = mongoose
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     res.render('probs')
+})
+
+router.post('/incId/:id', (req, res) => {
+
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+    console.log(ip, ' has attempted to increase stars');
+
+    probModel.findOne({probId: req.params.id}, (err, doc) => {
+        if( err ){
+            console.error(err)
+            return res.sendStatus(500)
+        }
+        let currentStars = doc.stars
+        console.log('current stars -> ', currentStars)
+        
+        probModel.findByIdAndUpdate(doc._id, {stars: currentStars+1}, {new: false}, (err, doc) => {
+            if( err ){
+                console.error(err)
+                return res.sendStatus(500)
+            }                
+        })
+    })
+    res.sendStatus(200)
 })
 
 router.get('/getAll', async (req, res, next) => {
@@ -27,7 +50,8 @@ router.get('/getAll', async (req, res, next) => {
                 title: doc.title,
                 statement: doc.statement,
                 source: doc.source,
-                probId: doc.probId
+                probId: doc.probId,
+                stars: doc.stars
             })
         });
         console.log(allPS)
