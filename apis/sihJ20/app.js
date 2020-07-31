@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const path = require('path')
 
 const mongoose = require('mongoose')
 
@@ -15,6 +16,9 @@ const hacksRouter = require('./routes/hack')
 const planRouter = require('./routes/plan')
 
 const app = express();
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
 
 app.use('/', indexRouter)
 app.use('/ps', psRouter)

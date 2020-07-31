@@ -5,9 +5,50 @@ const mongoose = require('mongoose')
 const probModel = require('../models/schema/psSchema')
 
 module.exports = mongoose
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     res.render('probs')
 })
+
+router.post('/incId/:psId', (req, res) => {
+
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+    console.log(ip, ' has attempted to increase stars');
+
+    probModel.findOne({probId: req.params.psId}, (err, doc) => {
+        if( err ){
+            console.error(err)
+            return res.sendStatus(500)
+        }
+        let currentStars = doc.stars
+        console.log('current stars -> ', currentStars)
+        
+        probModel.findByIdAndUpdate(doc._id, {stars: currentStars+1}, {new: false}, (err, doc) => {
+            if( err ){
+                console.error(err)
+                return res.sendStatus(500)
+            }                
+        })
+    })
+    res.sendStatus(200)
+})
+
+router.get('/get/:psId', (req, res, next) => {
+
+    console.log(req.params);
+    probModel.findOne( {probId: req.params.psId }, (err, doc) => {
+        if( err ){ return res.status(404).send("Problem Statement, with that ID doesn't exist")}
+        
+        let acquiredPS = {
+            title: doc.title,
+            statement: doc.statement,
+            source: doc.source,
+            probId: doc.probId,
+            stars: doc.stars
+        };
+
+        res.json( acquiredPS )
+    })
+})   //Not needed now. But will be good to have it
 
 router.get('/getAll', async (req, res, next) => {
 
@@ -27,7 +68,8 @@ router.get('/getAll', async (req, res, next) => {
                 title: doc.title,
                 statement: doc.statement,
                 source: doc.source,
-                probId: doc.probId
+                probId: doc.probId,
+                stars: doc.stars
             })
         });
         console.log(allPS)
@@ -40,20 +82,8 @@ router.get('/getAll', async (req, res, next) => {
 
 })
 
-router.get('/:psId', (req, res, next) => {
-
-    console.log(req.params);
-    probModel.find( {_id: req.params.psId }, (err, docs) => {
-        if( err ){ return res.status(404).send("Problem Statement, with that ID doesn't exist")}
-        return res.send(docs)
-    })
-    // next()
-
-})   //Not needed now. But will be good to have it
-
 router.post('/add', (req, res) => {
-    return res.status(403).json({ "unauthorized": "Ask admin if you need to do it"})
-    
+    // return res.status(403).json({ "unauthorized": "Ask admin if you need to do it"})    
     let probStatement = {
         title: req.body.title,
         statement: req.body.statement,
