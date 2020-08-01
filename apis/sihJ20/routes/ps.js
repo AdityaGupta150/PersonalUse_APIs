@@ -34,7 +34,6 @@ router.post('/incId/:psId', (req, res) => {
 
 router.get('/get/:psId', (req, res, next) => {
 
-    console.log(req.params);
     probModel.findOne( {probId: req.params.psId }, (err, doc) => {
         if( err ){ return res.status(404).send("Problem Statement, with that ID doesn't exist")}
         
@@ -60,7 +59,6 @@ router.get('/getAll', async (req, res, next) => {
                 return next()
             return
         }
-        console.log("Docs retrieved: ", docs)
         return docs
     }).then( (docs) => {
         docs.forEach(doc => {   //did this to hide the IP
@@ -72,7 +70,6 @@ router.get('/getAll', async (req, res, next) => {
                 stars: doc.stars
             })
         });
-        console.log(allPS)
         return res.json(allPS)
     }).catch( (err, next) => {
         console.log(err)

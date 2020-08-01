@@ -1,1 +1,1 @@
-web: yarn run start
+web: yarn add core-js && yarn start
