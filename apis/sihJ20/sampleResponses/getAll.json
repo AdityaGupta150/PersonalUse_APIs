@@ -1,0 +1,114 @@
+[
+    {
+        "title": "Development of Filter App for CPGRAMS",
+        "statement": "Centralized Public Grievance Redress and Monitoring System (CPGRAMS) is an online web-enabled system developed by NIC, in association with Directorate of Public Grievances (DPG) and Department of Administrative Reforms and Public Grievances (DARPG). The Department seeks an application that can filter out the grievances and its details sector-wise (banking, insurance, pension, other schemes of department) and region-wise (state or place) as per user’s commands/filters.",
+        "source": "SIH",
+        "probId": "MK22",
+        "stars": 1
+    },
+    {
+        "title": "Mid-Day Meal Analytics [CISCO]",
+        "statement": "The Mid-day Meal Scheme is a school meal programme serving 120,000,000 children in over 1,265,000 schools and Education Guarantee Scheme centers, it is the largest of its kind in the world. Student teams are expected to build machine vision solution to monitor the activities under the Mid-day Meal Scheme. Solution Expected: As the Mid-Day Meal program runs in schools across the country, continuous auditing and monitoring of the program might be challenging. Typical Auditing and Monitoring could involve: Ensuring number of students that took meal is same number reported. Lunch served is same as published/reported menu. Alerting in case of discrepancy and capability to centrally see past records / proof (numbers and visual) for any school. To design modules based on the above mentioned activities, video feed shall be provided to the student teams. These feeds shall come from the Meraki security camera. Typically, these shall come from the actual / imitated site i.e. schools, food serving area etc. Student teams are expected to explore the capabilities of Meraki camera’s inbuilt Machine learning (ML) modules and develop solutions around it. E.g. counting students, object recognition etc. Meraki security camera also has an inbuilt functionality to capture snapshot photos. Teams are expected to generate their own database based on the region of interest and features they wish to extract to develop ML models. Along with the expectations of Auditing & Monitoring the student teams should also propose innovative ideas (backed with research) to extract additional information from above snapshots / photos. While architecting the entire system, teams may explore the scalability factor of the system. The evaluations shall be based on the following criteria: 1. Depth and research to understand Mid-Day meal scheme monitoring problem. 2. Depth of understanding of Meraki camera product capabilities use cases. 3. Depth and understanding of technologies proposed in solution. Resources:  https://developer.cisco.com/meraki  https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/Object- detection-via-Meraki-Camera  https://developer.cisco.com/meraki/mv-sense/",
+        "source": "SIH",
+        "probId": "AM291",
+        "stars": 1
+    },
+    {
+        "title": "Libary Software for Andaman College",
+        "statement": "Computerization of Library Activities and Book Transactions Design a system for library management system for Andaman college that has voice based search of books and automatic categorization of books in genres based on title. The system should search from the internet and get information about the book and put them into appropriate category based on title, authors and information collected online.",
+        "source": "SIH",
+        "probId": "DS165",
+        "stars": 0
+    },
+    {
+        "title": "Data Storage and analytics with Dashboard [Govt of Sikkim]",
+        "statement": "Schools in Sikkim are located in different terrain and during monsoon season it’s very difficult to reach every school to get data. In govt sector sometimes we need data immediately in such scenario creating data is difficult We need a software or web portal which can store data of all students across the four districts .The data storage should be block level, district level and state level. As network is very challenging throughout the state of Sikkim. Software should be design such a way that data can be entry offline and later on put into the web when network is available. Design a desktop based application that records a variety of data like attendance or students as well as teachers, marks of students, and other statutory data as required by education department. Most important aspect of this application is sync only when network is available. It should additionally provide facility to upload file separately once in a month.",
+        "source": "SIH",
+        "probId": "SG434",
+        "stars": 1
+    },
+    {
+        "title": "\"Bibliophile Companion - A companion similar to an active agent, that helps the reader to organize and retrieve the highlighted text, book marked page and credentials of the content source in cloud across heterogeneous platforms, gadgets and applications. \"",
+        "statement": "To develop a software tool (may be an app/plug-in) that archives the highlighted text from different sources and enable the user to retrieve according to his requirement wherever and whenever required from centralized storage. Description: Now a days the flow of information have been exponentially increased, and the information flow from a variety of sources. When a reader needs to highlight the textual information and use it as and when it is required at later point in time, there exists no tool for him. It becomes even more complex when the source of information is from across multiple platforms, gadgets and applications. Therefore, Bibliophile Companion is proposed to address the problem. The important challenge in this problem is, the information source may be of any type (e.g. .pdf, .doc, .html, etc) and the source of information may be from any environment. To have a centralized access of stored information, cloud infrastructure based solution is to be provided.",
+        "source": "SIH",
+        "probId": "DK182",
+        "stars": 1
+    },
+    {
+        "title": "One Nation – One Citizen – One Pension – Identify citizens receiving multiple benefits like pensions under different schemes of the centre and state, such as NPS, NSAP Schemes, PMSYM and State level schemes",
+        "statement": "Currently there are multiple programs through which a welfare scheme such as 'Pension' is being disbursed to eligible citizens across the country. Many of these overlap and the citizens get the benefits through multiple sources for the same purpose such as 'Pension'. In addition to all this, there are a number of citizens who are deprived of such welfare schemes and hence there needs to be a innovative approach to address such issues. As per the Census 2011 data, out of 24.3 Crores households, 10.69 Crores households are considered as deprived, while through NSAP only 3.26 Crore beneficiaries are covered. Likewise, it is imperative to look at other welfare schemes and ensure all the deprived are brought into the bracket. Sample Data Required: Yes",
+        "source": "SIH",
+        "probId": "MK207",
+        "stars": 1
+    },
+    {
+        "title": "A Mobile App should be developed to send the Photographs and Press Clippings etc. from the location of the programme conducted with Name of District and the Mobile Number of the sender and Geo location",
+        "statement": "A Mobile App should be developed to send the Photographs and Press Clippings etc. from the location of the programme conducted with Name of District and the Mobile Number of the sender and Geo location.",
+        "source": "SIH",
+        "probId": "DK3",
+        "stars": 0
+    },
+    {
+        "title": "Social Media Technology [Analysis]",
+        "statement": "Atleast one among these • Design a solution to identify Fake News. • Design a Solution that can arrive at a Social media sentiment analysis to understand the citizen sentiments on key problems and government initiatives. The Solution should have English as well as local language support. • Design a Solution to track and prevent the spread of hate messages on Social Media by flagging such messages before they become viral-For example: NE exodus, communal riots. • Design a Solution that reduces bias by analyzing the sentiment of stories and giving a balanced viewpoint of news stories across publishers. • Design a Statistical Model that arrives at Circulation and Readership figures of various Newspapers for the purpose of Circulation Verification. • Design a Solution that addresses Movie Piracy and prevents that circulation of pirated content. • Design a Solution for Visual storytelling which augments plain text and speech with infographics and animated audio – visuals. • Design a “contextual research editor” that gathers relevant information related to keywords in an article from the web and aggregates coverage on an issue from other sources to find more diverse angles on the story. • Design a Solution to create a ‘Personal Reporter‘ that customises what stories a particular user prefers. This is intended to make news distribution a more interactive, personalised for what readers really want. • Design a Solution to gather “geographic context” to news stories to provide a better understanding of the issue, and also suggest geographically – related content. • Design a Solution for audio news for people who might prefer listening to news over reading it, or for busy commuters who want to hear the news as they travel. The Solution should read from a particular news website and have user commands like Read full article, Skip article, Next article etc. • Design a Solution that Serves a reader updates to a story she was interested in years ago. • Design a Solution for improving a reader’s understanding of a topic by automating the process of finding the most diverse coverage of an issue. • Design a Solution that helps organize research that goes into a story. • Design a Solution that helps deep dive into conversations on Twitter to find new sources. A dashboard that compiles popular hashtags and retweets from Twitter handles that you enter.",
+        "source": "SIH",
+        "probId": "NK223",
+        "stars": 0
+    },
+    {
+        "title": "FILE TRACKING SYSTEM IN THE DEPARTMENT",
+        "statement": "Often the file tracking becomes very difficult since it is done manually.An application to record the movement of files(date and time) and to track it easily.",
+        "source": "SIH",
+        "probId": "SG298",
+        "stars": 1
+    },
+    {
+        "title": "Cryptography based Single Sign on",
+        "statement": "A solution is required that enables users to securely access applications without providing their access credentials like username/password, bio-metric data, smart cards/dongles etc. It could be further enhanced to securely sign transactions in decentralized environment like blockchain.",
+        "source": "SIH",
+        "probId": "CK140",
+        "stars": 0
+    },
+    {
+        "title": "Block chain technology for price discovery and tracking the price of commodity at each stage from farm to table to ensure fair and remunerative prices to farmers.",
+        "statement": "This will bring transparency to the entire supply chain and ensure the margins are not cornered by middle men at the expense of farmers.",
+        "source": "SIH",
+        "probId": "PR423",
+        "stars": 0
+    },
+    {
+        "title": "Effective search mechanism for suggestive response to Parliament Questions",
+        "statement": "During parliament session, each Department receives number of Parliament Questions on varied topics raised by MPs and handled in a very time bound manner on top priority. Each reply is generally prepared by seeking inputs from all the other relevant departments which requires lot of efforts and is also time consuming. It is desired a platform can be designed which can provide responses to similar PQ asked earlier, suggest probable reply and indicate different departments having similar programs and information. This will be helpful in preparing proper reply to PQ. As of now there are some search tools, separate for Lok Sabha and Rajya Sabha. But a unified, fast and effective mechanism is missing.",
+        "source": "SIH",
+        "probId": "PR325",
+        "stars": 1
+    },
+    {
+        "title": "Size Invariant Ship detection from SAR Images [ISRO]",
+        "statement": "SAR satellites provide useful information for object detection. A methodology needs to be developed to detect ships at ocean area using SAR data and estimate size of the detected ships (size invariant). The methodology should be applicable for different resolution SAR data of same bands. Develop software with following two features- a) Land water discrimination using SAR imagery, b) Output detected ships as a vector file, with an estimate of the size of ship",
+        "source": "SIH",
+        "probId": "NM404",
+        "stars": 1
+    },
+    {
+        "title": "Job recommender system. To design a software application for assessing the abilities of a student with respect to employability.",
+        "statement": "At present efforts are made to revise and upgrade the curriculum by the AICTE to train the students to cater to industrial needs. But there are several factors that prevents the students to reach their zenith and harness their skills as below: 1. Socio-economic background of the student. 2. Peer influence 3. Addiction to cell phones and social media. 4. parents pressure to join a course in which the student is not interested. 5. lack of strong foundation in the fundamentals. 6. General prevalence of Learning Disability. The current metrics of CGPA, certificates are not enough to accurately assess the capability of a student. many students are sacked from the company after one or two years because they are not happy with the performance. Exact Problem: Every individual has an inherent ability /talent. if only he/she gets a job suiting the skill set the goal of AICTE will be achieved. Higher productivity will be there and youth power has a major role to play in a Nation's growth . Economy will improve. The proposed software should identify the skill set and assess the capacity of a student. It should recommend the suitable candidates against a requirement from the industry.",
+        "source": "SIH",
+        "probId": "DK180",
+        "stars": 1
+    },
+    {
+        "title": "Detecting Poor Telecom Connectivity (Cellular) regions using user device signal strength",
+        "statement": "Detecting Poor Telecom Connectivity (Cellular) regions using user device signal strength. An APP based solution may be developed for Detecting Poor Telecom Connectivity (Cellular) regions using user devise signal strength along with geo coordinates of the user to a central server. Government authorities can use that information to assess the poor coverage regions and take necessary steps to address the issue of poor coverage",
+        "source": "SIH",
+        "probId": "MU455",
+        "stars": 1
+    },
+    {
+        "title": "Tourism simplified through voice [AWS]",
+        "statement": "Alexa is Amazon’s cloud base voice service, that helps users interact with brands, data, and business logic through voice. Use Alexa to innovate, and build the next generation of interfaces for tourists in India. Your solution should help solve pain points of tourists coming to India like - voice forums to crowd source destination reviews, GPS based voice navigators to guide tourists at historical sites, SOS and emergency support solutions for local and international travelers, travel guides with entry prerequisites, government policies, visa needs, and recommendations on seasons to visit. The Alexa based solution should be intuitive to use also cater to the physically challenged travelers in India.",
+        "source": "SIH",
+        "probId": "AN317",
+        "stars": 1
+    }
+]

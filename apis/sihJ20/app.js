@@ -4,11 +4,27 @@ const path = require('path')
 
 const mongoose = require('mongoose')
 
-mongoose.connect( process.env.DB_URI || "mongodb://localhost/Hack", {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
-console.log( "Will connect to " + process.env.DB_URI.substr(0,10) + "..." )
-mongoose.connection
-  .once('open', () => console.log("Connected to MongoDB,", "Hack DB"))
-  .on('error', (err) => console.error(err))
+let mongoDB_opts = {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}
+let dbName = 'Hack'
+let db = (process.env.DB_URI.replace('<DB_NAME>', dbName)) || ('mongodb://localhost/' + dbName)
+mongoose.connect( db, mongoDB_opts)
+  .then( () => {
+    console.log( "Connected to " + db.substr(0,15) + "..." )
+  })
+  .catch((err) => {
+    console.log('Unable to connect to MONGODB cluster...', 'Trying to connect to localhost');
+    mongoose.connect('mongodb://localhost/' + dbName, mongoDB_opts)
+      .then( () => {
+        console.log('Connected to mongodb://localhost/' + dbName)
+      })
+      .catch((err) => {
+        console.error("Couldn't connect to MongoDB, neither online cluster, nor localhost", 'Start mongod, or connect to internet');
+      })
+    }
+  )
+// mongoose.connection
+//   .once('open', () => console.log("Connected to MongoDB,", "Hack DB"))
+//   .on('error', (err) => console.error(err))
 
 const indexRouter = require('./routes/index')
 const psRouter = require('./routes/ps')

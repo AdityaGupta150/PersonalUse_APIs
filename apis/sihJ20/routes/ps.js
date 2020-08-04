@@ -5,6 +5,12 @@ const mongoose = require('mongoose')
 const probModel = require('../models/schema/psSchema')
 
 module.exports = mongoose
+router.get('/pushSample', (req, res) => {
+    const samples = require('../sampleResponses/getAll.json')
+
+    res.send(samples)
+})
+
 router.get('/', (req, res) => {
     res.render('probs')
 })
@@ -36,7 +42,8 @@ router.get('/get/:psId', (req, res, next) => {
 
     probModel.findOne( {probId: req.params.psId }, (err, doc) => {
         if( err ){ return res.status(404).send("Problem Statement, with that ID doesn't exist")}
-        
+
+        if(!doc)    return res.json({'Error': 'Invalid psId was passed : ' + req.params.psId})
         let acquiredPS = {
             title: doc.title,
             statement: doc.statement,
@@ -52,7 +59,7 @@ router.get('/get/:psId', (req, res, next) => {
 router.get('/getAll', async (req, res, next) => {
 
     let allPS = []
-    await probModel.find( (err, docs) => {
+    probModel.find( (err, docs) => {
         if( err ){
             console.error(err)
             if( next )
@@ -61,6 +68,10 @@ router.get('/getAll', async (req, res, next) => {
         }
         return docs
     }).then( (docs) => {
+        if(docs.length === 0){
+            return res.json({"Message": "Their are no documents, in asked collection"})
+        }
+
         docs.forEach(doc => {   //did this to hide the IP
             allPS.push({
                 title: doc.title,
