@@ -6,7 +6,28 @@ const probModel = require('../models/schema/psSchema')
 
 module.exports = mongoose
 router.get('/pushSample', (req, res) => {
+    if(!req.Authorised){
+        return res.sendStatus(204)
+    }
+
     const samples = require('../sampleResponses/getAll.json')
+    samples.push({
+        title: 'new',
+        statement: 'hi',
+        source: 'sih',
+        probId: 'adig15',
+        // stars: 0
+    })
+
+    probModel.create(samples)
+        .then( (docs) => {
+            console.log(docs);
+        })
+        .catch((err) => {
+            //LEARNT -> MONGO WILL THROW ERROR, EVEN IF ONLY 1 DOCUMENT, IS REPEATING(SAME ID, ETC),
+            //  BUT, EVEN THOUGH IT IS THROWING AN ERROR, it WILL save the distinct/OK docs to the database
+            console.error('Unable to save samples to the document');
+        })
 
     res.send(samples)
 })

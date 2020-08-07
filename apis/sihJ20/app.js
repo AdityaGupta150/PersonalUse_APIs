@@ -22,9 +22,10 @@ mongoose.connect( db, mongoDB_opts)
       })
     }
   )
-// mongoose.connection
-//   .once('open', () => console.log("Connected to MongoDB,", "Hack DB"))
-//   .on('error', (err) => console.error(err))
+
+mongoose.connection
+  .once('open', () => console.log("Connected to MongoDB, database: ", dbName))
+  .on('error', (err) => console.error(err))
 
 const indexRouter = require('./routes/index')
 const psRouter = require('./routes/ps')
@@ -32,9 +33,6 @@ const hacksRouter = require('./routes/hack')
 const planRouter = require('./routes/plan')
 
 const app = express();
-
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'pug')
 
 /*
   IMPORTANT NOTE [LEARNT] ->

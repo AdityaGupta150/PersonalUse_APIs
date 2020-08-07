@@ -1,0 +1,61 @@
+*API endpoints accept arguments either as url-encoded values for non-POST requests or as json-encoded objects encoded in POST request body with Content-Type: application/json header.
+Each modification request may provide additional X-Request-Id HTTP header that could be used as an unique string to ensure modifications are applied only once — request having the same id as previously seen would be discarded.
+
+*Labels won't make much difference, but they will be stored internally, so that...
+	For eg. I have a project in the 'Github', and the 'General' collections... i can have the label #ludo in both... so it may be a way of cross collection link (just a fancy nothing special... just saying that inside a collection... labels can make the `purpose` clear, eg. about #ludo, or about #apis, #learnt)
+
+*Try to have a different section of LEARNT... they wont have a due date, but labels will make it clear what is it about... and by default when i search #cpp, todos from 'learnt' collections shouldn't show up
+
+*ignoring /sections routes... i am using collections... but the project_id is more relevant, due to the way my previous todos are
+*ignoring /comments routes, FOR NOW... try to implement it later (attachments will be written into comments)
+
+*when a recurring task is closed, what actually happens is that its due date is updated
+*non-completed recurring tasks aren't reopened, any such request to be ignored
+
+base URL ->	https://api.todoist.com/rest/v1
+
+GET
+-----------
+/projects
+/projects/:pId		//get project with certain id
+/projects/:pId/collaborators	//for `shared ` projects (won't implement this)
+/tasks		//get all 'active' tasks (can pass project_id etc. to filter results)
+/tasks/:taskId
+/labels
+/labels/:labelId
+
+
+POST
+-----------
+/projects	(//to create new project//)
+	data- {'name': 'newName', 'parent_id', 'color', 'favorite'(true?false)}
+/projects/:pId	//to update a project data
+	data- Same as above(except parent_id, it can't be updated) (it will be a shallow merge)
+/tasks		//to create new task
+	data- {'content', 'project_id', 'section_id', 'parent_id', 'order', 'label_ids'(array of ints), 'priority', 'due_string'(human defined due date),'due_date'(YYYY-MM-DD) ,'due_datetime'(RFC3339 UTC format), 'due_lang'(2letter code), 'assignee'(user_id)}		(only one of the 3 date type should be sent)
+/tasks/:taskId		(can't update project, parent, section ids)
+/tasks/:taskId/close	(no body needed...)
+/labels		(data- ['name', 'order', 'colour', 'favourite'])
+/labels/:labelId	(ditto same as above)
+
+DELETE
+-----------
+/projects/:pId		//deletes the project
+/tasks/:taskId
+/labels/:labelId
+
+
+
+
+COLOURS ->
+Id 	Hexadecimal 		Id 	Hexadecimal
+30 	#b8255f #b8256f 		40 	#96c3eb #96c3eb
+31 	#db4035 #db4035 		41 	#4073ff #4073ff
+32 	#ff9933 #ff9933 		42 	#884dff #884dff
+33 	#fad000 #fad000 		43 	#af38eb #af38eb
+34 	#afb83b #afb83b 		44 	#eb96eb #eb96eb
+35 	#7ecc49 #7ecc49 		45 	#e05194 #e05194
+36 	#299438 #299438 		46 	#ff8d85 #ff8d85
+37 	#6accbc #6accbc 		47 	#808080 #808080
+38 	#158fad #158fad 		48 	#b8b8b8 #b8b8b8
+39 	#14aaf5 #14aaf5 		49 	#ccac93 #ccac93

@@ -25,7 +25,8 @@ const psSchema = new Schema({
     },
 
     stars: {
-        type: Number
+        type: Number,
+        default: 0
     }
 })
 
@@ -35,6 +36,8 @@ psSchema.pre('save', (next) => {
     //Check if same problem ID is already present or not
 
     let toBeAdded = this    //!!!! Considering this will work 
+
+    console.log('it was called')
 
     compiledModel_PS.findOne({probId: this.probId }, (err, doc) => {
         if(err) return console.error(err)
