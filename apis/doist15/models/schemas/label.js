@@ -1,25 +1,22 @@
-const mongoose = require('mongoose')
+const { Schema, Types } = require('mongoose')
+const {minColour, maxColour} = require("../../util-functions/colours");
+const { getConnection } = require('../../../util/mongoConnection');
 
     //labels will be the one that will actually be the one to distinguish between actual 'projects'
-const labelSchema = new mongoose.Schema({
-    _id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+const labelSchema = new Schema({
     name: {
         type: String,
         required: true,
         unique: true
     },
     todoIds: {
-        type: Object,   //array of todo ids
-        required: true  //since it should be initialised with at least one todoId
+        type: [Types.ObjectId],   //array of todo ids
+            //default will be []
     },
     color: {    //will only matter, when we filter using a label... ie. only when we are on the page that contains all todos under a particular label... then the label title or backfround maybe coloured using this colour
         type: String,
-        // required: true
-            //not setting default, do that on the server side, to ensure a different color than others present in the collection
+        default: Math.floor((Math.random()*(maxColour - minColour + 1)) + minColour)   //this gives us the range [minColour, maxColour+1)
+        //not setting default, do that on the server side, to ensure a different color than others present in the collection
     },
     createdAt: {
         type: Number,
@@ -27,6 +24,8 @@ const labelSchema = new mongoose.Schema({
     }
 })
 
-//TODO - Add logic to check after each change of this.todoIds, to check if it has become empty... if so remove
+labelSchema.methods.pushTodoId = function(todoId){
+    this.todoIds.push(todoId)
+}
 
-module.exports = mongoose.model('labels', labelSchema)
+module.exports = getConnection('MyDoist15').model('labels', labelSchema)

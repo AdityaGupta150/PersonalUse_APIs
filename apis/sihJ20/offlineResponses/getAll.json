@@ -1,5 +1,6 @@
 [
     {
+		MAYBE
         "title": "Development of Filter App for CPGRAMS",
         "statement": "Centralized Public Grievance Redress and Monitoring System (CPGRAMS) is an online web-enabled system developed by NIC, in association with Directorate of Public Grievances (DPG) and Department of Administrative Reforms and Public Grievances (DARPG). The Department seeks an application that can filter out the grievances and its details sector-wise (banking, insurance, pension, other schemes of department) and region-wise (state or place) as per user’s commands/filters.",
         "source": "SIH",
@@ -7,6 +8,7 @@
         "stars": 1
     },
     {
+		MAYBE
         "title": "Mid-Day Meal Analytics [CISCO]",
         "statement": "The Mid-day Meal Scheme is a school meal programme serving 120,000,000 children in over 1,265,000 schools and Education Guarantee Scheme centers, it is the largest of its kind in the world. Student teams are expected to build machine vision solution to monitor the activities under the Mid-day Meal Scheme. Solution Expected: As the Mid-Day Meal program runs in schools across the country, continuous auditing and monitoring of the program might be challenging. Typical Auditing and Monitoring could involve: Ensuring number of students that took meal is same number reported. Lunch served is same as published/reported menu. Alerting in case of discrepancy and capability to centrally see past records / proof (numbers and visual) for any school. To design modules based on the above mentioned activities, video feed shall be provided to the student teams. These feeds shall come from the Meraki security camera. Typically, these shall come from the actual / imitated site i.e. schools, food serving area etc. Student teams are expected to explore the capabilities of Meraki camera’s inbuilt Machine learning (ML) modules and develop solutions around it. E.g. counting students, object recognition etc. Meraki security camera also has an inbuilt functionality to capture snapshot photos. Teams are expected to generate their own database based on the region of interest and features they wish to extract to develop ML models. Along with the expectations of Auditing & Monitoring the student teams should also propose innovative ideas (backed with research) to extract additional information from above snapshots / photos. While architecting the entire system, teams may explore the scalability factor of the system. The evaluations shall be based on the following criteria: 1. Depth and research to understand Mid-Day meal scheme monitoring problem. 2. Depth of understanding of Meraki camera product capabilities use cases. 3. Depth and understanding of technologies proposed in solution. Resources:  https://developer.cisco.com/meraki  https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/Object- detection-via-Meraki-Camera  https://developer.cisco.com/meraki/mv-sense/",
         "source": "SIH",
@@ -42,6 +44,7 @@
         "stars": 1
     },
     {
+		NOT
         "title": "A Mobile App should be developed to send the Photographs and Press Clippings etc. from the location of the programme conducted with Name of District and the Mobile Number of the sender and Geo location",
         "statement": "A Mobile App should be developed to send the Photographs and Press Clippings etc. from the location of the programme conducted with Name of District and the Mobile Number of the sender and Geo location.",
         "source": "SIH",
@@ -49,6 +52,7 @@
         "stars": 0
     },
     {
+		NOT
         "title": "Social Media Technology [Analysis]",
         "statement": "Atleast one among these • Design a solution to identify Fake News. • Design a Solution that can arrive at a Social media sentiment analysis to understand the citizen sentiments on key problems and government initiatives. The Solution should have English as well as local language support. • Design a Solution to track and prevent the spread of hate messages on Social Media by flagging such messages before they become viral-For example: NE exodus, communal riots. • Design a Solution that reduces bias by analyzing the sentiment of stories and giving a balanced viewpoint of news stories across publishers. • Design a Statistical Model that arrives at Circulation and Readership figures of various Newspapers for the purpose of Circulation Verification. • Design a Solution that addresses Movie Piracy and prevents that circulation of pirated content. • Design a Solution for Visual storytelling which augments plain text and speech with infographics and animated audio – visuals. • Design a “contextual research editor” that gathers relevant information related to keywords in an article from the web and aggregates coverage on an issue from other sources to find more diverse angles on the story. • Design a Solution to create a ‘Personal Reporter‘ that customises what stories a particular user prefers. This is intended to make news distribution a more interactive, personalised for what readers really want. • Design a Solution to gather “geographic context” to news stories to provide a better understanding of the issue, and also suggest geographically – related content. • Design a Solution for audio news for people who might prefer listening to news over reading it, or for busy commuters who want to hear the news as they travel. The Solution should read from a particular news website and have user commands like Read full article, Skip article, Next article etc. • Design a Solution that Serves a reader updates to a story she was interested in years ago. • Design a Solution for improving a reader’s understanding of a topic by automating the process of finding the most diverse coverage of an issue. • Design a Solution that helps organize research that goes into a story. • Design a Solution that helps deep dive into conversations on Twitter to find new sources. A dashboard that compiles popular hashtags and retweets from Twitter handles that you enter.",
         "source": "SIH",
@@ -56,6 +60,7 @@
         "stars": 0
     },
     {
+		NOT
         "title": "FILE TRACKING SYSTEM IN THE DEPARTMENT",
         "statement": "Often the file tracking becomes very difficult since it is done manually.An application to record the movement of files(date and time) and to track it easily.",
         "source": "SIH",
@@ -63,6 +68,7 @@
         "stars": 1
     },
     {
+		NOT
         "title": "Cryptography based Single Sign on",
         "statement": "A solution is required that enables users to securely access applications without providing their access credentials like username/password, bio-metric data, smart cards/dongles etc. It could be further enhanced to securely sign transactions in decentralized environment like blockchain.",
         "source": "SIH",
@@ -70,6 +76,7 @@
         "stars": 0
     },
     {
+		NOT
         "title": "Block chain technology for price discovery and tracking the price of commodity at each stage from farm to table to ensure fair and remunerative prices to farmers.",
         "statement": "This will bring transparency to the entire supply chain and ensure the margins are not cornered by middle men at the expense of farmers.",
         "source": "SIH",
@@ -98,6 +105,7 @@
         "stars": 1
     },
     {
+		NOT
         "title": "Detecting Poor Telecom Connectivity (Cellular) regions using user device signal strength",
         "statement": "Detecting Poor Telecom Connectivity (Cellular) regions using user device signal strength. An APP based solution may be developed for Detecting Poor Telecom Connectivity (Cellular) regions using user devise signal strength along with geo coordinates of the user to a central server. Government authorities can use that information to assess the poor coverage regions and take necessary steps to address the issue of poor coverage",
         "source": "SIH",

@@ -55,16 +55,11 @@ const getKeys = async (json) => {
     })
 }
 
-const getKeysSync = async (json) => {
+const getKeysSync = async (json) => {   //blocking
     let retVal
     await getKeys(json).then((val) => {retVal = val});
     return retVal
 }
-
-
-const v = getKeysSync(todos)
-console.log('going to print')
-console.log(v)
 
 let keys = [
     'title',

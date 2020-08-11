@@ -7,13 +7,15 @@ const fs = require('fs/promises')
 const checkStatus = require('../util-functions/util')
 
 router.get('/sample/tasks', async (req, res) => {
-    let data = require('../sampleData/todoist.json')
+    let data = require('../offlineData/todoist.json')
 
     res.json(data)
 })
 
 /**@todo Add logic to work with Todoist APIs */
 router.get('/tasks', async (req, res) => {
+    console.log(req.baseUrl);
+
     let data = await fetch(
         'https://api.todoist.com/rest/v1/tasks',
         {

@@ -43,19 +43,3 @@ DELETE
 /projects/:pId		//deletes the project
 /tasks/:taskId
 /labels/:labelId
-
-
-
-
-COLOURS ->
-Id 	Hexadecimal 		Id 	Hexadecimal
-30 	#b8255f #b8256f 		40 	#96c3eb #96c3eb
-31 	#db4035 #db4035 		41 	#4073ff #4073ff
-32 	#ff9933 #ff9933 		42 	#884dff #884dff
-33 	#fad000 #fad000 		43 	#af38eb #af38eb
-34 	#afb83b #afb83b 		44 	#eb96eb #eb96eb
-35 	#7ecc49 #7ecc49 		45 	#e05194 #e05194
-36 	#299438 #299438 		46 	#ff8d85 #ff8d85
-37 	#6accbc #6accbc 		47 	#808080 #808080
-38 	#158fad #158fad 		48 	#b8b8b8 #b8b8b8
-39 	#14aaf5 #14aaf5 		49 	#ccac93 #ccac93

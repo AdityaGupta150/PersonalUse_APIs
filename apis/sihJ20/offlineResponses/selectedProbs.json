@@ -1,0 +1,55 @@
+[{
+  "title": "Development of Filter App for CPGRAMS",
+  "statement": "Centralized Public Grievance Redress and Monitoring System (CPGRAMS) is an online web-enabled system developed by NIC, in association with Directorate of Public Grievances (DPG) and Department of Administrative Reforms and Public Grievances (DARPG). The Department seeks an application that can filter out the grievances and its details sector-wise (banking, insurance, pension, other schemes of department) and region-wise (state or place) as per user’s commands/filters.",
+  "source": "SIH",
+  "probId": "MK22",
+  "stars": 1
+},{
+  "title": "Bibliophile Companion - Helps the reader to organize and retrieve the highlighted text, book marked page and credentials of the content source in Cloud across heterogeneous platforms, gadgets and applications",
+  "statement": "To develop a software tool (may be an app/plug-in) that archives the highlighted text from different sources and enable the user to retrieve according to his requirement wherever and whenever required from centralized storage. Description: Now a days the flow of information have been exponentially increased, and the information flow from a variety of sources. When a reader needs to highlight the textual information and use it as and when it is required at later point in time, there exists no tool for him. It becomes even more complex when the source of information is from across multiple platforms, gadgets and applications. Therefore, Bibliophile Companion is proposed to address the problem. The important challenge in this problem is, the information source may be of any type (e.g. .pdf, .doc, .html, etc) and the source of information may be from any environment. To have a centralized access of stored information, cloud infrastructure based solution is to be provided.",
+  "source": "SIH",
+  "probId": "DK182",
+  "stars": 1
+},{
+  "title": "One Nation – One Citizen – One Pension – Identify citizens receiving multiple benefits like pensions under different schemes of the centre and state, such as NPS, NSAP Schemes, PMSYM and State level schemes",
+  "statement": "Currently there are multiple programs through which a welfare scheme such as 'Pension' is being disbursed to eligible citizens across the country. Many of these overlap and the citizens get the benefits through multiple sources for the same purpose such as 'Pension'. In addition to all this, there are a number of citizens who are deprived of such welfare schemes and hence there needs to be a innovative approach to address such issues. As per the Census 2011 data, out of 24.3 Crores households, 10.69 Crores households are considered as deprived, while through NSAP only 3.26 Crore beneficiaries are covered. Likewise, it is imperative to look at other welfare schemes and ensure all the deprived are brought into the bracket. Sample Data Required: Yes",
+  "source": "SIH",
+  "probId": "MK207",
+  "stars": 2
+},{
+  "title": "Effective search mechanism for suggestive response to Parliament Questions",
+  "statement": "During parliament session, each Department receives number of Parliament Questions on varied topics raised by MPs and handled in a very time bound manner on top priority. Each reply is generally prepared by seeking inputs from all the other relevant departments which requires lot of efforts and is also time consuming. It is desired a platform can be designed which can provide responses to similar PQ asked earlier, suggest probable reply and indicate different departments having similar programs and information. This will be helpful in preparing proper reply to PQ. As of now there are some search tools, separate for Lok Sabha and Rajya Sabha. But a unified, fast and effective mechanism is missing.",
+  "source": "SIH",
+  "probId": "PR325",
+  "stars": 1
+},{
+  "title": "Size Invariant Ship detection from SAR Images [ISRO]",
+  "statement": "SAR satellites provide useful information for object detection. A methodology needs to be developed to detect ships at ocean area using SAR data and estimate size of the detected ships (size invariant). The methodology should be applicable for different resolution SAR data of same bands. Develop software with following two features- a) Land water discrimination using SAR imagery, b) Output detected ships as a vector file, with an estimate of the size of ship",
+  "source": "SIH",
+  "probId": "NM404",
+  "stars": 2
+},{
+  "title": "Job recommender system. To design a software application for assessing the abilities of a student with respect to employability.",
+  "statement": "At present efforts are made to revise and upgrade the curriculum by the AICTE to train the students to cater to industrial needs. But there are several factors that prevents the students to reach their zenith and harness their skills as below: 1. Socio-economic background of the student. 2. Peer influence 3. Addiction to cell phones and social media. 4. parents pressure to join a course in which the student is not interested. 5. lack of strong foundation in the fundamentals. 6. General prevalence of Learning Disability. The current metrics of CGPA, certificates are not enough to accurately assess the capability of a student. many students are sacked from the company after one or two years because they are not happy with the performance. Exact Problem: Every individual has an inherent ability /talent. if only he/she gets a job suiting the skill set the goal of AICTE will be achieved. Higher productivity will be there and youth power has a major role to play in a Nation's growth . Economy will improve. The proposed software should identify the skill set and assess the capacity of a student. It should recommend the suitable candidates against a requirement from the industry.",
+  "source": "SIH",
+  "probId": "DK180",
+  "stars": 2
+},{
+  "title": "Mobile Application based Passenger faciliation System using AI and ML (Airport Authority of India)",
+  "statement": "A mobile application needs to developed to track the registered passengers from resistance to home. The application will register passenger mobile number only for those who are willing to take this service. Passenger will be provided customized offers for Taxi, concessionaires etc. based upon passenger history and facility choices opted by the users. Further a separate module dedicated to VIP passenger facilitation needs to be incorporated. Projects should also have • User friendly UI/UX for Airport passangers. • Digitally Storing and Monitoring overall project related data.",
+  "source": "Rishi",
+  "probId": "AK16",
+  "stars": 1
+},{
+  "title": "Cyber Crime Prevention (Bureau of Police Research & Development)",
+  "statement": "Cyber bullying involves posting and sharing wrong, private, negative, harmful information about victim. In today's digital world we see many such instances where a particular person is targeted. We are looking for the software solution to curb such bullying/harassment in cyber space. Such solution is expected to (1) work on social media such as twitter, facebook,etc. and on SMS, etc. (2) should alarm the authorities (3) facility to report such incidents to authority. Additional useful features are welcome.",
+  "source": "Rishi",
+  "probId": "RK59",
+  "stars": 1
+},{
+  "title": "Air pollution hot spots detection and identifying the source trajectories using ML/AI techniques",
+  "statement": "India signed COP21 agreement for cutting the carbon emissions from 2025. Hence a study identifying the hot spots of pollutants and their transport namely carbon monoxide (CO), sulphur dioxide (SO2) and oxides of nitrogen (NO+NO2) using advanced data analysis techniques. Satellite provides columnar concentration of these pollutants which are 90% representation of surface concentrations. Pollution sources are mainly from the land surface activities. Satellite provides these observations on daily basis with different spatial resolutions. Challenges involved in the current statement is mining the datasets from different satellites parameters and providing the final output with moderate spatial resolution on pollution information. Hence information will be useful for change detection analysis. Identification of source pathways. Participants must develop AI/ML based software/algorithm to identify/analyse 1. Location of hot spots. 2. Long-term occurrence of hot spots and changes. Dataset Links: Satellite based data (freely available), Sentinel-5p/TROPOMI (https://s5phub.copernicus.eu/dhus/#/home), MOPITT (https://eosweb.larc.nasa.gov/project/mopitt/mopitt_table), Aura/OMI (https://giovanni.gsfc.nasa.gov/giovanni/#service=TmAvMp&starttime=&endtime=&dataKeyword=Ozone) and Winds (https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form; https://giovanni.gsfc.nasa.gov/giovanni/#service=TmAvMp&starttime=&endtime=&variableFacets=dataFieldMeasurement%3AWind%3B)",
+  "source": "Rishi",
+  "probId": "NM394",
+  "stars": 1
+}]

@@ -8,38 +8,11 @@ const express = require('express')
 const app = express()
 // const {exit} = ;
 
-const indexRouter = require('./routes/index')
-const syncRouter = require('./routes/sync')
-const todoistRouter = require('./routes/todoist')
+const indexRouter = require('./routes/index.js')
+const syncRouter = require('./routes/sync.js')
+const todoistRouter = require('./routes/todoist.js')
 
 require('dotenv').config({path: './apis/doist15/.env'})
-
-const mongoose = require('mongoose')
-
-const dbName = 'MyDoist15'
-let db = process.env.DB_URI.replace('<DB_NAME>', dbName) || 'mongodb://localhost/' + dbName
-const dbOpts = {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}
-mongoose.connect(db, dbOpts)
-    .then( () => {})
-    .catch((err) => {
-        console.error('Couldn\'t connect to mongo... Trying to connect to mongodb://localhost')
-        db = 'mongodb://localhost/' + dbName
-        mongoose.connect(db, dbOpts)
-            .then( () => {})
-            .catch( (err) => {
-                console.error('Couldn\'t connect to mongo... Trying to connect to mongodb://localhost')
-                exit(500)
-            })
-    })
-
-
-mongoose.connection
-    .once('open', () => {
-        console.log('Database connected. DB -> ', db.substr(0,15))
-    })
-    .on('error', (err) => {
-        console.error.bind(console, 'Error in connection with MONGO');
-    })
 
 app.use('/', indexRouter)
 app.use('/sync', syncRouter)

@@ -1,8 +1,6 @@
 const router = require('express').Router()
 
 const hackModel = require('../models/schema/hackathonSchema')
-
-const mongoose = require('mongoose')
   
 router.get('/', (req, res) => {
     res.json({

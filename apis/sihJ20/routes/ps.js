@@ -1,39 +1,31 @@
 const router = require('express').Router()
 
-const mongoose = require('mongoose')
-
 const probModel = require('../models/schema/psSchema')
-
-module.exports = mongoose
-router.get('/pushSample', (req, res) => {
-    if(!req.Authorised){
-        return res.sendStatus(204)
-    }
-
-    const samples = require('../sampleResponses/getAll.json')
-    samples.push({
-        title: 'new',
-        statement: 'hi',
-        source: 'sih',
-        probId: 'adig15',
-        // stars: 0
-    })
-
-    probModel.create(samples)
-        .then( (docs) => {
-            console.log(docs);
-        })
-        .catch((err) => {
-            //LEARNT -> MONGO WILL THROW ERROR, EVEN IF ONLY 1 DOCUMENT, IS REPEATING(SAME ID, ETC),
-            //  BUT, EVEN THOUGH IT IS THROWING AN ERROR, it WILL save the distinct/OK docs to the database
-            console.error('Unable to save samples to the document');
-        })
-
-    res.send(samples)
-})
 
 router.get('/', (req, res) => {
     res.render('probs')
+})
+
+router.post('/', (req, res) => {
+    // return res.status(403).json({ "unauthorized": "Ask admin if you need to do it"})    
+    let probStatement = {
+        title: req.body.title,
+        statement: req.body.statement,
+        source: req.body.source,
+        probId: req.body.probId,
+        stars: 0
+    }
+
+    if( req.body.isStarred === 'on' )   probStatement.stars = 1
+
+    let newPS = new probModel(probStatement)
+    newPS.save( (err, doc) => {
+        if(err) return console.error(err);
+        return console.log(doc);
+    } )
+    
+    console.log(probStatement)
+    res.redirect('/ps')
 })
 
 router.post('/incId/:psId', (req, res) => {
@@ -109,28 +101,6 @@ router.get('/getAll', async (req, res, next) => {
         // if (next)   next()
     })
 
-})
-
-router.post('/add', (req, res) => {
-    // return res.status(403).json({ "unauthorized": "Ask admin if you need to do it"})    
-    let probStatement = {
-        title: req.body.title,
-        statement: req.body.statement,
-        source: req.body.source,
-        probId: req.body.probId,
-        stars: 0
-    }
-
-    if( req.body.isStarred === 'on' )   probStatement.stars = 1
-
-    let newPS = new probModel(probStatement)
-    newPS.save( (err, doc) => {
-        if(err) return console.error(err);
-        return console.log(doc);
-    } )
-    
-    console.log(probStatement)
-    res.redirect('/ps')
 })
 
 module.exports = router
