@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
     res.status(200).send('Use a subroute to access a utility')
 })
 
-app.get('/whatDatIsIt', (req, res) => {
+app.get('/whatDayIsIt', (req, res) => {
 
     let now = ( Date.now() - theStart100Days )/(1000*3600*24)
 
