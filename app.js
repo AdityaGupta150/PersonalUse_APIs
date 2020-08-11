@@ -13,7 +13,8 @@ require('dotenv').config()  //Just loads environment variables from .env file, i
 
 const indexRouter = require('./routes/index');
 const sihJ20Router = require('./apis/sihJ20/app')
-const doistRouter = require("./apis/doist15/app");
+const doistRouter = require("./apis/doist15/app")
+const utilRouter = require("./apis/util/app")
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter)
 app.use('/sihJ20', sihJ20Router)
 app.use('/doist15', doistRouter)
+app.use('/util', utilRouter)
 
 app.get('/useFire', (req, res) => {
   //Set the api to use firebase for this session
