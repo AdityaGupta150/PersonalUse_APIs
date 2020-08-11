@@ -2,7 +2,6 @@
 
 const fetch = require('node-fetch')
 const router = require('express').Router()
-const fs = require('fs/promises')
 
 const checkStatus = require('../util-functions/util')
 
