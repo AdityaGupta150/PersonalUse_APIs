@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
 })
 
 router.post('/incId/:psId', (req, res) => {
+    return res.status(204).send('Not allowed any futher')
 
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     console.log(ip, ' has attempted to increase stars');
@@ -69,29 +70,6 @@ router.get('/get/:psId', (req, res, next) => {
     })
 })   //Not needed now. But will be good to have it
 
-router.get('/getTitles', async (req, res, next) => {
-
-    let allTitles = []
-    await probModel.find( (err, docs) => {
-        if( err ){
-            console.error(err)
-            if( next )
-                return next()
-            return
-        }
-        return docs
-    })
-    .then( docs => docs.forEach(doc => allTitles.push(doc.title)))
-    .catch( (err, next) => {
-        console.log(err)
-        return res.sendStatus(500)
-        // if (next)   next()
-    })
-
-  return res.send(allTitles)
-})
-
-
 router.get('/getAll', async (req, res, next) => {
 
     let allPS = []
@@ -125,5 +103,28 @@ router.get('/getAll', async (req, res, next) => {
     })
 
 })
+
+router.get('/getTitles', async (req, res, next) => {
+
+    let allTitles = []
+    await probModel.find( (err, docs) => {
+        if( err ){
+            console.error(err)
+            if( next )
+                return next()
+            return
+        }
+        return docs
+    })
+    .then( docs => docs.forEach(doc => allTitles.push(doc.title)))
+    .catch( (err, next) => {
+        console.log(err)
+        return res.sendStatus(500)
+        // if (next)   next()
+    })
+
+  return res.send(allTitles)
+})
+
 
 module.exports = router
