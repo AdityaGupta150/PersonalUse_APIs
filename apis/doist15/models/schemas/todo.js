@@ -63,8 +63,8 @@ let todo = new Schema({
     },
 
     createdAt: {
-        type: Number,
-        default: Date.now()
+        type: Date,
+        default: new Date()
     }
 })
 
