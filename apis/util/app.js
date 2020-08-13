@@ -29,12 +29,12 @@ app.get('/whatIsMyIp', (req, res) => {
     })
 })
 
-app.get('/whatIsMyIpLoc', (req, res) => {
+app.get('/whatIsMyIpLoc', async (req, res) => {
     //TODO - Use geo.ipify.org API for this
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
     let d = []
-    fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => {d = data; console.log(d);})
+    await fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => data.json()).then(data => {d = data; console.log(d);})
                                                          .catch(err => console.error('!',d))
     return res.send(d);
     
