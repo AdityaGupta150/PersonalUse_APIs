@@ -33,9 +33,10 @@ app.get('/whatIsMyIpLoc', (req, res) => {
     //TODO - Use geo.ipify.org API for this
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
-    fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => res.send(data))
-                                                         .catch(err => res.send(err))
-    return;
+    let d = []
+    fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => {d = data; console.log(d);})
+                                                         .catch(err => console.error('!',d))
+    return res.send(d);
     
     fetch('https://geo.ipify.org/api/v1?apiKey=YOUR_API_KEY&ipAddress=8.8.8.8',
     {
