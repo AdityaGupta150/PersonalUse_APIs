@@ -13,11 +13,20 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/whatDatIsIt', (req, res) => {
+app.get('/whatDayIsIt', (req, res) => {
 
+    console.log('here')
     let now = ( Date.now() - theStart100Days )/(1000*3600*24)
 
-    res.send(Math.trunc(now))
+    const day = Math.trunc(now)
+
+    res.send(
+        `<svg height="15" width="250" xmlns::xlink="http://www.w3.org/1999/xlink"">\
+            <a xlink:href="https://github.com/AdityaGupta150/100DaysOfCode" target="_blank">
+                <text x="0" y="15" fill="red">#${day}</text>\
+            </a>
+        </svg>`
+    )
 })
 
 app.get('/whatIsMyIp', (req, res) => {
