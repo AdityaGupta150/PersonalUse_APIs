@@ -31,8 +31,10 @@ app.get('/whatDayIsIt', (req, res) => {
 
 app.get('/whatIsMyIp', (req, res) => {
     res.json({
-        ip: req.ip,
         forwarded: req.headers['x-forwarded-for'],
+        ip: req.ip,
+        headers: req.headers,
+        remoteAddress: req.connection.remoteAddress
     })
 })
 
@@ -40,11 +42,15 @@ app.get('/whatIsMyIp', (req, res) => {
  * Get query parameters (?n=456) -> req.query.n
  * Get params (:todoId) -> req.params.todoId
  */
-
-app.get('/whatIsMyIpLoc', (req, res) => {
+app.get('/whatIsMyIpLoc', async (req, res) => {
     //TODO - Use geo.ipify.org API for this
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
+    let d = []
+    await fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => data.json()).then(data => {d = data; console.log(d);})
+                                                         .catch(err => console.error('!',d))
+    return res.send(d);
+    
     fetch('https://geo.ipify.org/api/v1?apiKey=' + process.env.IPIFY_API_TOKEN,
     {
         /*Parameters to pass ->
