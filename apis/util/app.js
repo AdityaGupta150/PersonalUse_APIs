@@ -5,10 +5,11 @@ const fetch = require('node-fetch')
 const theStart100Days = Date.parse('Fri Jul 17 2020 00:00:01 GMT+0530 (India Standard Time)')
 
 app.get('/', (req, res) => {
-    res.status(200).send('Use a subroute to access a utility', {
-        '100DaysOfCode': '/whatDayIsIt',
-        'IP': '/whatIsMyIp',
-        'IP_Location': '/whatIsMyIpLoc',
+    res.status(200).send({
+        'NOTICE': 'Use a subroute to access a utility',
+        '100DaysOfCode': req.baseUrl+'/whatDayIsIt',
+        'IP': req.baseUrl+'/whatIsMyIp',
+        'IP_Location': req.baseUrl+'/whatIsMyIpLoc',
     })
 })
 
@@ -19,17 +20,24 @@ app.get('/whatDatIsIt', (req, res) => {
     res.send(Math.trunc(now))
 })
 
-app.get('whatIsMyIp', (req, res) => {
+app.get('/whatIsMyIp', (req, res) => {
     res.json({
+        forwarded: req.headers['x-forwarded-for'],
+        ip: req.ip,
         headers: req.headers,
         remoteAddress: req.connection.remoteAddress
     })
 })
 
-app.get('whatIsMyIpLoc', (req, res) => {
+app.get('/whatIsMyIpLoc', async (req, res) => {
     //TODO - Use geo.ipify.org API for this
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
+    let d = []
+    await fetch('https://adig15.herokuapp.com/util/whatIsMyIp').then(data => data.json()).then(data => {d = data; console.log(d);})
+                                                         .catch(err => console.error('!',d))
+    return res.send(d);
+    
     fetch('https://geo.ipify.org/api/v1?apiKey=YOUR_API_KEY&ipAddress=8.8.8.8',
     {
         /*Parameters to pass ->
