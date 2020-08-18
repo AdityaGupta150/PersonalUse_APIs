@@ -107,7 +107,7 @@ todo.pre('save', function(next){    //LEARNT -> When using ES6 functions, this i
     next()
 })
 
-todo.post('save', function(doc){    //defines a post hook for the document
+todo.post('save', async function(doc){    //defines a post hook for the document
 
     syncModel.findById(this._id, async (err, syncDoc) => {
         if(err){
@@ -125,27 +125,28 @@ todo.post('save', function(doc){    //defines a post hook for the document
         //if there is one present already... nothing to do !
     })
 
-    categoryModel.findOne({name: doc.category}, async (err, catDoc) => {
+    //@BUG - Two categories with same name, are being created, even though name should be unique
+    await categoryModel.findOne({name: doc.category}, async (err, catDoc) => {
         if(err){
             return logError(0, 'category', 'todoPostSave')
-        }else if(!catDoc){    //as require(mongo, it should be `null` if no document matches
+        }else if(!catDoc){    // it is `null` if no document matches
             console.log('ℹ Going to create collection with name: ', doc.category)
-            if(categoryModel.countDocuments({name: doc.category}, (err, count) => {
+            if(categoryModel.countDocuments({name: doc.category}, (err, count) => { //[DEBUG]   For debugging purpose
                 if(err){
                     console.log('Error in counting')
                 }
                 console.log('{name:', doc.category, '}  count =', count)
             }))
-            await categoryModel.create({
+            categoryModel.create({  //async... not using await here
                 name: doc.category,
                 todoIds: [doc._id]
             }).then((addedCatDoc) => {
                 console.log('🎉 Created category: ', addedCatDoc.name);
             })
             .catch(err => logError(1, 'category', 'todoPostSave/createCollection'))
+        }else{
 
-            return
-        }
+            //@LEARNT_BUG -> without the final else block, below line will be executed sideways to the if and else above
 
         //if here, then it exists
         catDoc.pushTodoId(doc._id)  //QUESTION -> But will it modify the remote document ?
@@ -156,6 +157,8 @@ todo.post('save', function(doc){    //defines a post hook for the document
         //     }
         //     console.log('Added todoId to category');
         // })
+
+        }
     })
 
     if(!this.labels)    this.labels = []

@@ -6,27 +6,50 @@
  *      { a: undefined } 
  */
 
-/*TODO - tHINGS TO DO TOMMOROW -> 
-Check for problems due to `this`
-ES6 arrow functions
-undefined key value
-instance methods
-and also, if a response is being sent back or not
-*/
 const { Router } = require("express")
 const fetch = require('node-fetch')
 
 const todoModel = require('../models/schemas/todo.js')
+const categoryModel = require('../models/schemas/category.js')
 const { checkStatus, logError, createTodo } = require('../util-functions/util')
+const { getConnection } = require("../../util/mongoConnection.js")
 
 const router = Router()
 
-router.get('/syncOffline', (req, res) => {
-    const doistTodos = require('../offlineData/todoist.json')
+async function saveOffline(json){
+    const fs = require('fs').promises
 
-    
+    fs.access('./offlineData/todos.json').then(() => {
+        console.log('[DEBUG] Can access it')
+        //@Issue - Why is ./ considered doist15/ directory ???
+        write('./offlineData/todos.json', JSON.stringify(json))
+        .catch((err) => {
+            console.error('Problem Saving offline -> ', err);
+        })
+    }).catch((err) => {
+        console.log('[DEBUG] CanNOT access it', err)
+    })
 
-    res.send(doistTodos)
+}
+
+router.delete('/deleteAll', async (req, res) => {
+    //ONLY FOR DEVELOPMENT
+
+    await getConnection('MyDoist15').dropDatabase();
+    res.send('Done');
+})
+
+//Save the data `from mongo` offline
+router.get('/syncOffline', async (req, res) => {
+    const data = await todoModel.find({'completed': false}, (err, docs) => {
+        if(err){
+            logError(0, 'todo', req.baseUrl)
+            return res.status(500).send('Kuchh gadbad ho gaya server side pe')
+        }
+
+        saveOffline(data)
+    })
+    res.send(data)
 })
 
 //returns all todos, stored in mongoDB
@@ -37,17 +60,34 @@ router.get('/',(req, res) => {
             return res.status(500).send('Kuchh gadbad ho gaya server side pe') //English - Some error has happened
         }
         
+        saveOffline(docs)
         res.json(docs)
     })
 })
 
-//posts a todo, or a list of todos (json format, inside body.todos)
+//posts a todo, or a list of todos (json format, SHOULD BE INSIDE `req.body.todos`)
 router.post('/', (req, res) => {
-    const isSingleObj = true
+    let isSingleObj = true
 
-    if(req.body.todos)  isSingleObj = false
+    req.body.todos = [
+        {
+            title: 'Something44',
+            category: 'somet'
+        },{
+            title: 'Something55',
+            category: 'somet'
+        },{
+            title: 'Something66',
+            category: 'somet'
+        }
+    ]
+
+    if(!!req.body.todos)  isSingleObj = false
+
+    console.log(isSingleObj);
 
     if (isSingleObj) {
+        console.log('getting here IF');
         let todo = createTodo(req.body)
         //labels won't be decided client side, FOR NOW (Actually better do that on client, as data scales)
             //TODO - Implement logic to work with child and parent todos
@@ -61,6 +101,7 @@ router.post('/', (req, res) => {
         })
 
     } else {
+        console.log('getting here');
         todoModel.create(req.body.todos, (err, docs) => {
             if(err){
                 logError(1, 'todo', req.baseUrl, 'While adding multiple todos')
@@ -69,12 +110,25 @@ router.post('/', (req, res) => {
             res.status(200).send('All todos were added successfully')
         })
     }
+    console.log('end here');
+
 })
 
 router.post('/complete/:id', (req, res) => {
     //CHECK - Check if it works
     req.body.completed = true
     res.redirect(307, '/' + req.params.id)
+})
+
+router.get('/getCategories', async (req, res) => {
+    await categoryModel.find({}, (err, docs) => {
+        if(err){
+            logError(0, 'category', req.baseUrl)
+            return res.sendStatus(500)
+        }
+
+        return res.send(docs)
+    })
 })
 
 router.get('/getRemote', async (req, res) => {
