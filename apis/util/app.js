@@ -21,7 +21,8 @@ app.get('/reqLogger', (req, res) => {
         headers: req.headers,
         params: req.params,
         body: req.body,
-        secret: req.secret
+        secret: req.secret,
+        query: req.query
     })
 })
 
