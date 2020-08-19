@@ -13,6 +13,18 @@ app.get('/', (req, res) => {
     })
 })
 
+    //Logs any request made to this route
+app.get('/reqLogger', (req, res) => {
+    console.log(req);
+
+    res.send({
+        headers: req.headers,
+        params: req.params,
+        body: req.body,
+        secret: req.secret
+    })
+})
+
 app.get('/whatDayIsIt', (req, res) => {
 
     console.log('here')
