@@ -1,0 +1,19 @@
+{
+    "userName": "AdiG15",
+    "fullName": "Aditya Gupta",
+    "emailId": "adig15035@gmail.com",
+    "contactNumber": "4204204201",
+    "password": "aicbir7843cy38qn78sjqhbcauyo3d64879aoxy8abduaybfo38aodna8dya8ga8cnga",
+    "displayPhoto": "null",
+    "skills": ["C++", "Crow"],
+    "experience": ["Member, HackSlash", "NoOne, 420 Gang"],
+    "experienceNum": 3,
+    "location": {
+        "city": "New Delhi",
+        "state": "Delhi",
+        "country": "Bharat"
+    },
+    "typePreference": "Backend",
+    "rolePreference": ["Software Developer", "Tester"],
+    "companyPreference": []
+}

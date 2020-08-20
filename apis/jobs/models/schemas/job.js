@@ -1,6 +1,6 @@
-const {Schema, Types} = require('mongoose')
-const { getConnection } = require('../../../util/mongoConnection')
+const {Schema, Types, model} = require('mongoose')
 const { allowedJobTypes, allowedRoles, countryDeCode, countryEnCode } = require('./allowedData')
+const locationSchema = require('./locationSchema')
 
 const jobSchema = new Schema({
     t: {
@@ -93,4 +93,4 @@ jobSchema.pre('save', function(doc) {   //Signature shows this is HookSyncCallba
     console.error('SOME ERROR JOBSCHEMA');
 })
 
-module.exports = getConnection('JobsDB').model('job', jobSchema)
+module.exports = model('job', jobSchema)

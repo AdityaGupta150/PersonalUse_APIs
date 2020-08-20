@@ -1,5 +1,4 @@
-const { Schema, Types } = require("mongoose");
-const { getConnection } = require("../../../util/mongoConnection");
+const { Schema, Types, model } = require("mongoose");
 const { allowedJobTypes, allowedRoles } = require("./allowedData");
 const locationSchema = require("./location");
 
@@ -88,4 +87,4 @@ profileSchema.static('comparePass', function(passStr) {
     
 })
 
-module.exports = getConnection('JobsDB').model('profiles', profileSchema)
+module.exports = model('profiles', profileSchema)
