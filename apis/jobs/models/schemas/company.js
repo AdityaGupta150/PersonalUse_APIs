@@ -1,6 +1,5 @@
-const { Schema, Types } = require('mongoose')
+const { Schema, Types, model } = require('mongoose')
 const { URL } = require('url')
-const { getConnection } = require('../../../util/mongoConnection')
 const { realpathSync } = require('fs')
 
 const storageUrls = [   //index 0 is local Storage
@@ -48,4 +47,4 @@ companySchema.pre('save', function(doc) {
 
 })
 
-module.exports = getConnection('JobsDB').model('companies', companySchema)
+module.exports = model('companies', companySchema)
