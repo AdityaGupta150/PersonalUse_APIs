@@ -12,6 +12,10 @@ const ENDPOINTS = {
     indeed: 'https://api.indeed.com/ads/apisearch'
 }
 
+router.get('/parseSample', (req, res) => {
+    
+})
+
 router.get('/indeed', async (req, res) => {
     /**Endpoint data needed 
      * publisher*    -> publisher ID
