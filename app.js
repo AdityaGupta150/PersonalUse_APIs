@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const sihJ20Router = require('./apis/sihJ20/app')
 const doistRouter = require("./apis/doist15/app")
 const utilRouter = require("./apis/util/app")
+const eduRouter = require("./apis/eduPurpose/app")
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/', indexRouter)
 app.use('/sihJ20', sihJ20Router)
 app.use('/doist15', doistRouter)
 app.use('/util', utilRouter)
+app.use('/edu', eduRouter)
 
 app.get('/useFire', (req, res) => {
   //Set the api to use firebase for this session

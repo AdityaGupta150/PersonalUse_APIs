@@ -24,8 +24,8 @@ const getConnection = (dbName) => { //works both ways... dbName can be a baseURL
         return null
     }
 
-    // const dbSource = process.env.DB_URI
-    const dbSource = 'mongodb://localhost' //[DEBUG] This is mainly for debugging purpose, can easily replace all occurences directly with proces.env.DB_URI
+    const dbSource = process.env.DB_URI
+    // const dbSource = 'mongodb://localhost' //[DEBUG] This is mainly for debugging purpose, can easily replace all occurences directly with proces.env.DB_URI
 
     dbOptions.dbName = dbName   //modifying the dpOptions object
     let conn
@@ -74,8 +74,8 @@ const getConnection = (dbName) => { //works both ways... dbName can be a baseURL
         .once('open', () => console.log("Connected to MongoDB, database: ", conn.db.databaseName))
         .on('error', (err) => console.error('Error in DB connection -> code: ', err))
 
-    console.log('[DEBUG] Conn is an instance of connection: ', conn instanceof Connection);
-    console.log('[DEBUG] Conn is ', conn instanceof Connection, 'Typeof(conn): ', typeof(conn));
+    // console.log('[DEBUG] Conn is an instance of connection: ', conn instanceof Connection);
+    // console.log('[DEBUG] Conn is ', conn instanceof Connection, 'Typeof(conn): ', typeof(conn));
 
     allConnections[dbName] = conn
     return conn
