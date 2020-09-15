@@ -15,7 +15,10 @@ function saveToDB(data) {
 
 }
 
+app.get('/', (req,res) => res.send('Welcome to Edu'))
+
 app.get('/bhuvnesh', (req,res) => {
+    console.log(path.join(__dirname+ '\\index.html'))
     res.status(200).sendFile(path.join(__dirname+ '\\index.html'))
 })
 
@@ -30,18 +33,9 @@ app.post('/submitIt', (req, res) => {
 })
 
 app.get('/data', (req, res) => {
-    console.log('gettting data');
     edu.find({}, (err, docs) => {
-       if(err){
-           console.log(`Error: ` + err)
-       } else{
-         if(docs.length === 0){
-             res.send('Nothing yet')
-         } else{
-             console.log(docs);
-            res.send(docs)
-         }
-       }
+       if(err)  console.log(`Error: ` + err)
+        else res.send(docs)
     });
 })
 
