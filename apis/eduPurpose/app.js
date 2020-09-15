@@ -18,8 +18,8 @@ function saveToDB(data) {
 app.get('/', (req,res) => res.send('Welcome to Edu'))
 
 app.get('/bhuvnesh', (req,res) => {
-    console.log(path.join(__dirname+ '\\index.html'))
-    res.status(200).sendFile(path.join(__dirname+ '\\index.html'))
+    console.log(path.join(__dirname+ '/index.html'))
+    res.status(200).sendFile(path.join(__dirname+ '/index.html'))
 })
 
 app.post('/submitIt', (req, res) => {
