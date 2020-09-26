@@ -14,7 +14,7 @@ const edu = getConnection('edu').model('edu', new Schema({
 }));
 
 function saveComment(data) {
-    edu.create({mail: data.exampleInputEmail1, comment: data.exampleInputText})
+    edu.create({mail: data.mail, comment: data.comment})
         .catch(err => console.log(err));
 }
 
@@ -73,12 +73,16 @@ app.post('/submitIt', (req, res) => {
     })
 })
 
+app.get('/boyl', (req, res) => {
+    res.status(204).sendFile(path.join(__dirname+ '/boylestad.html'));
+})
+
 app.post('/comment', (req, res) => {
     saveComment(req.body)
     res.json({
         'You sent this:' : {
-            'email': req.body.exampleInputEmail1,
-            'comment': req.body.exampleInputText,
+            'email': req.body.mail,
+            'comment': req.body.comment,
         }
     })
 })
