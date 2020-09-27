@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const cricapi = require('cricapi')
-cricapi.setAPIKey("dmkLt572pHdnImPZpfgWdQbuaL72");
 
 //---------------------------------------------------
 const {Schema} = require('mongoose');
