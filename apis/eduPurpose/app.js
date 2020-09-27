@@ -21,7 +21,10 @@ function saveComment(data) {
 app.get('/data', (req, res) => {
     edu.find({}, (err, docs) => {
        if(err)  console.log(`Error: ` + err)
-        else res.send(docs)
+        else res.json({
+            'to_the_hacker': 'Ye rha bhai ab tak jo data tere web se add hua, idhar sab aayega',
+            'the_data': docs
+        })
     });
 })
 
