@@ -26,6 +26,19 @@ app.get('/reqLogger', (req, res) => {
     })
 })
 
+//Logs any request made to this route
+app.post('/reqLogger', (req, res) => {
+    console.log(req);
+
+    res.send({
+        headers: req.headers,
+        params: req.params,
+        body: req.body,
+        secret: req.secret,
+        query: req.query
+    })
+})
+    
 app.get('/whatDayIsIt', (req, res) => {
 
     console.log('here')
