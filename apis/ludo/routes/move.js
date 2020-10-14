@@ -50,19 +50,19 @@ function str_to_pair(str) {
     return [Number(temp[0]), Number(temp[1])];
 }
 
-function getDirection(coords) {
-    if (!coords || typeof (coords[0]) !== 'number' || typeof (coords[0]) !== 'number') return null;
+function getDirection(coords){
+    if( !coords || typeof(coords[0]) !== 'number' ||  typeof(coords[0]) !== 'number' ) return null;
 
-    if (coords[1] > 5 && coords[1] < 9) {
-        if (coords[0] == 0) return 'R';
-        else if (coords[0] == 14) return 'L';
+    if( coords[1] > 5 && coords[1] < 9 ){
+        if(coords[0] == 0)   return 'R';
+        else if(coords[0] == 14)   return 'L';
 
-        return coords[1] === 6 ? 'U' : (coords[1] === 8 ? 'D' : null);  //returning null for home path, since that is retrieved by homeTurns
+        return coords[1] === 6 ? 'U' : (coords[1] === 8 ? 'D' : coords[0]<6 ? 'D': 'U');  //returning null for home path, since that is retrieved by homeTurns
     } else if (coords[0] > 5 && coords[0] < 9) {
         if (coords[1] == 0) return 'U';
         else if (coords[1] == 14) return 'D';
 
-        return coords[0] === 6 ? 'R' : (coords[0] === 8 ? 'L' : null);  //returning null for home path, since that is retrieved by homeTurns        
+        return coords[0] === 6 ? 'R' : (coords[0] === 8 ? 'L' : coords[1]<6 ? 'R': 'L');  //returning null for home path, since that is retrieved by homeTurns        
     }
 }
 
@@ -144,7 +144,8 @@ router.post('/goti', (req, res) => {
         updated_coords[0] += increment_coords[0];
         updated_coords[1] += increment_coords[1];
 
-        if (isHomeEnd(updated_coords)) return res.send({ 'bool': false });
+        if (isHomeEnd(updated_coords) && dist>0) return console.log({ 'bool': false });
+
     }
 
     res.send({
