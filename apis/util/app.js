@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
     //Logs any request made to this route
 app.get('/reqLogger', (req, res) => {
-    console.log(req);
+    console.log(req.body);
 
     res.send({
         headers: req.headers,
@@ -28,7 +28,7 @@ app.get('/reqLogger', (req, res) => {
 
 //Logs any request made to this route
 app.post('/reqLogger', (req, res) => {
-    console.log(req);
+    console.log(req.body);
 
     res.send({
         headers: req.headers,
