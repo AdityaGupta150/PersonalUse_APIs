@@ -153,7 +153,6 @@ router.post('/goti', (req, res) => {
         'move': {
             'coord': updated_coords,
             'dir': currDirection,
-            'profit': null,
         }
     })
 
