@@ -144,7 +144,7 @@ router.post('/goti', (req, res) => {
         updated_coords[0] += increment_coords[0];
         updated_coords[1] += increment_coords[1];
 
-        if (isHomeEnd(updated_coords) && dist>0) return console.log({ 'bool': false });
+        if (isHomeEnd(updated_coords) && dist>0) return res.send({ 'bool': false });
 
     }
 
