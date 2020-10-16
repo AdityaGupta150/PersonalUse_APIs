@@ -109,8 +109,8 @@ router.post('/goti', (req, res) => {
 	});
 
 	res.send({
-		bool: bools,
-		move: finalCoords
+		bools: bools,
+		coords: finalCoords
 	});
 });
 
