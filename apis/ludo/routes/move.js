@@ -41,19 +41,6 @@ function turnAtCorner (corners_vec, coord) { // returns `null` to signify to dir
 	return corners_vec[coord] || null;
 }
 
-// eslint-disable-next-line no-unused-vars
-function str_to_pair (str) {
-	if (!str || !str[0] || !str[1]) return null;
-	if (typeof (str[0]) === 'number' && typeof (str[1]) === 'number') return str;
-	if (str[0] === '[') {
-		str.pop(); str.shift();
-	}
-
-	const temp = str.split(',');
-	if (temp.length > 2) return null;
-	return [Number(temp[0]), Number(temp[1])];
-}
-
 function getDirection (coords) {
 	if (!coords || typeof (coords[0]) !== 'number' || typeof (coords[0]) !== 'number') return null;
 
@@ -83,8 +70,9 @@ function validData (reqData) {
 router.post('/goti', (req, res) => {
 	const reqData = {
 		col: req.body.col, // colour
-		coords: req.body.coords, // current coords
-		dist: Number(req.body.dist)	// dist=0 will give Input Not Valid
+		// eslint-disable-next-line no-prototype-builtins
+		coords: req.body.hasOwnProperty('coords') ? req.body.coords : null, // current coords,		additional if to solve `Prototype Pollution vulnerability` pointed by deepcode
+		dist: Number(req.body.dist) // dist=0 will give Input Not Valid
 	};
 
 	if (!validData(reqData)) {
@@ -93,6 +81,8 @@ router.post('/goti', (req, res) => {
 
 	const colour = reqData.col;
 	const dist = reqData.dist;
+	// eslint-disable-next-line no-prototype-builtins
+	if (!reqData.coords.hasOwnProperty('length'))	return res.sendStatus(400);	// fixing deepcode warning
 	if (reqData.coords.length === 2 && all(reqData.coords, iter => typeof (iter) === 'number')) {	// ie. is a single pair
 		reqData.coords = [reqData.coords];	// convert to an array
 	}
@@ -102,6 +92,8 @@ router.post('/goti', (req, res) => {
 
 	if (dist === 0) { return res.send({ bool: false }); }
 	let possibility, finalCoord;
+	// eslint-disable-next-line no-prototype-builtins
+	if (!reqData.coords.hasOwnProperty('length'))	return res.sendStatus(400);	// fix to deepcode warning
 	reqData.coords.forEach(coord => {
 		[possibility, finalCoord] = moveGoti(colour, coord, dist);
 		bools.push(possibility);
@@ -119,7 +111,9 @@ function moveGoti (colour, coord, dist) {
 	let turnDirection = null;
 	const updated_coords = coord;
 	let currDirection = getDirection(updated_coords);
-	if (!currDirection) return [false];
+	dist = Number(dist);	// if it's string, convert to number
+
+	if (!currDirection || !dist || typeof (colour) !== 'string') return [false];
 
 	if (dist === 0) return [false];
 	while (dist-- > 0) {
