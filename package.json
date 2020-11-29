@@ -1,5 +1,5 @@
 {
-  "name": "personalapis",
+  "name": "usefulApis",
   "version": "1.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,6 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "cricapi": "^1.2.9",
-    "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "5.0.0-alpha.8",
     "helmet": "^4.1.1",

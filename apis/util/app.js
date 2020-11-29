@@ -14,28 +14,16 @@ app.get('/', (req, res) => {
 });
 
 // Logs any request made to this route
-app.get('/reqLogger', (req, res) => {
+app.all('/reqLogger', (req, res) => {
 	console.log(req.body);
+	console.log('Type of headers is : ', typeof (req.headers));
 
 	res.send({
-		headers: req.headers,
-		params: req.params,
-		body: req.body,
-		secret: req.secret,
-		query: req.query
-	});
-});
-
-// Logs any request made to this route
-app.post('/reqLogger', (req, res) => {
-	console.log(req.body);
-
-	res.send({
-		headers: req.headers,
-		params: req.params,
-		body: req.body,
-		secret: req.secret,
-		query: req.query
+		headers: typeof (req.headers) === 'object' || null,
+		params: req.params || null,
+		body: req.body || null,
+		secret: req.secret || null,
+		query: req.query || null
 	});
 });
 
