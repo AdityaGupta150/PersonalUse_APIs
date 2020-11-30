@@ -1,8 +1,3 @@
-/** TODO -
- * [Don't do it now? (Maybe not inside this 100DaysOfCode) But surely later]
- * How do we write `tests` for APIs ?? Probably with sample input defined for each route ?
- */
-
 const createError = require('http-errors'); // for development
 const express = require('express');
 const path = require('path');

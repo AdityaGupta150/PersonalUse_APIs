@@ -1,3 +1,3 @@
-DB_URI= mongodb+srv://<USERNAME>:<PASSWORD>@clusterx.uk4xx.mongodb.net/
+DB_URI= mongodb+srv://<USERNAME>:<PASSWORD>@clusterx.ukxxx.mongodb.net/
 
-//Only this much part, this is just a sample, DONT KEEP the `<` `>` after replacing with id pass
+// Replace this URI with your URI, note that it should also have the username and password
