@@ -15,8 +15,8 @@ const app = express();
     and that form submits to '/add', then... it will post to /sihJ20 + /add,
     ie. the view thinks, that this app has rendered it (or whatever it thinks, similar to this)
     */
-app.use('/', indexRouter)
-app.use('/ps', psRouter)
-app.use('/hacks', hacksRouter)
+app.use('/', indexRouter);
+app.use('/ps', psRouter);
+app.use('/hacks', hacksRouter);
 
 module.exports = app;

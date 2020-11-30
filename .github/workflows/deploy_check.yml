@@ -21,4 +21,4 @@ jobs:
     - run: npm run deploy_check
       env:
         CI: true
-        DB_PASSWORD: ${{ secrets.DB_URI }}
+        DB_URI: ${{ secrets.DB_URI }}

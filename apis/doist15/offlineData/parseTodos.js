@@ -1,13 +1,14 @@
-/*NOTES ABOUT THE DATA ->
+/* eslint-disable no-unused-vars */
+/* NOTES ABOUT THE DATA ->
     . i will have 'category_id'==='project_id' instead of 'section_id'
 
     . keys to parse -> 'id', project_id (as category_id), content, completed, label_ids, priority, created
 */
 
-const todos = require('./todoist.json')
+const todos = require('./todoist.json');
 
-//LEARNT-> JSON is like an array of objects... not a dictionary/map
-/**LEARNT -
+// LEARNT-> JSON is like an array of objects... not a dictionary/map
+/** LEARNT -
  * Promise is in one of the 3 states -> pending, fulfilled, rejected
  * As the Promise.prototype.then(), Promise.prototype.catch(), and Promise.prototype.finally()
    methods return promises, so they can be chained
@@ -24,7 +25,7 @@ const todos = require('./todoist.json')
  * An async function is a Promise, itself... try `const something = fun()`, where fun is an async function once, and then a usual function
    If we returned '2' in an async function... it will actually return `Promise{ '2' }`
    In above case, we can get the actually returned, just add .then(data => {--work with the data here--})
-   NOTE - In the above case just doing 
+   NOTE - In the above case just doing
                 `let d = callPromise().then(data => {return data})`
             will still return a promise... since then ,.then() and .catch() return promises too...
             so in case of promises, we have to work inside the .then() itself... or if we want the data to pertain the equate some higher scope variable to it...
@@ -32,43 +33,42 @@ const todos = require('./todoist.json')
 
  */
 const getKeys = async (json) => {
-    return new Promise( (resolve, reject) => {
-        if(json.forEach == undefined){
-            reject('IncompatibleFormat: Passed object is not an array, required a JSON mapping (an array of objects)')
-        }
+	return new Promise((resolve, reject) => {
+		if (json.forEach === undefined) {
+			reject(new Error('IncompatibleFormat: Passed object is not an array, required a JSON mapping (an array of objects)'));
+		}
 
-        const foundKeys = {}
-        for (const iterator of json) {
-            for (const key in iterator) {
-                if(foundKeys.hasOwnProperty(key)){
-                    foundKeys[key] += 1
-                }else
-                    foundKeys[key] = 1
-            }
-        }
-        
-        console.log('going to resolve')
-        setTimeout(() => {
-            console.log('wait complete')
-        }, 500);
-        resolve(foundKeys)
-    })
-}
+		const foundKeys = {};
+		for (const iterator of json) {
+			for (const key in iterator) {
+				if (Object.hasOwnProperty.call(foundKeys, key)) {
+					foundKeys[key] += 1;
+				} else { foundKeys[key] = 1; }
+			}
+		}
 
-const getKeysSync = async (json) => {   //blocking
-    let retVal
-    await getKeys(json).then((val) => {retVal = val});
-    return retVal
-}
+		console.log('going to resolve');
+		setTimeout(() => {
+			console.log('wait complete');
+		}, 500);
+		resolve(foundKeys);
+	});
+};
 
-let keys = [
-    'title',
-    'completed',
-    'due',
-    'priority',
-    'category_id',  //will be replaced by project ids
-    'label_ids',
-    'children_ids',
-    'parent_id',
-    'createdAt'
-]
+const getKeysSync = async (json) => { // blocking
+	let retVal;
+	await getKeys(json).then((val) => { retVal = val; });
+	return retVal;
+};
+
+const keys = [
+	'title',
+	'completed',
+	'due',
+	'priority',
+	'category_id', // will be replaced by project ids
+	'label_ids',
+	'children_ids',
+	'parent_id',
+	'createdAt'
+];
