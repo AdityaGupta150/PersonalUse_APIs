@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { Number } = require('core-js');
 
 const Schema = mongoose.Schema;
 

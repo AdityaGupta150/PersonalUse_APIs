@@ -1,8 +1,8 @@
-#LEARNT
+# LEARNT
 
 Redirect path ->
       1. Redirects can be relative to the root of the host name.
-          For example, if the application is on http://example.com/admin/post/new, the following would redirect to the URL http://example.com/admin:
+          For example, if the application is on `http://example.com/admin/post/new`, the following would redirect to the URL `http://example.com/admin`:
           `res.redirect('/admin')`
 
       2. Redirects can be relative to the current URL.
@@ -14,5 +14,3 @@ Redirect path ->
       Think of the urls as directory paths, then it will make sense
 
      A path value of “back” has a special meaning, it refers to the URL specified in the Referer header of the request. If the Referer header was not specified, it refers to “/”
-
-

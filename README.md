@@ -14,7 +14,6 @@ Short for `UseFul APIs`, (mostly to me :D)
 
 ![Deploy Check](https://github.com/AdityaGupta150/Useful_APIs/workflows/Deploy%20Check/badge.svg)
 
-
 A collection of 'probably' all APIs i will be using for my webApps, or for utilising REST requests
 
 ## Deployment
@@ -25,12 +24,10 @@ Or deploy your own version ->
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AdityaGupta150/Useful_APIs)
 
-
 ## Documentation
 
 Currently the documentation is available at ->
 
-<a href="https://documenter.getpostman.com/view/13326795/TVmJizFG"><img src="https://raw.githubusercontent.com/AdityaGupta150/Sources/main/postman-logo-1.png?token=AI4LBIMN3GHV7DFWWZWNNAC7ZXWMM" alt="Documentation on Postman" width="150px"/></a>
-
+[<img src="https://raw.githubusercontent.com/AdityaGupta150/Sources/main/postman-logo-1.png?token=AI4LBIMN3GHV7DFWWZWNNAC7ZXWMM" alt="Documentation on Postman" width="150px"/>]("https://documenter.getpostman.com/view/13326795/TVmJizFG")
 
 © Aditya Gupta, 2020

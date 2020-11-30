@@ -1,4 +1,4 @@
-/**IMPORTANT NOTE - mongoose ->
+/** IMPORTANT NOTE - mongoose ->
 
   var Assignment = mongoose.model('Assignment', { dueDate: Date });
   Assignment.findOne(function (err, doc) {
@@ -33,36 +33,36 @@ m.save(callback);
 */
 
 export const countryEnCode = {
-    India: 'IN'
-}
+	India: 'IN'
+};
 
-let tempCountries = {}
+const tempCountries = {};
 for (const key in countryEnCode) {
-    tempCountries[countryEnCode[key]] = key
+	tempCountries[countryEnCode[key]] = key;
 }
-export const countryDeCode = tempCountries
+export const countryDeCode = tempCountries;
 
 export const allowedJobTypes = {
-    I: 'Internship',
-    F: 'FullTime',
-    P: 'PartTime'
-}
+	I: 'Internship',
+	F: 'FullTime',
+	P: 'PartTime'
+};
 export const allowedRoles = {
-    A: 'Algorithm',
-    B: 'Backend',
-    DA: 'Data Analytics',
-    DS: 'Data Scientist',
-    F: 'Frontend',
-    M: 'Marketing',
-    S: 'System Admin',
-    O: 'Others'
-}
+	A: 'Algorithm',
+	B: 'Backend',
+	DA: 'Data Analytics',
+	DS: 'Data Scientist',
+	F: 'Frontend',
+	M: 'Marketing',
+	S: 'System Admin',
+	O: 'Others'
+};
 
-    //Use it when interacting with user, since this one returns an array of the expanded versions of each role
-export function getAllowedRoles() {
-    let tempRoles = []
-    for (const key in allowedRoles) {
-        tempRoles.push(allowedRoles[key])
-    }
-    return tempRoles
+// Use it when interacting with user, since this one returns an array of the expanded versions of each role
+export function getAllowedRoles () {
+	const tempRoles = [];
+	for (const key in allowedRoles) {
+		tempRoles.push(allowedRoles[key]);
+	}
+	return tempRoles;
 }
