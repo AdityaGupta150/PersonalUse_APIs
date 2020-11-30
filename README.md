@@ -10,7 +10,7 @@ Short for `UseFul APIs`, (mostly to me :D)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/adityagupta150/useful_apis/badge)](https://www.codefactor.io/repository/github/adityagupta150/useful_apis)
 
-> Deploy Status -> 
+> Deploy Status
 
 ![Deploy Check](https://github.com/AdityaGupta150/Useful_APIs/workflows/Deploy%20Check/badge.svg)
 
