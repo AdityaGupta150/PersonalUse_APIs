@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -29,14 +29,14 @@ const psSchema = new Schema({
 	}
 });
 
-const compiledModelPS = mongoose.model('problems', psSchema);
+const compiledModelPS = mongoose.model("problems", psSchema);
 
-psSchema.pre('save', function (next) {
+psSchema.pre("save", function (next) {
 	// Check if same problem ID is already present or not
 
 	compiledModelPS.findOne({ probId: this.probId }, (err, doc) => {
 		if (err) return console.error(err);
-		if (doc) return console.log('Found duplicate, with same problemID:', doc);
+		if (doc) return console.log("Found duplicate, with same problemID:", doc);
 	});
 
 	next();

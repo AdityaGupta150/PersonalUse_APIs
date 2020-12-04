@@ -1,12 +1,12 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const ProbModel = require('../models/schema/psSchema');
+const ProbModel = require("../models/schema/psSchema");
 
-router.get('/', (req, res) => {
-	res.render('probs');
+router.get("/", (req, res) => {
+	res.render("probs");
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
 	// return res.status(403).json({ "unauthorized": "Ask admin if you need to do it"})
 	const probStatement = {
 		title: req.body.title,
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 		stars: 0
 	};
 
-	if (req.body.isStarred === 'on') probStatement.stars = 1;
+	if (req.body.isStarred === "on") probStatement.stars = 1;
 
 	const newPS = new ProbModel(probStatement);
 	newPS.save((err, doc) => {
@@ -25,20 +25,20 @@ router.post('/', (req, res) => {
 	});
 
 	console.log(probStatement);
-	res.redirect('/ps');
+	res.redirect("/ps");
 });
 
 /**
  * @req -> Can be empty
  *         BUT, if you want to force increase stars, just add a `forceInc: true` to request body
  */
-router.post('/incId/:psId', (req, res) => {
+router.post("/incId/:psId", (req, res) => {
 	if (!req.body.forceInc) {
-		return res.status(204).send('Not allowed any futher');
+		return res.status(204).send("Not allowed any futher");
 	}
 
-	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-	console.log(ip, ' has attempted to increase stars');
+	const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+	console.log(ip, " has attempted to increase stars");
 
 	ProbModel.findOne({ probId: req.params.psId }, (err, doc) => {
 		if (err) {
@@ -46,7 +46,7 @@ router.post('/incId/:psId', (req, res) => {
 			return res.sendStatus(500);
 		}
 		const currentStars = doc.stars;
-		console.log('current stars -> ', currentStars);
+		console.log("current stars -> ", currentStars);
 
 		ProbModel.findByIdAndUpdate(doc._id, { stars: currentStars + 1 }, { new: false }, (err, doc) => {
 			if (err) {
@@ -58,11 +58,11 @@ router.post('/incId/:psId', (req, res) => {
 	res.sendStatus(200);
 });
 
-router.get('/get/:psId', (req, res, next) => {
+router.get("/get/:psId", (req, res, next) => {
 	ProbModel.findOne({ probId: req.params.psId }, (err, doc) => {
 		if (err) { return res.status(404).send("Problem Statement, with that ID doesn't exist"); }
 
-		if (!doc) return res.json({ Error: 'Invalid psId was passed : ' + req.params.psId });
+		if (!doc) return res.json({ Error: "Invalid psId was passed : " + req.params.psId });
 		const acquiredPS = {
 			title: doc.title,
 			statement: doc.statement,
@@ -75,7 +75,7 @@ router.get('/get/:psId', (req, res, next) => {
 	});
 }); // Not needed now. But will be good to have it
 
-router.get('/getAll', async (req, res, next) => {
+router.get("/getAll", async (req, res, next) => {
 	const allPS = [];
 	ProbModel.find((err, docs) => {
 		if (err) {
@@ -86,10 +86,10 @@ router.get('/getAll', async (req, res, next) => {
 		return docs;
 	}).then((docs) => {
 		if (!docs) {
-			return res.status(500).json({ Message: 'Error occured in finding docs' });
+			return res.status(500).json({ Message: "Error occured in finding docs" });
 		}
 		if (docs.length === 0) {
-			return res.json({ Message: 'Their are no documents, in asked collection' });
+			return res.json({ Message: "Their are no documents, in asked collection" });
 		}
 
 		docs.forEach(doc => { // did this to hide the IP
@@ -109,7 +109,7 @@ router.get('/getAll', async (req, res, next) => {
 	});
 });
 
-router.get('/getTitles', async (req, res, next) => {
+router.get("/getTitles", async (req, res, next) => {
 	const allTitles = [];
 	await ProbModel.find((err, docs) => {
 		if (err) {

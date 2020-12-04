@@ -1,14 +1,14 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path');
-const cricapi = require('cricapi');
-cricapi.setAPIKey('dmkLt572pHdnImPZpfgWdQbuaL72');
+const path = require("path");
+const cricapi = require("cricapi");
+cricapi.setAPIKey("dmkLt572pHdnImPZpfgWdQbuaL72");
 
 // ---------------------------------------------------
-const { Schema } = require('mongoose');
-const { getConnection } = require('../util/mongoConnection');
+const { Schema } = require("mongoose");
+const { getConnection } = require("../util/mongoConnection");
 
-const edu = getConnection('edu').model('edu', new Schema({
+const edu = getConnection("edu").model("edu", new Schema({
 	mail: String,
 	comment: String
 }));
@@ -18,19 +18,19 @@ function saveComment (data) {
 		.catch(err => console.log(err));
 }
 
-app.get('/data', (req, res) => {
+app.get("/data", (req, res) => {
 	edu.find({}, (err, docs) => {
-		if (err) console.log('Error: ' + err);
+		if (err) console.log("Error: " + err);
 		else {
 			res.json({
-				to_the_hacker: 'Ye rha bhai ab tak jo data tere web se add hua, idhar sab aayega',
+				to_the_hacker: "Ye rha bhai ab tak jo data tere web se add hua, idhar sab aayega",
 				the_data: docs
 			});
 		}
 	});
 });
 
-app.get('/cric1', (req, res) => {
+app.get("/cric1", (req, res) => {
 	const obj = cricapi.cricketMatches( // current matches
 		(data, data2, data3) => {
 			console.log(data);
@@ -46,7 +46,7 @@ app.get('/cric1', (req, res) => {
 	return res.send(obj);
 });
 
-app.get('/cric2', (req, res) => {
+app.get("/cric2", (req, res) => {
 	const obj = cricapi.matches(
 		(data, data2, data3) => {
 			console.log(data);
@@ -64,27 +64,27 @@ app.get('/cric2', (req, res) => {
 });
 
 // ---------------------------------------------------
-app.get('/', (req, res) => res.send('Welcome to Edu'));
+app.get("/", (req, res) => res.send("Welcome to Edu"));
 
-app.get('/bhuvnesh', (req, res) => {
-	console.log(path.join(__dirname, '/index.html'));
-	res.status(200).sendFile(path.join(__dirname, '/index.html'));
+app.get("/bhuvnesh", (req, res) => {
+	console.log(path.join(__dirname, "/index.html"));
+	res.status(200).sendFile(path.join(__dirname, "/index.html"));
 });
 
-app.post('/submitIt', (req, res) => {
+app.post("/submitIt", (req, res) => {
 	// saveToDB(req.body);
 	res.json({
-		'You sent this:': {
+		"You sent this:": {
 			username: req.body.name,
 			password: req.body.pass
 		}
 	});
 });
 
-app.post('/comment', (req, res) => {
+app.post("/comment", (req, res) => {
 	saveComment(req.body);
 	res.json({
-		'You sent this:': {
+		"You sent this:": {
 			email: req.body.mail_id,
 			comment: req.body.comm
 		}

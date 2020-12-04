@@ -1,10 +1,10 @@
-const { random } = require('underscore');
-const router = require('express').Router();
+const { random } = require("underscore");
+const router = require("express").Router();
 
 // routes
-const moveRouter = require('./routes/move');
+const moveRouter = require("./routes/move");
 
-router.get('/roll', (req, res) => {
+router.get("/roll", (req, res) => {
 	let n = random(1, 6);
 	const arr = [];
 	arr.push(n);
@@ -19,6 +19,6 @@ router.get('/roll', (req, res) => {
 	});
 });
 
-router.use('/move', moveRouter);
+router.use("/move", moveRouter);
 
 module.exports = router;

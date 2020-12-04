@@ -3,7 +3,7 @@ const profileModel = require('./models/schemas/profile')
 const jobModel = require('./models/schemas/job')
 const _ = require('underscore')
 
-export async function getRecommendedJobs(userId) {
+module.exports = async function getRecommendedJobs(userId) {
     let profile = await profileModel.findById(
         userId
         , (err, doc) => {

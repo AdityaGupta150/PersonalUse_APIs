@@ -1,25 +1,25 @@
-const app = require('express')();
-require('dotenv').config({ path: './' });
-const fetch = require('node-fetch');
+const app = require("express")();
+require("dotenv").config({ path: "./" });
+const fetch = require("node-fetch");
 
-const theStart100Days = Date.parse('Fri Jul 17 2020 00:00:01 GMT+0530 (India Standard Time)');
+const theStart100Days = Date.parse("Fri Jul 17 2020 00:00:01 GMT+0530 (India Standard Time)");
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
 	res.status(200).send({
-		NOTICE: 'Use a subroute to access a utility',
-		'100DaysOfCode': req.baseUrl + '/whatDayIsIt',
-		IP: req.baseUrl + '/whatIsMyIp',
-		IP_Location: req.baseUrl + '/whatIsMyIpLoc'
+		NOTICE: "Use a subroute to access a utility",
+		"100DaysOfCode": req.baseUrl + "/whatDayIsIt",
+		IP: req.baseUrl + "/whatIsMyIp",
+		IP_Location: req.baseUrl + "/whatIsMyIpLoc"
 	});
 });
 
 // Logs any request made to this route
-app.all('/reqLogger', (req, res) => {
+app.all("/reqLogger", (req, res) => {
 	console.log(req.body);
-	console.log('Type of headers is : ', typeof (req.headers));
+	console.log("Type of headers is : ", typeof (req.headers));
 
 	res.send({
-		headers: typeof (req.headers) === 'object' || null,
+		headers: typeof (req.headers) === "object" || null,
 		params: req.params || null,
 		body: req.body || null,
 		secret: req.secret || null,
@@ -27,8 +27,8 @@ app.all('/reqLogger', (req, res) => {
 	});
 });
 
-app.get('/whatDayIsIt', (req, res) => {
-	console.log('here');
+app.get("/whatDayIsIt", (req, res) => {
+	console.log("here");
 	const now = (Date.now() - theStart100Days) / (1000 * 3600 * 24);
 
 	const day = Math.trunc(now);
@@ -36,9 +36,9 @@ app.get('/whatDayIsIt', (req, res) => {
 	res.send(day);
 });
 
-app.get('/whatIsMyIp', (req, res) => {
+app.get("/whatIsMyIp", (req, res) => {
 	res.json({
-		forwarded: req.headers['x-forwarded-for'],
+		forwarded: req.headers["x-forwarded-for"],
 		ip: req.ip,
 		headers: req.headers,
 		remoteAddress: req.connection.remoteAddress
@@ -49,17 +49,17 @@ app.get('/whatIsMyIp', (req, res) => {
  * Get query parameters (?n=456) -> req.query.n
  * Get params (:todoId) -> req.params.todoId
  */
-app.get('/whatIsMyIpLoc', async (req, res) => {
+app.get("/whatIsMyIpLoc", async (req, res) => {
 	// TODO - Use geo.ipify.org API for this
 	// eslint-disable-next-line no-unused-vars
-	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-	await fetch('https://adig15.herokuapp.com/util/whatIsMyIp')
+	await fetch("https://adig15.herokuapp.com/util/whatIsMyIp")
 		.then(data => data.json())
 		.then(data => res.send(data))
-		.catch(err => console.error('Error in fetching IP', err.code));
+		.catch(err => console.error("Error in fetching IP", err.code));
 
-	fetch('https://geo.ipify.org/api/v1?apiKey=' + process.env.IPIFY_API_TOKEN,
+	fetch("https://geo.ipify.org/api/v1?apiKey=" + process.env.IPIFY_API_TOKEN,
 		{
 			/* Parameters to pass ->
 

@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 
-const indexRouter = require('./routes/index');
-const psRouter = require('./routes/ps');
-const hacksRouter = require('./routes/hack');
+const indexRouter = require("./routes/index");
+const psRouter = require("./routes/ps");
+const hacksRouter = require("./routes/hack");
 
 const app = express();
 
@@ -15,8 +15,8 @@ const app = express();
     and that form submits to '/add', then... it will post to /sihJ20 + /add,
     ie. the view thinks, that this app has rendered it (or whatever it thinks, similar to this)
     */
-app.use('/', indexRouter);
-app.use('/ps', psRouter);
-app.use('/hacks', hacksRouter);
+app.use("/", indexRouter);
+app.use("/ps", psRouter);
+app.use("/hacks", hacksRouter);
 
 module.exports = app;

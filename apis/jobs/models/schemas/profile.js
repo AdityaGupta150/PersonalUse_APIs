@@ -1,10 +1,10 @@
-const { Schema, Types, model } = require('mongoose');
-const { allowedJobTypes, allowedRoles } = require('./allowedData');
-const locationSchema = require('./location');
+const { Schema, Types, model } = require("mongoose");
+const { allowedJobTypes, allowedRoles } = require("./allowedData");
+const locationSchema = require("./location");
 
 const profileSchema = new Schema({
 	un: {
-		alias: 'userName',
+		alias: "userName",
 		type: String,
 		trim: true,
 		unique: true,
@@ -12,79 +12,79 @@ const profileSchema = new Schema({
 		// validate: () => {}
 	},
 	fn: {
-		alias: 'fullName',
+		alias: "fullName",
 		type: String,
 		trim: true,
 		required: true
 		// validate: () => {}
 	},
 	mail: {
-		alias: 'emailId',
+		alias: "emailId",
 		type: String
 	},
 	ph: {
-		alias: 'contactNumber',
+		alias: "contactNumber",
 		type: String
 	},
 	pas: {
-		alias: 'password',
+		alias: "password",
 		type: String
 	},
 	dp: {
-		alias: 'displayPhoto',
+		alias: "displayPhoto",
 		type: String, // a url
 		trim: true
 	},
 	s: {
-		alias: 'skills',
+		alias: "skills",
 		type: [String]
 	},
 	exp: { // list of all experiences, just to show...
-		alias: 'experience',
+		alias: "experience",
 		type: [String],
 		trim: true
 	},
 	eN: { // Have the frontend decide this
-		alias: 'experienceNum',
+		alias: "experienceNum",
 		type: Number,
 		validate: val => val >= 0
 	},
 	loc: {
-		alias: 'location',
+		alias: "location",
 		type: locationSchema
 	},
 	tp: {
-		alias: 'typePreference',
+		alias: "typePreference",
 		type: String,
 		trim: true,
 		enum: Object.keys(allowedJobTypes),
 		get: val => allowedJobTypes[val]
 	},
 	rp: {
-		alias: 'rolePreference',
+		alias: "rolePreference",
 		type: [String], // eg. ['Software Developer', 'FrontEnd']
 		enum: Object.keys(allowedRoles),
 		get: val => allowedRoles[val]
 	},
 	cp: {
-		alias: 'companyPreference',
+		alias: "companyPreference",
 		type: [Types.ObjectId] // eg. ['Google'._id, 'Adobe'._id]
 	}
 });
 
-profileSchema.virtual('firstName').get(function () {
-	return this.fn.split(' ')[0];
+profileSchema.virtual("firstName").get(function () {
+	return this.fn.split(" ")[0];
 });
 
-profileSchema.pre('save', function (doc) {
+profileSchema.pre("save", function (doc) {
 	// @TODO -> Pre format the profile received, for eg. cypher the password
 }, function (err) {
-	console.log('Error Profile Pre');
+	console.log("Error Profile Pre");
 });
 
 // @TODO - Write logic to compare passwords, using bcrypt.compare
-profileSchema.static('comparePass', function (passStr) {
+profileSchema.static("comparePass", function (passStr) {
 
 });
 
-module.exports = model('profiles', profileSchema);
+module.exports = model("profiles", profileSchema);

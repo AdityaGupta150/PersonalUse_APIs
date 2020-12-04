@@ -1,17 +1,17 @@
-const { Schema } = require('mongoose');
-const { countryDeCode } = require('./allowedData');
+const { Schema } = require("mongoose");
+const { countryDeCode } = require("./allowedData");
 
 const locationSchema = new Schema({
 	c: {
-		alias: 'city', // In cases we use inlined, we need to use full path (l.city), this isn't required in case of subdocuments (schema)
+		alias: "city", // In cases we use inlined, we need to use full path (l.city), this isn't required in case of subdocuments (schema)
 		type: String
 	},
 	s: {
-		alias: 'state',
+		alias: "state",
 		type: String
 	},
 	country: {
-		alias: 'country',
+		alias: "country",
 		type: String,
 		trim: true,
 		get: (val) => {

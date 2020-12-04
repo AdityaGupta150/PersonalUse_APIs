@@ -1,6 +1,6 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
 
 });
 

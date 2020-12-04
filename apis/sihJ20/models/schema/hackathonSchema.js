@@ -1,6 +1,6 @@
 //  Currently wont be working much further on this, just for later use
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const hackSchema = new mongoose.Schema({
 	name: {
@@ -10,4 +10,4 @@ const hackSchema = new mongoose.Schema({
 	link: String
 });
 
-module.exports = mongoose.model('hackathons', hackSchema);
+module.exports = mongoose.model("hackathons", hackSchema);

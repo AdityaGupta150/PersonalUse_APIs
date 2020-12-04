@@ -1,18 +1,18 @@
-const { Router } = require('express');
-const fetch = require('node-fetch');
+const { Router } = require("express");
+const fetch = require("node-fetch");
 
 const router = Router();
 
 const ENDPOINTS = {
-	glassdoor: 'http://api.glassdoor.com/api/api.htm', // requires query params -> [v, format, t.p, t.k, userip, useragent]
-	indeed: 'https://api.indeed.com/ads/apisearch'
+	glassdoor: "http://api.glassdoor.com/api/api.htm", // requires query params -> [v, format, t.p, t.k, userip, useragent]
+	indeed: "https://api.indeed.com/ads/apisearch"
 };
 
-router.get('/parseSample', (req, res) => {
+router.get("/parseSample", (req, res) => {
 
 });
 
-router.get('/indeed', async (req, res) => {
+router.get("/indeed", async (req, res) => {
 	/** Endpoint data needed
      * publisher*    -> publisher ID
      * v*    -> version of API, must be 2
@@ -24,7 +24,7 @@ router.get('/indeed', async (req, res) => {
 
 });
 
-router.get('/glassdoor', async (req, res) => {
+router.get("/glassdoor", async (req, res) => {
 	/** Endpoint data needed Glassdoor
      * v        |    The API version. The current version is 1 except for jobs, which is currently version 1.1    |    Yes
      * format   |    Either xml or json as you prefer    |    Yes
@@ -36,7 +36,7 @@ router.get('/glassdoor', async (req, res) => {
      * action   |    The particular API call that you would like to make - see jobs, reviews, salaries, etc. sub-sections for details    |    Yes
      * other    |    Each API action will require different parameters - in the example above, an employerId is passed in order to retrieve reviews.    |    Varies
      */
-	await fetch(ENDPOINTS.glassdoor + '?v=1.1' + 'something');
+	await fetch(ENDPOINTS.glassdoor + "?v=1.1" + "something");
 
 	res.send({
 		attribution: "<a href='https://www.glassdoor.com/index.htm'>powered by <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>"

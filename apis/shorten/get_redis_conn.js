@@ -1,30 +1,30 @@
-const moment = require('moment');
+const moment = require("moment");
 
-const redis = require('redis');
+const redis = require("redis");
 const redisClient = redis.createClient({
-    port: 6379,
-    host: '127.0.0.1',
-    retry_strategy: (options) => {
-        if( options.error  && options.error.code === 'ECONNREFUSED' ){
-            // End reconnecting on a specific error and flush all commands with an individual error
-            return new Error('The server refused the connection');
-        }
-        if( options.total_retry_time > 5 * 60 * 1000 ){ // 5 minutes
-            return new Error('Retry time for connecting to redis exhausted');
-        }
-        if( options.attempt > 10 ){
-            // End reconnecting with built in error
-            return undefined;
-        }
+	port: 6379,
+	host: "127.0.0.1",
+	retry_strategy: (options) => {
+		if( options.error  && options.error.code === "ECONNREFUSED" ){
+			// End reconnecting on a specific error and flush all commands with an individual error
+			return new Error("The server refused the connection");
+		}
+		if( options.total_retry_time > 5 * 60 * 1000 ){ // 5 minutes
+			return new Error("Retry time for connecting to redis exhausted");
+		}
+		if( options.attempt > 10 ){
+			// End reconnecting with built in error
+			return undefined;
+		}
 
-        // reconnect after
-        return Math.min( options.attempt * 10, 300 );
-    }
+		// reconnect after
+		return Math.min( options.attempt * 10, 300 );
+	}
 }); // the default port is 6379 itself
 
 redisClient.on(
-    'error',
-    (err) => console.log(`[${moment().format("DD/MM HH:mm:ss")}] Redis Error -> ${err.code}`)
+	"error",
+	(err) => console.log(`[${moment().format("DD/MM HH:mm:ss")}] Redis Error -> ${err.code}`)
 );
 
 /**

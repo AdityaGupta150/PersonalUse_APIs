@@ -1,6 +1,6 @@
 //  Currently wont be working much further on this, just for later use
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const notifSchema = new mongoose.Schema({
 	title: {
@@ -13,8 +13,8 @@ const notifSchema = new mongoose.Schema({
 	}
 });
 
-notifSchema.post('whatIsTheEventForSaved', () => {
+notifSchema.post("whatIsTheEventForSaved", () => {
 	// Post a notification to the server
 });
 
-module.exports = mongoose.model('notifications', notifSchema);
+module.exports = mongoose.model("notifications", notifSchema);

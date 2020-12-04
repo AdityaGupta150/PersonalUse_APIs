@@ -32,37 +32,41 @@ m.map = new Map([['key', 'value']]);
 m.save(callback);
 */
 
-export const countryEnCode = {
-	India: 'IN'
+const countryEnCode = {
+	India: "IN"
 };
 
 const tempCountries = {};
 for (const key in countryEnCode) {
 	tempCountries[countryEnCode[key]] = key;
 }
-export const countryDeCode = tempCountries;
+const countryDeCode = tempCountries;
 
-export const allowedJobTypes = {
-	I: 'Internship',
-	F: 'FullTime',
-	P: 'PartTime'
-};
-export const allowedRoles = {
-	A: 'Algorithm',
-	B: 'Backend',
-	DA: 'Data Analytics',
-	DS: 'Data Scientist',
-	F: 'Frontend',
-	M: 'Marketing',
-	S: 'System Admin',
-	O: 'Others'
-};
+module.exports = {
+	countryEnCode: countryEnCode,
+	countryDeCode: countryDeCode,
+	allowedJobTypes: {
+		I: "Internship",
+		F: "FullTime",
+		P: "PartTime"
+	},
+	allowedRoles: {
+		A: "Algorithm",
+		B: "Backend",
+		DA: "Data Analytics",
+		DS: "Data Scientist",
+		F: "Frontend",
+		M: "Marketing",
+		S: "System Admin",
+		O: "Others"
+	},
 
-// Use it when interacting with user, since this one returns an array of the expanded versions of each role
-export function getAllowedRoles () {
-	const tempRoles = [];
-	for (const key in allowedRoles) {
-		tempRoles.push(allowedRoles[key]);
+	// Use it when interacting with user, since this one returns an array of the expanded versions of each role
+	getAllowedRoles: function getAllowedRoles (allowedRoles) {
+		const tempRoles = [];
+		for (const key in allowedRoles) {
+			tempRoles.push(allowedRoles[key]);
+		}
+		return tempRoles;
 	}
-	return tempRoles;
-}
+};
