@@ -24,6 +24,6 @@ Or deploy your own version ->
 
 Currently the documentation is available at ->
 
-[<img src="https://raw.githubusercontent.com/AdityaGupta150/Sources/main/postman-logo-1.png?token=AI4LBIMN3GHV7DFWWZWNNAC7ZXWMM" alt="Documentation on Postman" width="150px"/>]("https://documenter.getpostman.com/view/13326795/TVmJizFG")
+<a href="https://documenter.getpostman.com/view/13326795/TVmJizFG"><img src="https://raw.githubusercontent.com/AdityaGupta150/Sources/main/postman-logo-1.png?token=AI4LBIMN3GHV7DFWWZWNNAC7ZXWMM" alt="Documentation on Postman" width="150px"/></a>
 
 © Aditya Gupta, 2020
