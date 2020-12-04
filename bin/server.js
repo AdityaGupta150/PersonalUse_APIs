@@ -2,6 +2,7 @@
 
 const app = require('../app');
 const http = require('http');
+const { exit } = require('process');
 
 const port = process.env.PORT || '3000';
 app.set('port', port);
@@ -40,6 +41,17 @@ function onListening () {
 		: 'port ' + addr.port;
 	console.log('Listening on ' + bind);
 }
+
+function exitHandler(sig) {
+	console.log(`Recieved ${sig}: Exiting gracefully`);
+	server.close((err) => {
+		console.log("Couldn't close server, due to ",err);
+	})
+	exit(0);
+}
+
+process.on('SIGTERM', exitHandler);
+process.on('SIGINT', exitHandler);
 
 server.on('error', onError);
 module.exports = server.listen(port, onListening);

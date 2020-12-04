@@ -12,6 +12,8 @@ const doistRouter = require('./apis/doist15/app');
 const utilRouter = require('./apis/util/app');
 const ludoRouter = require('./apis/ludo/app');
 const eduRouter = require('./apis/eduPurpose/app');
+const shortenRouter = require('./apis/shorten/app')
+const tempDown = require('./routes/tempDown');
 
 const app = express();
 
@@ -37,13 +39,14 @@ app.use('/doist15', doistRouter);
 app.use('/util', utilRouter);
 app.use('/edu', eduRouter);
 app.use('/ludo', ludoRouter);
+app.use('/shorten', tempDown);
 
 app.get('/useFire', (req, res) => {
 	// Set the api to use firebase for this session
 	// QUESTION -> What are the useful uses of a 'session' in a completely backend setup ??
 
 	process.env.USE_FIREBASE = true;
-	res.redirect('/');
+	res.sendStatus(204);
 });
 
 // catch 404 and forward to error handler
