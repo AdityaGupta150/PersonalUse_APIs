@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const app = require('../app');
-const http = require('http');
-const { exit } = require('process');
+const app = require("../app");
+const http = require("http");
+const { exit } = require("process");
 
-const port = process.env.PORT || '3000';
-app.set('port', port);
+const port = process.env.PORT || "3000";
+app.set("port", port);
 
 const server = http.createServer(app);		// mounting the express app on the node server
 
@@ -13,21 +13,21 @@ const server = http.createServer(app);		// mounting the express app on the node 
  * Event listener for HTTP server "error" event.
  */
 function onError (error) {
-	if (error.syscall !== 'listen') {
+	if (error.syscall !== "listen") {
 		throw error;
 	}
 
-	const bind = typeof port === 'string'
-		? 'Pipe ' + port
-		: 'Port ' + port;
+	const bind = typeof port === "string"
+		? "Pipe " + port
+		: "Port " + port;
 
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
-	case 'EACCES':
-		console.error(bind + ' requires elevated privileges');
+	case "EACCES":
+		console.error(bind + " requires elevated privileges");
 		process.exit(1);
-	case 'EADDRINUSE':
-		console.error(bind + ' is already in use');
+	case "EADDRINUSE":
+		console.error(bind + " is already in use");
 		process.exit(1);
 	default:
 		throw error;
@@ -36,22 +36,22 @@ function onError (error) {
 
 function onListening () {
 	const addr = server.address();
-	const bind = typeof addr === 'string'
-		? 'pipe ' + addr
-		: 'port ' + addr.port;
-	console.log('Listening on ' + bind);
+	const bind = typeof addr === "string"
+		? "pipe " + addr
+		: "port " + addr.port;
+	console.log("Listening on " + bind);
 }
 
 function exitHandler(sig) {
 	console.log(`Recieved ${sig}: Exiting gracefully`);
 	server.close((err) => {
 		console.log("Couldn't close server, due to ",err);
-	})
+	});
 	exit(0);
 }
 
-process.on('SIGTERM', exitHandler);
-process.on('SIGINT', exitHandler);
+process.on("SIGTERM", exitHandler);
+process.on("SIGINT", exitHandler);
 
-server.on('error', onError);
+server.on("error", onError);
 module.exports = server.listen(port, onListening);

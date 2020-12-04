@@ -1,9 +1,9 @@
-const { createConnection } = require('mongoose');
+const { createConnection } = require("mongoose");
 
 // eslint-disable-next-line no-unused-vars
 const dbNames = { // used by get Connection from req.baseUrl
-	sihJ20: 'Hack',
-	doist15: 'MyDoist15'
+	sihJ20: "Hack",
+	doist15: "MyDoist15"
 };
 const allConnections = {};
 const dbOptions = {
@@ -12,15 +12,15 @@ const dbOptions = {
 	useUnifiedTopology: true,
 
 	retryWrites: true,
-	w: 'majority'
+	w: "majority"
 };
 
 const getConnection = (dbName) => { // works both ways... dbName can be a baseURL, or a proper one-word name
 	if (allConnections[dbName]) {
 		return allConnections[dbName];
 	}
-	if (dbName.split('/').length > 1) {
-		dbName = dbName.split('/')[1];
+	if (dbName.split("/").length > 1) {
+		dbName = dbName.split("/")[1];
 	} else if (!dbName) {
 		return null;
 	}
@@ -31,7 +31,7 @@ const getConnection = (dbName) => { // works both ways... dbName can be a baseUR
 	dbOptions.dbName = dbName; // modifying the dpOptions object
 	let conn;
 	// try{
-	console.log('creating connection with,', dbOptions.dbName);
+	console.log("creating connection with,", dbOptions.dbName);
 	// ISSUE - When offline this will throw promisRejection, but using then and catch is giving promises no
 	conn = createConnection(dbSource, dbOptions);
 	// conn = await createConnection(process.env.DB_URI, dbOptions)
@@ -64,16 +64,16 @@ const getConnection = (dbName) => { // works both ways... dbName can be a baseUR
 	// }
 
 	process
-		.on('unhandledRejection', err => {
-			console.error('unhandled error', err.code);
-			conn = createConnection('mongodb://localhost', dbOptions);
-			conn.once('once', () => console.log('CONNECTED'));
-			conn.on('error', () => console.error('ERROR'));
+		.on("unhandledRejection", err => {
+			console.error("unhandled error", err.code);
+			conn = createConnection("mongodb://localhost", dbOptions);
+			conn.once("once", () => console.log("CONNECTED"));
+			conn.on("error", () => console.error("ERROR"));
 		});
 
 	conn
-		.once('open', () => console.log('Connected to MongoDB, database: ', conn.db.databaseName))
-		.on('error', (err) => console.error('Error in DB connection -> code: ', err));
+		.once("open", () => console.log("Connected to MongoDB, database: ", conn.db.databaseName))
+		.on("error", (err) => console.error("Error in DB connection -> code: ", err));
 
 	// console.log('[DEBUG] Conn is an instance of connection: ', conn instanceof Connection);
 	// console.log('[DEBUG] Conn is ', conn instanceof Connection, 'Typeof(conn): ', typeof(conn));

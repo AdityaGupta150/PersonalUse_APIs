@@ -1,5 +1,5 @@
-const { Schema, Types } = require('mongoose');
-const { getConnection } = require('../../../util/mongoConnection');
+const { Schema, Types } = require("mongoose");
+const { getConnection } = require("../../../util/mongoConnection");
 
 const syncTableSchema = new Schema({
 	mongoId: {
@@ -18,11 +18,11 @@ const syncTableSchema = new Schema({
 	}
 });
 
-syncTableSchema.pre('save', function (next) {
+syncTableSchema.pre("save", function (next) {
 	if (this.mongoId) {
 		// ie. it has a value
 		this._id = this.mongoId;
 	}
 });
 
-module.exports = getConnection('MyDoist15').model('syncTable', syncTableSchema);
+module.exports = getConnection("MyDoist15").model("syncTable", syncTableSchema);

@@ -4,33 +4,33 @@
  * Have a different route to sync completed todos (there may be a lot of such)
 */
 
-const { Router } = require('express');
-const fetch = require('node-fetch');
-const { checkStatus, containsTodo, convertTo } = require('../util-functions/util');
-const todoModel = require('../models/schemas/todo');
+const { Router } = require("express");
+const fetch = require("node-fetch");
+const { checkStatus, containsTodo, convertTo } = require("../util-functions/util");
+const todoModel = require("../models/schemas/todo");
 // eslint-disable-next-line no-unused-vars
-const syncModel = require('../models/schemas/syncTable');
+const syncModel = require("../models/schemas/syncTable");
 
 const router = Router();
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
 	// in it call all the available sub-routes, to sync between all
 	Promise.all([
-		fetch('/firebase'),
-		fetch('/todoist') // sync with todoist
+		fetch("/firebase"),
+		fetch("/todoist") // sync with todoist
 	]).then(([res1, res2]) => {
-		console.log('Since with all routes successfull');
+		console.log("Sync with all routes successfull");
 	}).catch(err => {
-		console.error('Error occurred while syncing all.', err);
+		console.error("Error occurred while syncing all.", err);
 		return res.sendStatus(500);
 	});
 
 	res.sendStatus(204);
 });
 
-router.get('/todoist', async (req, res) => {
+router.get("/todoist", async (req, res) => {
 	const mongoTodos = await todoModel.find({ completed: true }, (err, docs) => {
 		if (err) {
-			console.error('Error in fetching documents require(mongodb', err);
+			console.error("Error in fetching documents require(mongodb", err);
 			return res.sendStatus(500);
 		}
 
@@ -38,18 +38,18 @@ router.get('/todoist', async (req, res) => {
 	});
 
 	const todoistTodos = await fetch(
-		'https://api.todoist.com/rest/v1/tasks',
+		"https://api.todoist.com/rest/v1/tasks",
 		{
 			headers: {
-				Authorization: 'Bearer ' + process.env.TODOIST_API_TOKEN
+				Authorization: "Bearer " + process.env.TODOIST_API_TOKEN
 			}
 		}
 	)
 		.then(checkStatus)
 		.then(data => data.json())
 		.catch(() => {
-			console.error('Error in fetching todos require(Todoist');
-			return res.status(500).send('Error in fetching todos require(Todoist');
+			console.error("Error in fetching todos require(Todoist");
+			return res.status(500).send("Error in fetching todos require(Todoist");
 		});
 
 	// TODO - Improve the algorithm(for eg. starting with smaller script, not using forof, since that requires indexOf() too), also if underscore has function for this usage, prefer that
@@ -89,17 +89,17 @@ router.get('/todoist', async (req, res) => {
 	todoistTodos.splice(0, 10);
 	todoistTodos.splice(2);
 	todoistTodos.forEach(todo => {
-		todo = convertTo(todo, 'mongo'); // convert todo to format accepted by mongo
+		todo = convertTo(todo, "mongo"); // convert todo to format accepted by mongo
 
 		todoModel.create(todo).catch(err => {
-			console.error('!❗! Error in saving todo to mongoDB', err.message);
+			console.error("!❗! Error in saving todo to mongoDB", err.message);
 		});
 	});
 
 	res.sendStatus(204);
 });
 
-router.get('/firebase', (req, res) => {
+router.get("/firebase", (req, res) => {
 	// TODO - Put logic to sync mongodb 'todos' collection firebase
 	res.sendStatus(204);
 });

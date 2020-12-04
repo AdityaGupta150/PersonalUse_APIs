@@ -1,5 +1,5 @@
-const { Schema, Types } = require('mongoose');
-const { getConnection } = require('../../../util/mongoConnection');
+const { Schema, Types } = require("mongoose");
+const { getConnection } = require("../../../util/mongoConnection");
 
 // Analogous to project/section in todoist
 const categorySchema = new Schema({
@@ -23,4 +23,4 @@ categorySchema.methods.pushTodoId = function (id) { /** Do not declare methods u
 	return this.todoIds.push(id);
 };
 
-module.exports = getConnection('MyDoist15').model('categories', categorySchema);
+module.exports = getConnection("MyDoist15").model("categories", categorySchema);

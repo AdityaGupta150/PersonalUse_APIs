@@ -5,7 +5,7 @@
     . keys to parse -> 'id', project_id (as category_id), content, completed, label_ids, priority, created
 */
 
-const todos = require('./todoist.json');
+const todos = require("./todoist.json");
 
 // LEARNT-> JSON is like an array of objects... not a dictionary/map
 /** LEARNT -
@@ -35,7 +35,7 @@ const todos = require('./todoist.json');
 const getKeys = async (json) => {
 	return new Promise((resolve, reject) => {
 		if (json.forEach === undefined) {
-			reject(new Error('IncompatibleFormat: Passed object is not an array, required a JSON mapping (an array of objects)'));
+			reject(new Error("IncompatibleFormat: Passed object is not an array, required a JSON mapping (an array of objects)"));
 		}
 
 		const foundKeys = {};
@@ -47,9 +47,9 @@ const getKeys = async (json) => {
 			}
 		}
 
-		console.log('going to resolve');
+		console.log("going to resolve");
 		setTimeout(() => {
-			console.log('wait complete');
+			console.log("wait complete");
 		}, 500);
 		resolve(foundKeys);
 	});
@@ -62,13 +62,13 @@ const getKeysSync = async (json) => { // blocking
 };
 
 const keys = [
-	'title',
-	'completed',
-	'due',
-	'priority',
-	'category_id', // will be replaced by project ids
-	'label_ids',
-	'children_ids',
-	'parent_id',
-	'createdAt'
+	"title",
+	"completed",
+	"due",
+	"priority",
+	"category_id", // will be replaced by project ids
+	"label_ids",
+	"children_ids",
+	"parent_id",
+	"createdAt"
 ];

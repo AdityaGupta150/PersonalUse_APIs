@@ -7,45 +7,45 @@
  *      { a: undefined }
  */
 
-const { Router } = require('express');
-const fetch = require('node-fetch');
+const { Router } = require("express");
+const fetch = require("node-fetch");
 
-const todoModel = require('../models/schemas/todo.js');
-const categoryModel = require('../models/schemas/category.js');
-const { checkStatus, logError, createTodo } = require('../util-functions/util');
-const { getConnection } = require('../../util/mongoConnection.js');
-const { write } = require('fs');
+const todoModel = require("../models/schemas/todo.js");
+const categoryModel = require("../models/schemas/category.js");
+const { checkStatus, logError, createTodo } = require("../util-functions/util");
+const { getConnection } = require("../../util/mongoConnection.js");
+const { write } = require("fs");
 
 const router = Router();
 
 async function saveOffline (json) {
-	const fs = require('fs').promises;
+	const fs = require("fs").promises;
 
-	fs.access('./offlineData/todos.json').then(() => {
-		console.log('[DEBUG] Can access it');
+	fs.access("./offlineData/todos.json").then(() => {
+		console.log("[DEBUG] Can access it");
 		// @Issue - Why is ./ considered doist15/ directory ???
-		write('./offlineData/todos.json', JSON.stringify(json))
+		write("./offlineData/todos.json", JSON.stringify(json))
 			.catch((err) => {
-				console.error('Problem Saving offline -> ', err);
+				console.error("Problem Saving offline -> ", err);
 			});
 	}).catch((err) => {
-		console.log('[DEBUG] CanNOT access it', err);
+		console.log("[DEBUG] CanNOT access it", err);
 	});
 }
 
-router.delete('/deleteAll', async (req, res) => {
+router.delete("/deleteAll", async (req, res) => {
 	// ONLY FOR DEVELOPMENT
 
-	await getConnection('MyDoist15').dropDatabase();
-	res.send('Done');
+	await getConnection("MyDoist15").dropDatabase();
+	res.send("Done");
 });
 
 // Save the data `from mongo` offline
-router.get('/syncOffline', async (req, res) => {
+router.get("/syncOffline", async (req, res) => {
 	const data = await todoModel.find({ completed: false }, (err, docs) => {
 		if (err) {
-			logError(0, 'todo', req.baseUrl);
-			return res.status(500).send('Kuchh gadbad ho gaya server side pe');
+			logError(0, "todo", req.baseUrl);
+			return res.status(500).send("Kuchh gadbad ho gaya server side pe");
 		}
 
 		saveOffline(data);
@@ -54,11 +54,11 @@ router.get('/syncOffline', async (req, res) => {
 });
 
 // returns all todos, stored in mongoDB
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
 	todoModel.find({ completed: false }, (err, docs) => {
 		if (err) {
-			logError(0, 'todo', req.baseUrl);
-			return res.status(500).send('Kuchh gadbad ho gaya server side pe'); // English - Some error has happened
+			logError(0, "todo", req.baseUrl);
+			return res.status(500).send("Kuchh gadbad ho gaya server side pe"); // English - Some error has happened
 		}
 
 		saveOffline(docs);
@@ -67,19 +67,19 @@ router.get('/', (req, res) => {
 });
 
 // posts a todo, or a list of todos (json format, SHOULD BE INSIDE `req.body.todos`)
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
 	let isSingleObj = true;
 
 	req.body.todos = [
 		{
-			title: 'Something44',
-			category: 'somet'
+			title: "Something44",
+			category: "somet"
 		}, {
-			title: 'Something55',
-			category: 'somet'
+			title: "Something55",
+			category: "somet"
 		}, {
-			title: 'Something66',
-			category: 'somet'
+			title: "Something66",
+			category: "somet"
 		}
 	];
 
@@ -88,41 +88,41 @@ router.post('/', (req, res) => {
 	console.log(isSingleObj);
 
 	if (isSingleObj) {
-		console.log('getting here IF');
+		console.log("getting here IF");
 		const todo = createTodo(req.body);
 		// labels won't be decided client side, FOR NOW (Actually better do that on client, as data scales)
 		// TODO - Implement logic to work with child and parent todos
 
 		todoModel.create(todo, (err, doc) => { // will actually be a single doc
 			if (err) {
-				logError(1, 'todo', req.baseUrl);
+				logError(1, "todo", req.baseUrl);
 				return res.sendStatus(500);
 			}
-			res.status(200).send('Todo was added successfully');
+			res.status(200).send("Todo was added successfully");
 		});
 	} else {
-		console.log('getting here');
+		console.log("getting here");
 		todoModel.create(req.body.todos, (err, docs) => {
 			if (err) {
-				logError(1, 'todo', req.baseUrl, 'While adding multiple todos');
+				logError(1, "todo", req.baseUrl, "While adding multiple todos");
 				return res.sendStatus(500);
 			}
-			res.status(200).send('All todos were added successfully');
+			res.status(200).send("All todos were added successfully");
 		});
 	}
-	console.log('end here');
+	console.log("end here");
 });
 
-router.post('/complete/:id', (req, res) => {
+router.post("/complete/:id", (req, res) => {
 	// CHECK - Check if it works
 	req.body.completed = true;
-	res.redirect(307, '/' + req.params.id);
+	res.redirect(307, "/" + req.params.id);
 });
 
-router.get('/getCategories', async (req, res) => {
+router.get("/getCategories", async (req, res) => {
 	await categoryModel.find({}, (err, docs) => {
 		if (err) {
-			logError(0, 'category', req.baseUrl);
+			logError(0, "category", req.baseUrl);
 			return res.sendStatus(500);
 		}
 
@@ -130,31 +130,31 @@ router.get('/getCategories', async (req, res) => {
 	});
 });
 
-router.get('/getRemote', async (req, res) => {
-	res.redirect('todoist/tasks');
+router.get("/getRemote", async (req, res) => {
+	res.redirect("todoist/tasks");
 });
 
 // returns all DISTINCT todos require(all sources, supported at the time (Initially, it will be just todoist and mongodb)
-router.get('/getAll', async (req, res) => {
+router.get("/getAll", async (req, res) => {
 	const todoistTodos = await fetch(
-		'https://api.todoist.com/rest/v1/tasks',
+		"https://api.todoist.com/rest/v1/tasks",
 		{
 			headers: {
-				Authorization: 'Bearer ' + process.env.TODOIST_API_TOKEN
+				Authorization: "Bearer " + process.env.TODOIST_API_TOKEN
 			}
 		}
 	)
 		.then(checkStatus)
 		.then(data => data.json())
 		.catch(() => {
-			console.error('Some error while fetching todos require(Todoist API');
-			return res.status(500).send('Some error while fetching todos require(Todoist API');
+			console.error("Some error while fetching todos require(Todoist API");
+			return res.status(500).send("Some error while fetching todos require(Todoist API");
 		});
 
 	const mongoTodos = await todoModel.find((err, docs) => {
 		if (err) {
-			console.error('Error getting all todos require(mongo', err);
-			return res.status(500).send('Some error while fetching todos require(MongoDB');
+			console.error("Error getting all todos require(mongo", err);
+			return res.status(500).send("Some error while fetching todos require(MongoDB");
 		}
 
 		return docs;
@@ -173,33 +173,33 @@ router.get('/getAll', async (req, res) => {
 	res.json(biggerList);
 });
 
-router.get('/:todoId', async (req, res) => {
+router.get("/:todoId", async (req, res) => {
 	res.json(await todoModel.findById(req.params.todoId, (err, doc) => {
 		if (err) {
-			return new Error('Couldn\'t get a todo with that Id');
+			return new Error("Couldn't get a todo with that Id");
 		}
 		return doc;
 	}));
 });
 
-router.post('/:todoId', async (req, res) => {
+router.post("/:todoId", (req, res) => {
 	const todo = createTodo(req.body);
 
-	await todoModel.findByIdAndUpdate(req.params.todoId, todo, (err, doc) => {
-		if (err) {
-			return new Error('Couldn\'t get a todo with that Id');
-		}
-		res.status(500).end();
-	});
+	todoModel.findByIdAndUpdate(req.params.todoId, todo)
+		.then(()=>{})
+		.catch(err => {
+			console.error(`Couldn't get a todo with that Id. Error Code -> ${err.code}`);
+			res.status(500).send("Couldn't get the todo");
+		});
 });
 
-router.delete('/:todoId', async (req, res) => {
+router.delete("/:todoId", async (req, res) => {
 	// CAUTION_NOTE -> req.params.todoId will be String, while _id is ObjectId, will query below find the doc??
 	await todoModel.findByIdAndDelete(req.params.todoId)
-		.then(doc => res.status(204).send('Successfully removed todo with title: ' + doc.title))
+		.then(doc => res.status(204).send("Successfully removed todo with title: " + doc.title))
 		.catch(err => {
-			console.error('Couldn\'t delete todo. ', err);
-			res.status(500).send('Could not remove the todo');
+			console.error("Couldn't delete todo. ", err.code);
+			res.status(500).send("Could not remove the todo");
 		});
 });
 

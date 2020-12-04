@@ -1,6 +1,6 @@
-const { Schema, Types } = require('mongoose');
-const { minColour, maxColour } = require('../../util-functions/colours');
-const { getConnection } = require('../../../util/mongoConnection');
+const { Schema, Types } = require("mongoose");
+const { minColour, maxColour } = require("../../util-functions/colours");
+const { getConnection } = require("../../../util/mongoConnection");
 
 // labels will be the one that will actually be the one to distinguish between actual 'projects'
 const labelSchema = new Schema({
@@ -28,4 +28,4 @@ labelSchema.methods.pushTodoId = function (todoId) {
 	this.todoIds.push(todoId);
 };
 
-module.exports = getConnection('MyDoist15').model('labels', labelSchema);
+module.exports = getConnection("MyDoist15").model("labels", labelSchema);

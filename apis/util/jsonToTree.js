@@ -1,37 +1,37 @@
 const sampleJSON = {
 	beginner: [
-		'p1',
-		'p2',
-		'p3'
+		"p1",
+		"p2",
+		"p3"
 	],
 	intermediate: [
-		'ie1',
-		'ie2',
-		'ie3',
-		'ie4'
+		"ie1",
+		"ie2",
+		"ie3",
+		"ie4"
 	],
 	advanced: [
-		'adv1',
-		'adv2',
-		'adv3'
+		"adv1",
+		"adv2",
+		"adv3"
 	]
 };
 
 console.log(sampleJSON);
-prtTree(sampleJSON, 'advanced');
+prtTree(sampleJSON, "advanced");
 
 function prtTree (JSON_file, key) {
 	const val = JSON_file[key];
 
 	// eslint-disable-next-line no-unused-vars
 	const supportedTypes = [
-		'number',
-		'boolean',
-		'string',
-		'array' // JS shows it as
+		"number",
+		"boolean",
+		"string",
+		"array" // JS shows it as
 	];
 
-	if (val === undefined) { return console.log('No such key in JSON passed'); }
+	if (val === undefined) { return console.log("No such key in JSON passed"); }
 
 	// console.log(typeof(1));
 	// console.log(typeof(false));

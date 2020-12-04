@@ -78,7 +78,7 @@ profileSchema.virtual('firstName').get(function () {
 
 profileSchema.pre('save', function (doc) {
 	// @TODO -> Pre format the profile received, for eg. cypher the password
-}, function (_err) {
+}, function (err) {
 	console.log('Error Profile Pre');
 });
 
