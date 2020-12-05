@@ -1,3 +1,5 @@
 DB_URI= mongodb+srv://<USERNAME>:<PASSWORD>@clusterx.ukxxx.mongodb.net/
+CRIC_API=
 
-// Replace this URI with your URI, note that it should also have the username and password
+# Replace this URI with your URI, note that it should also have the username and password
+# Cricapi APi key not mandatory, if you wan to use that, then put the key there

@@ -1,4 +1,5 @@
-const server = require("./bin/server");
+const app = require("./app");
+const server = app.listen(7943, ()=>console.log("Listening temporarily on port 7943"));
 
 setTimeout(() => {
 	server.close();
