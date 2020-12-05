@@ -1,21 +1,23 @@
 const router = require("express").Router();
-
 const jobModel = require("../models/schemas/job");
 
-router.get("/", async (req, res) => {
+/**
+ * @stalled
+ * 
+ * @file_brief -> These are the various endpoints for the jobs api,
+ * 			work is currenly stalled, hence endpoints maybe incomplete for now
+ */
+
+
+router.get("/", (req, res) => {
 	/** Preferably use graphQL here, and return all data asked for */
 
 });
 
-// Same as the route '/'
-router.get("/all", async (req, res) => {
-
-});
-
 // Receives profile ID, and sends back suggested jobs
-router.post("/getJobs", async (req, res) => {
-	// const userId = req.body.userId;
-
+router.post("/getJobs", (req, res) => {
+	const userId = req.body.userId;
+	// @todo - Fetch the jobs that are suitable for a particular user
 	const matchedJobs = [];
 
 	res.json(matchedJobs);
@@ -24,16 +26,22 @@ router.post("/getJobs", async (req, res) => {
 router.post("/addJob", async (req, res) => {
 	const job = req.body.job;
 
-	await jobModel.create(job);
-	res.json({ 200: "🎉 Added job to database" });
+	jobModel.create(job).then((doc) => {
+		res.json({ 200: `🎉 Added job with id ${doc.id} to database` });
+	})
+		.catch(err => {
+			console.log(`Error ${err.code} while adding the job -> `, job);
+			res.sendStatus(500);
+		});
 });
 
 router.get("/routes", (req, res) => {
 	res.send({
-		// glassdoor: 'jobs/glassdoor',
-		// indeed: 'jobs/indeed',
-		// github: 'jobs/github',
-		// ETC: 'jobs/ETC',
+		glassdoor: "jobs/glassdoor",
+		indeed: "jobs/indeed",
+		github: "jobs/github",
+
+		Note: "All these endpoints are severely rate-limited and authenticated, so don't waste your API calls"
 	});
 });
 

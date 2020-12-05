@@ -2,6 +2,11 @@ const { Schema, Types, model } = require("mongoose");
 const { allowedJobTypes, allowedRoles, countryEnCode } = require("./allowedData");
 const locationSchema = require("./locationSchema");
 
+/**
+ * @brief -> The jobs collection stores the job listings, and this is the schema for the job documents
+ * 
+ * @note -> The skills are currently stored as an array of strings and not a single string, so as to represent jobs that link to more that one skillName
+ */
 const jobSchema = new Schema({
 	t: {
 		alias: "type",

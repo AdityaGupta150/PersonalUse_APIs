@@ -1,6 +1,9 @@
 const { Schema } = require("mongoose");
 const { countryDeCode } = require("./allowedData");
 
+/**
+ * @brief - The locationSchema isn't actually stored as colletion in the database, it will be a subdocument inside another document
+ */
 const locationSchema = new Schema({
 	c: {
 		alias: "city", // In cases we use inlined, we need to use full path (l.city), this isn't required in case of subdocuments (schema)
