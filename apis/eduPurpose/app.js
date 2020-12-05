@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cricapi = require("cricapi");
-cricapi.setAPIKey("dmkLt572pHdnImPZpfgWdQbuaL72");
+cricapi.setAPIKey(process.env.CRIC_API || "");
 
-// ---------------------------------------------------
 const { Schema } = require("mongoose");
 const { getConnection } = require("../util/mongoConnection");
 

@@ -8,7 +8,7 @@ const dbNames = { // used by get Connection from req.baseUrl
 
 const allConnections = {};
 
-	// the default database options for each new connection
+// the default database options for each new connection
 const dbOptions = {
 	useNewUrlParser: true,
 	useCreateIndex: true,
