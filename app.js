@@ -46,9 +46,11 @@ app.use("/", indexRouter);
 app.use("/sihJ20", sihJ20Router);
 app.use("/doist15", doistRouter);
 app.use("/util", utilRouter);
-app.use("/edu", eduRouter);
 app.use("/ludo", ludoRouter);
+app.use("/edu", tempDown);	// working, but intentionally down
 app.use("/shorten", tempDown);
+app.use("/gh", tempDown);
+app.use("/bookmarker", tempDown);
 
 app.get("/useFire", (req, res) => {
 	// Set the api to use firebase for this session
