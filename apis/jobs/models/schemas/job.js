@@ -29,7 +29,7 @@ const jobSchema = new Schema({
 		required: true,
 		default: "O",
 		enum: Object.keys(allowedRoles),
-		get: (val) => allowedRoles[val]
+		get: val => allowedRoles[val]
 	},
 	s: {
 		alias: "skills",
@@ -38,12 +38,12 @@ const jobSchema = new Schema({
 	exp: { // experience_required
 		alias: "experience",
 		type: Schema.Types.Mixed, // range
-		validate: function (range) {
-			if (typeof (range) === "number") {
+		validate (range) {
+			if (typeof (range) === "number") 
 				return range >= 0 && range <= 60;
-			} else if (!!range.forEach && typeof (range) === "object") {
+			else if (!!range.forEach && typeof (range) === "object") 
 				return (range[0] >= 0 && range[0] <= 60) && (range[1] >= 0 && range[1] <= 60);
-			} else { return false; }
+			else  return false; 
 		},
 		default: 0
 	},
@@ -59,11 +59,11 @@ const jobSchema = new Schema({
 	l: {
 		alias: "location",
 		type: [locationSchema],
-		get: function () {
+		get () {
 			if (!this.l) {
-				if (this.remote) {
+				if (this.remote) 
 					return this.remote;
-				}
+				
 				return null;
 			}
 			return this.l;
@@ -79,15 +79,15 @@ jobSchema.virtual("location").get(function () { return this.l; });
 
 jobSchema.pre("save", function () { // Signature shows this is HookSyncCallback
 	this.type = this.type.toLowerCase();
-	if (this.type === "internship" || this.type === "intern") {
+	if (this.type === "internship" || this.type === "intern") 
 		this.type = "I";
-	} else if (this.type === "fulltime" || this.type === "full-time") {
+	else if (this.type === "fulltime" || this.type === "full-time") 
 		this.type = "F";
-	} else if (this.type === "parttime" || this.type === "partime" || this.type === "part-time") {
+	else if (this.type === "parttime" || this.type === "partime" || this.type === "part-time") 
 		this.type = "P";
-	}
+	
 
-	if (!allowedJobTypes.includes(this.type)) { throw new Error("Incorrect Job Type"); }
+	if (!allowedJobTypes.includes(this.type))  throw new Error("Incorrect Job Type"); 
 
 	if (Object.keys(countryEnCode).includes(this.country)) { // This conditional will save the shorter form only
 		this.country = countryEnCode[this.country];

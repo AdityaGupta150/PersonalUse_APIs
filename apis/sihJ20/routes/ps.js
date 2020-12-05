@@ -50,9 +50,8 @@ router.post("/", (req, res) => {
  * @statusCode - 200, or 204 when successful, else 500
  */
 router.post("/incId/:psId", (req, res) => {
-	if (!req.body.forceInc) {
+	if (!req.body.forceInc) 
 		return res.status(204).send("Not allowed any futher");
-	}
 
 	const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 	console.log(ip, " has attempted to increase stars");
@@ -84,7 +83,7 @@ router.post("/incId/:psId", (req, res) => {
  */
 router.get("/get/:psId", (req, res, next) => {
 	ProbModel.findOne({ probId: req.params.psId }, (err, doc) => {
-		if (err) { return res.status(404).send("Problem Statement, with that ID doesn't exist"); }
+		if (err)  return res.status(404).send("Problem Statement, with that ID doesn't exist"); 
 
 		if (!doc) return res.json({ Error: "Invalid psId was passed : " + req.params.psId });
 		const acquiredPS = {
@@ -110,19 +109,19 @@ router.get("/getAll", async (req, res, next) => {
 	ProbModel.find((err, docs) => {
 		if (err) {
 			console.error(err);
-			if (next) { return next(); }
+			if (next)  return next(); 
 			return null;
 		}
 		return docs;
 	}).then((docs) => {
-		if (!docs) {
+		if (!docs) 
 			return res.status(500).json({ Message: "Error occured in finding docs" });
-		}
-		if (docs.length === 0) {
+		
+		if (docs.length === 0) 
 			return res.json({ Message: "Their are no documents, in asked collection" });
-		}
+		
 
-		docs.forEach(doc => { // did this to hide the IP
+		docs.forEach((doc) => { // did this to hide the IP
 			allPS.push({
 				title: doc.title,
 				statement: doc.statement,
@@ -147,7 +146,7 @@ router.get("/getTitles", async (req, res, next) => {
 	await ProbModel.find((err, docs) => {
 		if (err) {
 			console.error(err);
-			if (next) { return next(); }
+			if (next)  return next(); 
 			return [];
 		}
 		return docs;

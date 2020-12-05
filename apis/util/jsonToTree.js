@@ -17,9 +17,6 @@ const sampleJSON = {
 	]
 };
 
-console.log(sampleJSON);
-prtTree(sampleJSON, "advanced");
-
 function prtTree (JSON_file, key) {
 	const val = JSON_file[key];
 
@@ -28,17 +25,14 @@ function prtTree (JSON_file, key) {
 		"number",
 		"boolean",
 		"string",
-		"array" // JS shows it as
+		"array" // JS shows it as object though
 	];
 
-	if (val === undefined) { return console.log("No such key in JSON passed"); }
-
-	// console.log(typeof(1));
-	// console.log(typeof(false));
-	// console.log(typeof('adf'));
-	// console.log(typeof([1,2,3]));
-	// console.log(typeof({56: 45, 4: 6}));
+	if ( ! val )  return console.log("No such key in JSON passed"); 
 }
+
+console.log(sampleJSON);
+prtTree(sampleJSON, "advanced");
 
 for (const key in { 56: 45, 4: 6 }) {
 	if (Object.hasOwnProperty.call({ 56: 45, 4: 6 }, key)) {

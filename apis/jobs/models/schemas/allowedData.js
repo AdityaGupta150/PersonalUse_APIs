@@ -10,8 +10,8 @@ for (const key in countryEnCode) {
 const countryDeCode = tempCountries;
 
 module.exports = {
-	countryEnCode: countryEnCode,
-	countryDeCode: countryDeCode,
+	countryEnCode,
+	countryDeCode,
 	allowedJobTypes: {
 		I: "Internship",
 		F: "FullTime",

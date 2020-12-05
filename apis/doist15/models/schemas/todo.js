@@ -49,13 +49,11 @@ const todo = new Schema({
 	labels: { // won't affect the UI much but nevertheless will be stored... read the note in todoistAPIRoutes.txt for explained reason
 		type: [Types.ObjectId], // will be an array of label IDs
 		alias: "labels_ids",
-		default: undefined
 	},
 	// when fetching a todo, if it has non-empty children_ids... recursively fetch them too, and better also validate the children have valid parent
 	childs: { // only top-level childrens, if any
 		type: [Types.ObjectId], // an array of ids
 		alias: "children_ids",
-		default: undefined
 	},
 	parent: { // can have single parent only, only for child todos
 		type: Types.ObjectId,
@@ -77,24 +75,24 @@ todo.virtual("isDone")
 
 todo.pre("save", function (next) { // LEARNT -> When using ES6 functions, this is just an empty object
 	if (this.completed && this.due) {
-		if (this.due > Date.now()) {
+		if (this.due > Date.now()) 
 			this.completed = false;
-		}
+		
 		// else let both remain as it is (a completed task can have a due date (for history storage reason))
 	}
 
 	const labels = parseTodo(this);
 	for (const labelName of labels) {
 		labelModel.findOne({ name: labelName }, (err, labelDoc) => {
-			if (err) {
+			if (err) 
 				return logError(0, "label", "todoPreSave");
-			}
+			
 
 			if (labelDoc) { // ie. it's not null
 				this.labels.push(labelDoc._id);
 			} else { // create a new 'empty' label
 				labelModel.create({ name: labelName })
-					.then(newLabel => {
+					.then((newLabel) => {
 						console.log("🎉 Created Label:", newLabel);
 						this.labels.push(newLabel._id);
 					})
@@ -108,9 +106,9 @@ todo.pre("save", function (next) { // LEARNT -> When using ES6 functions, this i
 
 todo.post("save", async function (doc) { // defines a post hook for the document
 	syncModel.findById(this._id, async (err, syncDoc) => {
-		if (err) {
+		if (err) 
 			return logError(0, "syncTable", "todoPostSave");
-		} else if (!syncDoc) {
+		else if (!syncDoc) {
 			await syncModel.create({
 				mongoId: doc._id
 			})
@@ -125,14 +123,14 @@ todo.post("save", async function (doc) { // defines a post hook for the document
 
 	// @BUG - Two categories with same name, are being created, even though name should be unique
 	await categoryModel.findOne({ name: doc.category }, async (err, catDoc) => {
-		if (err) {
+		if (err) 
 			return logError(0, "category", "todoPostSave");
-		} else if (!catDoc) { // it is `null` if no document matches
+		else if (!catDoc) { // it is `null` if no document matches
 			console.log("ℹ Going to create collection with name: ", doc.category);
 			if (categoryModel.countDocuments({ name: doc.category }, (err, count) => { // [DEBUG]   For debugging purpose
-				if (err) {
+				if (err) 
 					console.log("Error in counting");
-				}
+				
 				console.log("{name:", doc.category, "}  count =", count);
 			})) {
 				categoryModel.create({ // async... not using await here
@@ -161,11 +159,11 @@ todo.post("save", async function (doc) { // defines a post hook for the document
 	if (!this.labels) this.labels = [];
 	for (const labelId of this.labels) {
 		labelModel.findById(labelId, (err, labelDoc) => {
-			if (err) {
+			if (err) 
 				return logError(0, "label", "todoPostSave");
-			} else if (!labelDoc) {
+			else if (!labelDoc) 
 				return logError(4, "label", "todoPostSave", "No such label exists");
-			}
+			
 
 			// CHECK -> Check whether this function run here, also changes remote data, or we have to use the next commented lines?
 			labelDoc.pushTodoId(doc._id);

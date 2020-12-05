@@ -15,6 +15,8 @@ const redisClient = redis.createClient({
 		}
 		if( options.attempt > 10 ){
 			// End reconnecting with built in error
+
+			// eslint-disable-next-line no-undefined
 			return undefined;
 		}
 
@@ -25,7 +27,7 @@ const redisClient = redis.createClient({
 
 redisClient.on(
 	"error",
-	(err) => console.log(`[${moment().format("DD/MM HH:mm:ss")}] Redis Error -> ${err.code}`)
+	err => console.log(`[${moment().format("DD/MM HH:mm:ss")}] Redis Error -> ${err.code}`)
 );
 
 /**

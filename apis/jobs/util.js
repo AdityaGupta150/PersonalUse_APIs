@@ -16,31 +16,31 @@ module.exports = async function getRecommendedJobs(userId) {
 	let profile = await profileModel.findById(
 		userId
 		, (err, doc) => {
-			if (err) {
+			if (err) 
 				console.log("Error: " + err);
-			} else {
-				if (!doc) {
+			else {
+				if (!doc) 
 					console.log(`No profile found, with {id: ${userId}}`);
-				} else {
+				else 
 					return doc;
-				}
+				
 			}
 		});
 
 	let jobsIds = [];
-	profile.skills.forEach(async skill => {
+	profile.skills.forEach(async (skill) => {
 		jobsIds = jobsIds.concat(
 			await skillMap.find({
 				skillName: skill
 			}, (err, docs) => {
-				if (err) {
+				if (err) 
 					console.log("Error: " + err);
-				} else {
-					if (docs.length === 0) {
+				else {
+					if (docs.length === 0) 
 						console.log("No skillMap found for the skill: ", skill);
-					} else {
-						return docs.map((doc) => doc.skillName);
-					}
+					else 
+						return docs.map(doc => doc.skillName);
+					
 				}
 			})
 		);

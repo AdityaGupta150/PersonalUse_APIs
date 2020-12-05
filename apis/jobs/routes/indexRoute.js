@@ -29,7 +29,7 @@ router.post("/addJob", async (req, res) => {
 	jobModel.create(job).then((doc) => {
 		res.json({ 200: `🎉 Added job with id ${doc.id} to database` });
 	})
-		.catch(err => {
+		.catch((err) => {
 			console.log(`Error ${err.code} while adding the job -> `, job);
 			res.sendStatus(500);
 		});

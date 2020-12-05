@@ -18,9 +18,9 @@ const locationSchema = new Schema({
 		type: String,
 		trim: true,
 		get: (val) => {
-			if (val.length === 2 && Object.keys(countryDeCode).includes(val)) {
+			if (val.length === 2 && Object.keys(countryDeCode).includes(val)) 
 				return countryDeCode[val];
-			}
+			
 			return val;
 		}
 

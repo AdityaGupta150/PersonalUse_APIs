@@ -8,7 +8,7 @@ function validateTodo(todo) {    //works for both, whether todo or a list of tod
 	} else{
 		for (const key in todo) {
 			if(!keys.includes(key))
-				delete todo[key];
+			{delete todo[key];}
 		}
 	}
 }

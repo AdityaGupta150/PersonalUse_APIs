@@ -1,4 +1,4 @@
-const _ = require("underscore");
+const { omit } = require("underscore");
 
 const checkStatus = (res) => {
 	//3xx -> Redirection
@@ -48,7 +48,7 @@ const convertTo = (todo, destinationFormat) => {
 			delete todo.due;
 			todo.due = new Date(dateStr);
 		}
-		todo = _.omit(todo, ["id", "content","project_id", "section_id", "order", "label_ids", "comment_count", "created", "url"]);
+		todo = omit(todo, ["id", "content","project_id", "section_id", "order", "label_ids", "comment_count", "created", "url"]);
 		//NOTE- For now todo.project_id to be ignored, and all to be saved in default category 'General'
 	}
 
@@ -75,7 +75,7 @@ const createTodo = (obj) => {
 	];
 	let todo = {};
 	for (const key of keys) {
-		if(obj[key] !== undefined)
+		if( !obj[key] !== false && !obj[key] )
 			todo[key] = obj[key];
 	}
 

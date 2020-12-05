@@ -26,9 +26,9 @@ const companySchema = new Schema({
 		type: [Number | String], // will be a pair of [0, '/123.png']... meaning the 2nd one is relatve url, and 0 is the index of base url in storageUrls[] array
 		default: null,
 		validate: (val) => {
-			if (typeof (val[0]) !== "number" || typeof (val[1]) !== "string") {
+			if (typeof (val[0]) !== "number" || typeof (val[1]) !== "string") 
 				return false;
-			}
+			
 			try {
 				URL(val[1]);
 				return true;
@@ -36,7 +36,7 @@ const companySchema = new Schema({
 				return false;
 			}
 		},
-		get: val => {
+		get: (val) => {
 			return (storageUrls[val[0]] + val[1]);
 		}
 	},
@@ -47,9 +47,9 @@ const companySchema = new Schema({
 });
 
 companySchema.pre("save", function (doc) {
-	if (!(this.val[1].includes("/") || this.val[1].includes("\\"))) {
+	if (!(this.val[1].includes("/") || this.val[1].includes("\\"))) 
 		this.val[1] = "/" + this.val[1];
-	}
+	
 });
 
 module.exports = model("companies", companySchema);

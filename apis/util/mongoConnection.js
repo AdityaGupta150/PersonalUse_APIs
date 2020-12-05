@@ -29,18 +29,18 @@ const dbOptions = {
 */
 
 function getConnection(dbName) {
-	if (allConnections[dbName]) {
+	if (allConnections[dbName]) 
 		return allConnections[dbName];
-	}
-	if (dbName.split("/").length > 1) {
+	
+	if (dbName.split("/").length > 1) 
 		dbName = dbName.split("/")[1];
-	} else if (!dbName) {
+	else if (!dbName) 
 		return null;
-	}
+	
 
-	if( allConnections[dbName] ){
+	if( allConnections[dbName] )
 		return allConnections[dbName];
-	}
+	
 
 	const dbSource = process.env.DB_URI || "mongodb://localhost";
 
@@ -97,14 +97,14 @@ const getConnectionPromise = (dbName) => { // works both ways... dbName can be a
 	// @todo -> will return a promise with the connection object
 
 	return new Promise((resolve, reject) => {
-		if (allConnections[dbName]) {
+		if (allConnections[dbName]) 
 			return allConnections[dbName];
-		}
-		if (dbName.split("/").length > 1) {
+		
+		if (dbName.split("/").length > 1) 
 			dbName = dbName.split("/")[1];
-		} else if (!dbName) {
+		else if (!dbName) 
 			return null;
-		}
+		
 
 		const dbSource = process.env.DB_URI || "mongodb://localhost";
 
