@@ -1,5 +1,4 @@
-const express = require("express");
-const app = express();
+const router = require("express").Router();
 const path = require("path");
 const cricapi = require("cricapi");
 cricapi.setAPIKey(process.env.CRIC_API || "");
@@ -17,7 +16,7 @@ function saveComment (data) {
 		.catch(err => console.log(err));
 }
 
-app.get("/data", (req, res) => {
+router.get("/data", (req, res) => {
 	edu.find({}, (err, docs) => {
 		if (err) console.log("Error: " + err);
 		else {
@@ -29,7 +28,7 @@ app.get("/data", (req, res) => {
 	});
 });
 
-app.get("/cric1", (req, res) => {
+router.get("/cric1", (req, res) => {
 	const obj = cricapi.cricketMatches( // current matches
 		(data, data2, data3) => {
 			console.log(data);
@@ -45,7 +44,7 @@ app.get("/cric1", (req, res) => {
 	return res.send(obj);
 });
 
-app.get("/cric2", (req, res) => {
+router.get("/cric2", (req, res) => {
 	const obj = cricapi.matches(
 		(data, data2, data3) => {
 			console.log(data);
@@ -63,14 +62,14 @@ app.get("/cric2", (req, res) => {
 });
 
 // ---------------------------------------------------
-app.get("/", (req, res) => res.send("Welcome to Edu"));
+router.get("/", (req, res) => res.send("Welcome to Edu"));
 
-app.get("/bhuvnesh", (req, res) => {
+router.get("/bhuvnesh", (req, res) => {
 	console.log(path.join(__dirname, "/index.html"));
 	res.status(200).sendFile(path.join(__dirname, "/index.html"));
 });
 
-app.post("/submitIt", (req, res) => {
+router.post("/submitIt", (req, res) => {
 	// saveToDB(req.body);
 	res.json({
 		"You sent this:": {
@@ -80,7 +79,7 @@ app.post("/submitIt", (req, res) => {
 	});
 });
 
-app.post("/comment", (req, res) => {
+router.post("/comment", (req, res) => {
 	saveComment(req.body);
 	res.json({
 		"You sent this:": {
@@ -90,4 +89,4 @@ app.post("/comment", (req, res) => {
 	});
 });
 
-module.exports = app;
+module.exports = router;

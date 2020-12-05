@@ -42,15 +42,15 @@ router.delete("/deleteAll", async (req, res) => {
 
 // Save the data `from mongo` offline
 router.get("/syncOffline", async (req, res) => {
-	const data = await todoModel.find({ completed: false }, (err, docs) => {
-		if (err) {
+	todoModel.find({ completed: false }).exec()
+		.then( docs	=> {
+			saveOffline(docs);
+			res.json(docs);
+		})
+		.catch(err => {
 			logError(0, "todo", req.baseUrl);
-			return res.status(500).send("Kuchh gadbad ho gaya server side pe");
-		}
-
-		saveOffline(data);
-	});
-	res.send(data);
+			return res.status(500).send("Kuchh gadbad ho gaya server side pe. Error Code -> ", err.code);
+		});
 });
 
 // returns all todos, stored in mongoDB

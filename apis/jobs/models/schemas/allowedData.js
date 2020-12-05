@@ -4,7 +4,8 @@ const countryEnCode = {
 
 const tempCountries = {};
 for (const key in countryEnCode) {
-	tempCountries[countryEnCode[key]] = key;
+	if( Object.hasOwnProperty.call(countryEnCode, key) )
+		tempCountries[countryEnCode[key]] = key;
 }
 const countryDeCode = tempCountries;
 
@@ -31,7 +32,8 @@ module.exports = {
 	getAllowedRoles: function getAllowedRoles (allowedRoles) {
 		const tempRoles = [];
 		for (const key in allowedRoles) {
-			tempRoles.push(allowedRoles[key]);
+			if( Object.hasOwnProperty.call(allowedRoles, key) )
+				tempRoles.push(allowedRoles[key]);
 		}
 		return tempRoles;
 	}

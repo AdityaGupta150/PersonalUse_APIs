@@ -27,7 +27,7 @@ module.exports = async function getRecommendedJobs(userId) {
 
 	let jobsIds = [];
 	profile.skills.forEach(async skill => {
-		jobsIds.concat(
+		jobsIds = jobsIds.concat(
 			await skillMap.find({
 				skillName: skill
 			}, (err, docs) => {
