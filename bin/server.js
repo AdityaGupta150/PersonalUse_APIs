@@ -9,13 +9,27 @@ const http2 = require("http2");
 const { readFileSync, existsSync } = require("fs");
 const { exit } = require("process");
 
-const PORT = process.env.PORT || "3000";
+const PORT = process.env.PORT || "443";
 app.set("port", PORT);
 
 const server = http2.createSecureServer({
-	key: existsSync("../key.pem") ? readFileSync("../key.pem"): "",
-	cert: existsSync("../cert.pem") ? readFileSync("../cert.pem"): ""
-}, app);		// mounting the express app on the node server
+	key: existsSync("key.pem") ? readFileSync("key.pem"): "",
+	cert: existsSync("cert.pem") ? readFileSync("cert.pem"): ""
+});		// mounting the express app on the node server
+
+server.on("stream", app);
+
+// server.on("stream", (stream, headers) => {
+// 	stream.respond({
+// 		"content-type": "application/json",
+// 		"status": 200
+// 	});
+
+// 	stream.end(JSON.stringify({
+// 		user: "aditya",
+// 		id: "asddasff"
+// 	}));
+// });
 
 /**
  * Event listener for HTTP server "error" event.

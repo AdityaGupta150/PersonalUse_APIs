@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const { join } = require("path");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config(); // Just loads environment variables from .env file, into the process.env object of node
 
@@ -33,6 +34,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+express.static( join(__dirname, "public") );
 app.use("/", indexRouter);
 app.use("/sihJ20", sihJ20Router);
 app.use("/doist15", doistRouter);
