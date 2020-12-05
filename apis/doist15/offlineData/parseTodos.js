@@ -37,7 +37,7 @@ const todos = require("./todoist.json");
  */
 const getKeys = async (json) => {
 	return new Promise((resolve, reject) => {
-		if (json.forEach === undefined) {
+		if ( !Array.isArray(json) ) {
 			reject(new Error("IncompatibleFormat: Passed object is not an array, required a JSON mapping (an array of objects)"));
 		}
 

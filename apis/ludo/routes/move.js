@@ -31,7 +31,7 @@ const homeTurns = { // colour: [coord,direction]
 
 function isHomeEnd(coords) {
 	const home_ends = ["8,7", "6,7", "7,6", "7,8"];
-	if (home_ends.find((end) => end == coords)) return true;
+	if (home_ends.find(end => end == coords)) return true;
 	else return false;
 }
 
@@ -64,48 +64,6 @@ function validData(reqData) {
 		} else return true;
 	} else return false;
 }
-
-router.post("/goti", (req, res) => {
-	const reqData = {
-		col: Object.hasOwnProperty.call(req.body, "col") ? toString(req.body.col): null, // colour
-		dist: Number(req.body.dist) // dist=0 will give Input Not Valid
-	};
-
-	if( Object.hasOwnProperty.call(req.body, "coords") ){
-		if( Array.isArray(reqData.coords) )
-			reqData.coords = req.body.coords;
-		else
-			reqData.coords = [ req.body.coords ];
-	}
-	if (!validData(reqData)) {
-		return res.status(400).send({ error: "Input Not Valid", inputReceived: req.body });
-	}
-
-	const colour = reqData.col;
-	const dist = reqData.dist;
-	if (dist === 0) { return res.send({ bool: false }); }
-
-	if ( ! reqData.coords ) return res.sendStatus(400);
-
-	if ( reqData.coords.length === 2 && all(reqData.coords, iter => typeof (iter) === "number")) {	// ie. is a single pair
-		reqData.coords = [reqData.coords];	// convert to an array
-	}
-
-	const bools = [];	// an array of bools
-	const finalCoords = [];	// an array of bools
-
-	let possibility, finalCoord;
-	reqData.coords.forEach(coord => {
-		[possibility, finalCoord] = moveGoti(colour, coord, dist);
-		bools.push(possibility);
-		finalCoords.push(finalCoord);
-	});
-
-	res.send({
-		bools: bools,
-		coords: finalCoords
-	});
-});
 
 function moveGoti(colour, coord, dist) {
 	let increment_coords = [0, 0];
@@ -163,5 +121,47 @@ function moveGoti(colour, coord, dist) {
 		updated_coords	// final coords
 	];
 }
+
+router.post("/goti", (req, res) => {
+	const reqData = {
+		col: Object.hasOwnProperty.call(req.body, "col") ? toString(req.body.col): null, // colour
+		dist: Number(req.body.dist) // dist=0 will give Input Not Valid
+	};
+
+	if( Object.hasOwnProperty.call(req.body, "coords") ){
+		if( Array.isArray(reqData.coords) )
+		{reqData.coords = req.body.coords;}
+		else
+		{reqData.coords = [ req.body.coords ];}
+	}
+	if (!validData(reqData)) {
+		return res.status(400).send({ error: "Input Not Valid", inputReceived: req.body });
+	}
+
+	const colour = reqData.col;
+	const dist = reqData.dist;
+	if (dist === 0) { return res.send({ bool: false }); }
+
+	if ( ! reqData.coords ) return res.sendStatus(400);
+
+	if ( reqData.coords.length === 2 && all(reqData.coords, iter => typeof (iter) === "number")) {	// ie. is a single pair
+		reqData.coords = [reqData.coords];	// convert to an array
+	}
+
+	const bools = [];	// an array of bools
+	const finalCoords = [];	// an array of bools
+
+	let possibility, finalCoord;
+	reqData.coords.forEach((coord) => {
+		[possibility, finalCoord] = moveGoti(colour, coord, dist);
+		bools.push(possibility);
+		finalCoords.push(finalCoord);
+	});
+
+	res.send({
+		bools,
+		coords: finalCoords
+	});
+});
 
 module.exports = router;

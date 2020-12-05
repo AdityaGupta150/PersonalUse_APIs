@@ -122,7 +122,7 @@ router.get("/getAll", async (req, res, next) => {
 			return res.json({ Message: "Their are no documents, in asked collection" });
 		}
 
-		docs.forEach(doc => { // did this to hide the IP
+		docs.forEach((doc) => { // did this to hide the IP
 			allPS.push({
 				title: doc.title,
 				statement: doc.statement,

@@ -49,13 +49,11 @@ const todo = new Schema({
 	labels: { // won't affect the UI much but nevertheless will be stored... read the note in todoistAPIRoutes.txt for explained reason
 		type: [Types.ObjectId], // will be an array of label IDs
 		alias: "labels_ids",
-		default: undefined
 	},
 	// when fetching a todo, if it has non-empty children_ids... recursively fetch them too, and better also validate the children have valid parent
 	childs: { // only top-level childrens, if any
 		type: [Types.ObjectId], // an array of ids
 		alias: "children_ids",
-		default: undefined
 	},
 	parent: { // can have single parent only, only for child todos
 		type: Types.ObjectId,
@@ -94,7 +92,7 @@ todo.pre("save", function (next) { // LEARNT -> When using ES6 functions, this i
 				this.labels.push(labelDoc._id);
 			} else { // create a new 'empty' label
 				labelModel.create({ name: labelName })
-					.then(newLabel => {
+					.then((newLabel) => {
 						console.log("🎉 Created Label:", newLabel);
 						this.labels.push(newLabel._id);
 					})

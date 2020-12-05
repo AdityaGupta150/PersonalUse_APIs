@@ -36,7 +36,7 @@ const companySchema = new Schema({
 				return false;
 			}
 		},
-		get: val => {
+		get: (val) => {
 			return (storageUrls[val[0]] + val[1]);
 		}
 	},

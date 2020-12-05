@@ -25,7 +25,7 @@ router.get("/tasks", async (req, res) => {
 		}
 	)
 		.then(checkStatus)
-		.then((res) => res.json())
+		.then(res => res.json())
 		.catch(() => {
 			console.error("some error with fetch");
 			return res.status(500).send("Server Error in fetching data");

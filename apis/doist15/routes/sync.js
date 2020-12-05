@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 		fetch("/todoist") // sync with todoist
 	]).then(([res1, res2]) => {
 		console.log("Sync with all routes successfull");
-	}).catch(err => {
+	}).catch((err) => {
 		console.error("Error occurred while syncing all.", err);
 		return res.sendStatus(500);
 	});
@@ -88,10 +88,10 @@ router.get("/todoist", async (req, res) => {
 	// todoModel.bulkWrite()    CAN'T USE THIS, SINCE WE NEED 'save' to be triggered, which doesn't happen in these
 	todoistTodos.splice(0, 10);
 	todoistTodos.splice(2);
-	todoistTodos.forEach(todo => {
+	todoistTodos.forEach((todo) => {
 		todo = convertTo(todo, "mongo"); // convert todo to format accepted by mongo
 
-		todoModel.create(todo).catch(err => {
+		todoModel.create(todo).catch((err) => {
 			console.error("!❗! Error in saving todo to mongoDB", err.message);
 		});
 	});

@@ -13,6 +13,23 @@
             "error",
             "tab"
         ],
+        "arrow-parens": [
+            "warn",
+            "as-needed",
+            {
+                "requireForBlockBody": true
+            }
+        ],
+        "arrow-spacing": "warn",
+        "eqeqeq":"warn",
+        "no-use-before-define":"error",
+        "no-undefined": "error",
+        "object-shorthand": "error",
+        "complexity": ["warn", { "max": 10 }],
+        "new-cap":"off",
+        "camelcase": "off",
+        "curly": ["error", "multi-line"],
+        "no-console": "off",
         "no-unused-vars" : "warn",
         "quotes": [
             "error",

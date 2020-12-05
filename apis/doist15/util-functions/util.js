@@ -1,4 +1,4 @@
-const _ = require("underscore");
+const { omit } = require("underscore");
 
 const checkStatus = (res) => {
 	//3xx -> Redirection
@@ -6,7 +6,7 @@ const checkStatus = (res) => {
     NOTE: 3xx-5xx responses are NOT exceptions, and should be handled in then()
     (so, even unautherised requests, wont throw any exception)*/
 	if(res.ok)  //ie. res.status>=200 && res.status<300
-		return res;
+	{return res;}
 	else throw new Error("⚠ Contains client(4xx) or server(5xx) error status code ->", res.status);
 };
 
@@ -48,7 +48,7 @@ const convertTo = (todo, destinationFormat) => {
 			delete todo.due;
 			todo.due = new Date(dateStr);
 		}
-		todo = _.omit(todo, ["id", "content","project_id", "section_id", "order", "label_ids", "comment_count", "created", "url"]);
+		todo = omit(todo, ["id", "content","project_id", "section_id", "order", "label_ids", "comment_count", "created", "url"]);
 		//NOTE- For now todo.project_id to be ignored, and all to be saved in default category 'General'
 	}
 
@@ -75,8 +75,8 @@ const createTodo = (obj) => {
 	];
 	let todo = {};
 	for (const key of keys) {
-		if(obj[key] !== undefined)
-			todo[key] = obj[key];
+		if( !obj[key] !== false && !obj[key] )
+		{todo[key] = obj[key];}
 	}
 
 	return todo;
@@ -91,7 +91,7 @@ const parseTodo = (todo) => {
 			let words = todo.split(" ");
 			for (const word of words) {
 				if(word[0] === "#")
-					labels.push(word.replace("#",""));   //only replaces first found string, ie. only starting
+				{labels.push(word.replace("#",""));}   //only replaces first found string, ie. only starting
 			}
 		}
 	}else{

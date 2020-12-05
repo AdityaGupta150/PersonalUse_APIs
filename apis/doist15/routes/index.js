@@ -43,11 +43,11 @@ router.delete("/deleteAll", async (req, res) => {
 // Save the data `from mongo` offline
 router.get("/syncOffline", async (req, res) => {
 	todoModel.find({ completed: false }).exec()
-		.then( docs	=> {
+		.then( (docs) => {
 			saveOffline(docs);
 			res.json(docs);
 		})
-		.catch(err => {
+		.catch((err) => {
 			logError(0, "todo", req.baseUrl);
 			return res.status(500).send("Kuchh gadbad ho gaya server side pe. Error Code -> ", err.code);
 		});
@@ -164,7 +164,7 @@ router.get("/getAll", async (req, res) => {
 		? [mongoTodos, todoistTodos]
 		: [todoistTodos, mongoTodos];
 
-	smallerList.forEach(element => {
+	smallerList.forEach((element) => {
 		if (biggerList.id !== element.id) {
 			biggerList.push(element);
 		}
@@ -186,8 +186,8 @@ router.post("/:todoId", (req, res) => {
 	const todo = createTodo(req.body);
 
 	todoModel.findByIdAndUpdate(req.params.todoId, todo)
-		.then(()=>{})
-		.catch(err => {
+		.then(() => {})
+		.catch((err) => {
 			console.error(`Couldn't get a todo with that Id. Error Code -> ${err.code}`);
 			res.status(500).send("Couldn't get the todo");
 		});
@@ -197,7 +197,7 @@ router.delete("/:todoId", async (req, res) => {
 	// CAUTION_NOTE -> req.params.todoId will be String, while _id is ObjectId, will query below find the doc??
 	await todoModel.findByIdAndDelete(req.params.todoId)
 		.then(doc => res.status(204).send("Successfully removed todo with title: " + doc.title))
-		.catch(err => {
+		.catch((err) => {
 			console.error("Couldn't delete todo. ", err.code);
 			res.status(500).send("Could not remove the todo");
 		});

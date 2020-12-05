@@ -5,13 +5,13 @@ const countryEnCode = {
 const tempCountries = {};
 for (const key in countryEnCode) {
 	if( Object.hasOwnProperty.call(countryEnCode, key) )
-		tempCountries[countryEnCode[key]] = key;
+	{tempCountries[countryEnCode[key]] = key;}
 }
 const countryDeCode = tempCountries;
 
 module.exports = {
-	countryEnCode: countryEnCode,
-	countryDeCode: countryDeCode,
+	countryEnCode,
+	countryDeCode,
 	allowedJobTypes: {
 		I: "Internship",
 		F: "FullTime",
@@ -33,7 +33,7 @@ module.exports = {
 		const tempRoles = [];
 		for (const key in allowedRoles) {
 			if( Object.hasOwnProperty.call(allowedRoles, key) )
-				tempRoles.push(allowedRoles[key]);
+			{tempRoles.push(allowedRoles[key]);}
 		}
 		return tempRoles;
 	}

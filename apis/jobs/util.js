@@ -28,7 +28,7 @@ module.exports = async function getRecommendedJobs(userId) {
 		});
 
 	let jobsIds = [];
-	profile.skills.forEach(async skill => {
+	profile.skills.forEach(async (skill) => {
 		jobsIds = jobsIds.concat(
 			await skillMap.find({
 				skillName: skill
@@ -39,7 +39,7 @@ module.exports = async function getRecommendedJobs(userId) {
 					if (docs.length === 0) {
 						console.log("No skillMap found for the skill: ", skill);
 					} else {
-						return docs.map((doc) => doc.skillName);
+						return docs.map(doc => doc.skillName);
 					}
 				}
 			})

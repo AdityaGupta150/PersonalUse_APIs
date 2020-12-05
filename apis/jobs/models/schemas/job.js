@@ -29,7 +29,7 @@ const jobSchema = new Schema({
 		required: true,
 		default: "O",
 		enum: Object.keys(allowedRoles),
-		get: (val) => allowedRoles[val]
+		get: val => allowedRoles[val]
 	},
 	s: {
 		alias: "skills",
@@ -38,7 +38,7 @@ const jobSchema = new Schema({
 	exp: { // experience_required
 		alias: "experience",
 		type: Schema.Types.Mixed, // range
-		validate: function (range) {
+		validate (range) {
 			if (typeof (range) === "number") {
 				return range >= 0 && range <= 60;
 			} else if (!!range.forEach && typeof (range) === "object") {
@@ -59,7 +59,7 @@ const jobSchema = new Schema({
 	l: {
 		alias: "location",
 		type: [locationSchema],
-		get: function () {
+		get () {
 			if (!this.l) {
 				if (this.remote) {
 					return this.remote;
