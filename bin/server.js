@@ -25,8 +25,10 @@ const server = http.createServer(app);
 // });
 
 /**
+ * @brief - Event listener for HTTP server "error" event.
+ * 
  * @param - `error` is the error object
- * Event listener for HTTP server "error" event.
+ * @returns process.exit call
  */
 function onError (error) {
 	if (error.syscall !== "listen") {

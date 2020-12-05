@@ -1,3 +1,4 @@
+// file deepcode ignore NoRateLimitingForExpensiveWebOperation: It is just for basic educational Purposes and won't be linked with the route for now
 const router = require("express").Router();
 const path = require("path");
 const cricapi = require("cricapi");

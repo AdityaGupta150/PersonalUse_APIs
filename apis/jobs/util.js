@@ -9,6 +9,8 @@ const { uniq, sortBy } = require("underscore");
 
 /**
  * @brief - This function gets the rexcommended job listing for the user, based on the user id
+ * 
+ * @returns array of recommended jobs
  */
 module.exports = async function getRecommendedJobs(userId) {
 	let profile = await profileModel.findById(

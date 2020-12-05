@@ -67,11 +67,16 @@ function validData(reqData) {
 
 router.post("/goti", (req, res) => {
 	const reqData = {
-		col: toString(req.body.col), // colour
-		coords: Object.hasOwnProperty.call(req.body, "coords") ? req.body.coords : null, // current coords,		additional if to solve `Prototype Pollution vulnerability` pointed by deepcode
+		col: Object.hasOwnProperty.call(req.body, "col") ? toString(req.body.col): null, // colour
 		dist: Number(req.body.dist) // dist=0 will give Input Not Valid
 	};
 
+	if( Object.hasOwnProperty.call(req.body, "coords") ){
+		if( Array.isArray(reqData.coords) )
+			reqData.coords = req.body.coords;
+		else
+			reqData.coords = [ req.body.coords ];
+	}
 	if (!validData(reqData)) {
 		return res.status(400).send({ error: "Input Not Valid", inputReceived: req.body });
 	}
@@ -80,7 +85,7 @@ router.post("/goti", (req, res) => {
 	const dist = reqData.dist;
 	if (dist === 0) { return res.send({ bool: false }); }
 
-	if ( !Array.isArray(reqData.coords) ) return res.sendStatus(400);
+	if ( ! reqData.coords ) return res.sendStatus(400);
 
 	if ( reqData.coords.length === 2 && all(reqData.coords, iter => typeof (iter) === "number")) {	// ie. is a single pair
 		reqData.coords = [reqData.coords];	// convert to an array

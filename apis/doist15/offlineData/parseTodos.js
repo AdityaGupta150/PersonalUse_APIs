@@ -32,7 +32,8 @@ const todos = require("./todoist.json");
             so in case of promises, we have to work inside the .then() itself... or if we want the data to pertain the equate some higher scope variable to it...
         instead     `callPromise().then(data => d=data)`    //this assigns the data to 'd'
 
-	@param - json is the JSON object to create a tree for
+ * @param - json is the JSON object to create a tree for
+ * @returns array of keys of json
  */
 const getKeys = async (json) => {
 	return new Promise((resolve, reject) => {

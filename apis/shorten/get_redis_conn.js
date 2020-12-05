@@ -1,6 +1,7 @@
 const moment = require("moment");
 
 const redis = require("redis");
+//  deepcode ignore WrongNumberOfArgs: False Positive by deepcode, contacted
 const redisClient = redis.createClient({
 	port: 6379,
 	host: "127.0.0.1",

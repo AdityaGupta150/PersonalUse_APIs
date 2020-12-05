@@ -91,6 +91,7 @@ function getConnection(dbName) {
 /**
  * @brief - dbName refers to the database name to connect to
  * @deprecated -> no need of this function since, even if we just `return createConnection();` even then it will behave as a promise, since they are thenable so no need actually
+ * @returns promise object
  * */
 const getConnectionPromise = (dbName) => { // works both ways... dbName can be a baseURL, or a proper one-word name
 	// @todo -> will return a promise with the connection object
