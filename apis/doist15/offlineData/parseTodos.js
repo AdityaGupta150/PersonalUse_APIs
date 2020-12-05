@@ -7,8 +7,9 @@
 
 const todos = require("./todoist.json");
 
-// LEARNT-> JSON is like an array of objects... not a dictionary/map
-/** LEARNT -
+/**
+ * @LEARNT - JSON is like an array of objects... not a dictionary/map
+ * @LEARNT -
  * Promise is in one of the 3 states -> pending, fulfilled, rejected
  * As the Promise.prototype.then(), Promise.prototype.catch(), and Promise.prototype.finally()
    methods return promises, so they can be chained
@@ -31,6 +32,8 @@ const todos = require("./todoist.json");
             so in case of promises, we have to work inside the .then() itself... or if we want the data to pertain the equate some higher scope variable to it...
         instead     `callPromise().then(data => d=data)`    //this assigns the data to 'd'
 
+ * @param - json is the JSON object to create a tree for
+ * @returns array of keys of json
  */
 const getKeys = async (json) => {
 	return new Promise((resolve, reject) => {
@@ -57,7 +60,7 @@ const getKeys = async (json) => {
 
 const getKeysSync = async (json) => { // blocking
 	let retVal;
-	await getKeys(json).then((val) => { retVal = val; });
+	await getKeys(json).then((val) => { retVal = val; }).catch(() => retVal = null);
 	return retVal;
 };
 

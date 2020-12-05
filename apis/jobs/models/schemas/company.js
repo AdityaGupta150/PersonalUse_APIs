@@ -6,9 +6,16 @@ const storageUrls = [ // index 0 is local Storage
 	`file:\\${realpathSync("../../storage/company")}`
 ];
 
+/**
+ * @brief -> The companies collection stores the company listings, this is the document schema
+ * 
+ * 			 It has the following fields ->
+ * 			 name, logoURL, jobs
+ * @note -> jobs is an array of ObjectIds, so to get the actual job document, you will fetch them from the database using this id
+ */
 const companySchema = new Schema({
 	n: {
-		alias: "n",
+		alias: "name",
 		type: String,
 		required: true,
 		trim: true,

@@ -2,6 +2,12 @@ const { Schema, Types, model } = require("mongoose");
 const { allowedJobTypes, allowedRoles } = require("./allowedData");
 const locationSchema = require("./location");
 
+/**
+ * @brief -> The profiles collection stores the user profiles of people using this service
+ * 
+ * @note -> As for the time being, you can simply just see the fields in the document schema, to understand what it stores
+ */
+
 const profileSchema = new Schema({
 	un: {
 		alias: "userName",

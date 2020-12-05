@@ -1,12 +1,13 @@
 const indexRouter = require("./routes/indexRoute");
 const userRouter = require("./routes/userRoute");
-const dataRouter = require("./storage/createDataset");
+const dataRouter = require("./routes/dataRoute");
 
-const app = require("express")();
+const router = require("express").Router();
 require("dotenv").config();
 
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/data", dataRouter);
+// @note - For brief about these endpoints, read the comments in the file
+router.use("/", indexRouter);
+router.use("/user", userRouter);
+router.use("/data", dataRouter);
 
-module.exports = app;
+module.exports = router;

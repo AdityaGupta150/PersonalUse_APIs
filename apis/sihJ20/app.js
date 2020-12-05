@@ -1,10 +1,8 @@
-const express = require("express");
-
 const indexRouter = require("./routes/index");
 const psRouter = require("./routes/ps");
 const hacksRouter = require("./routes/hack");
 
-const app = express();
+const router = require("express").Router();
 
 /**
  *  @note @learnt @me ->
@@ -16,8 +14,8 @@ const app = express();
  *   ie. the view thinks, that this app has rendered it (or whatever it thinks, similar to this)
  *
  */
-app.use("/", indexRouter);
-app.use("/ps", psRouter);
-app.use("/hacks", hacksRouter);
+router.use("/", indexRouter);
+router.use("/ps", psRouter);
+router.use("/hacks", hacksRouter);
 
-module.exports = app;
+module.exports = router;
