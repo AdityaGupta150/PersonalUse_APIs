@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 
+/**
+ * @file_brief -> This file specifies error handlers, and mounts the express app on a node.js server (exported from ${REPO_ROOT}/app.js)
+ */
+
 const app = require("../app");
-const http = require("http");
+const http2 = require("http2");
+const { readFileSync, existsSync } = require("fs");
 const { exit } = require("process");
 
-const port = process.env.PORT || "3000";
-app.set("port", port);
+const PORT = process.env.PORT || "3000";
+app.set("port", PORT);
 
-const server = http.createServer(app);		// mounting the express app on the node server
+const server = http2.createSecureServer({
+	key: existsSync("../key.pem") ? readFileSync("../key.pem"): "",
+	cert: existsSync("../cert.pem") ? readFileSync("../cert.pem"): ""
+}, app);		// mounting the express app on the node server
 
 /**
  * Event listener for HTTP server "error" event.
@@ -17,18 +25,18 @@ function onError (error) {
 		throw error;
 	}
 
-	const bind = typeof port === "string"
-		? "Pipe " + port
-		: "Port " + port;
+	const bind = typeof PORT === "string"
+		? "Pipe " + PORT
+		: "Port " + PORT;
 
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
 	case "EACCES":
 		console.error(bind + " requires elevated privileges");
-		process.exit(1);
+		return process.exit(1);
 	case "EADDRINUSE":
 		console.error(bind + " is already in use");
-		process.exit(1);
+		return process.exit(1);
 	default:
 		throw error;
 	}
@@ -54,4 +62,4 @@ process.on("SIGTERM", exitHandler);
 process.on("SIGINT", exitHandler);
 
 server.on("error", onError);
-module.exports = server.listen(port, onListening);
+server.listen(PORT, onListening);
