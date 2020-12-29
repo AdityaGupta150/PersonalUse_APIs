@@ -2,6 +2,7 @@
 
 Short for `UseFul APIs`, (currently primarily specific to my use cases though :D)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/52fced1f81b54389988f1be2cd922e1e)](https://app.codacy.com/gh/adi-g15/Useful_APIs?utm_source=github.com&utm_medium=referral&utm_content=adi-g15/Useful_APIs&utm_campaign=Badge_Grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ef8a6a4fa5d43dab6e9093200e442f8)](https://www.codacy.com/gh/adi-g15/Useful_APIs/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=adi-g15/Useful_APIs&amp;utm_campaign=Badge_Grade)
 [![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImFkaS1nMTUiLCJyZXBvMSI6IlVzZWZ1bF9BUElzIiwiaW5jbHVkZUxpbnQiOmZhbHNlLCJhdXRob3JJZCI6MjIzMzksImlhdCI6MTYwNzg4Mzc1Nn0.bEmr3CtpEzXopwTF8eq82x3gpnO4bTJZIroO03HMFOE)](https://www.deepcode.ai/app/gh/adi-g15/Useful_APIs/_/dashboard?utm_content=gh%2Fadi-g15%2FUseful_APIs)
 [![CodeFactor](https://www.codefactor.io/repository/github/adityagupta150/useful_apis/badge)](https://www.codefactor.io/repository/github/adityagupta150/useful_apis)
