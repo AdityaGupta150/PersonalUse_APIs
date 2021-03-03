@@ -59,7 +59,7 @@ function validData(reqData) {
 	const allowed_colours = ["R", "G", "Y", "B"];
 
 	if (!!reqData && !!reqData.dist && !!reqData.col && !!reqData.coords) {
-		if (!contains(allowed_colours, reqData.col)) {
+		if (!contains(allowed_colours, reqData.col) || reqData.dist === 0) {
 			return false;
 		} else return true;
 	} else return false;
@@ -71,7 +71,6 @@ function moveGoti(colour, coord, dist) {
 	const updated_coords = coord;
 	let currDirection = getDirection(updated_coords);
 	dist = Number(dist);	// if it's string, convert to number
-
 	if (!currDirection || !dist || typeof (colour) !== "string") return [false];
 
 	if (dist === 0) return [false];
@@ -140,13 +139,6 @@ router.post("/goti", (req, res) => {
 
 	const colour = reqData.col;
 	const dist = reqData.dist;
-	if (dist === 0) { return res.send({ bool: false }); }
-
-	if ( ! reqData.coords ) return res.sendStatus(400);
-
-	if ( reqData.coords.length === 2 && all(reqData.coords, iter => typeof (iter) === "number")) {	// ie. is a single pair
-		reqData.coords = [reqData.coords];	// convert to an array
-	}
 
 	const bools = [];	// an array of bools
 	const finalCoords = [];	// an array of bools

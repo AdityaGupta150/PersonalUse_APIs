@@ -8,7 +8,6 @@
  */
 
 const { Router } = require("express");
-const fetch = require("node-fetch");
 
 const todoModel = require("../models/schemas/todo.js");
 const categoryModel = require("../models/schemas/category.js");
@@ -136,6 +135,7 @@ router.get("/getRemote", async (req, res) => {
 
 // returns all DISTINCT todos require(all sources, supported at the time (Initially, it will be just todoist and mongodb)
 router.get("/getAll", async (req, res) => {
+	/**@todo -> Replace with call to request-composer */
 	const todoistTodos = await fetch(
 		"https://api.todoist.com/rest/v1/tasks",
 		{

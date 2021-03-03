@@ -1,6 +1,6 @@
 // Only get routes for now... will later set post routes too, if and when needed, for eg. syncing, or setting section_id to project_id etc
 
-const fetch = require("node-fetch");
+const request = require("request-compose").client;
 const router = require("express").Router();
 
 const checkStatus = require("../util-functions/util");
@@ -15,6 +15,7 @@ router.get("/sample/tasks", async (req, res) => {
 router.get("/tasks", async (req, res) => {
 	console.log(req.baseUrl);
 
+	/**@todo -> Replace with call to request-composer */
 	const data = await fetch(
 		"https://api.todoist.com/rest/v1/tasks",
 		{
@@ -35,6 +36,7 @@ router.get("/tasks", async (req, res) => {
 });
 
 router.get("/projects", async (req, res) => {
+	/**@todo -> Replace with call to request-composer */
 	const data = await fetch(
 		"https://api.todoist.com/rest/v1/projects",
 		{
@@ -56,7 +58,7 @@ router.get("/projects", async (req, res) => {
 
 // Premium Feature
 router.get("/labels", async (req, res) => {
-	console.log("received request");
+	/**@todo -> Replace with call to request-composer */
 	const data = await fetch(
 		"https://api.todoist.com/rest/v1/labels",
 		{

@@ -14,7 +14,8 @@ const sihJ20Router = require("./apis/sihJ20/app");
 const doistRouter = require("./apis/doist15/app");
 const utilRouter = require("./apis/util/app");
 const ludoRouter = require("./apis/ludo/app");
-const eduRouter = require("./apis/eduPurpose/app");
+const animeRouter = require("./apis/anime/app");
+// const eduRouter = require("./apis/eduPurpose/app");
 // const shortenRouter = require("./apis/shorten/app");
 const tempDown = require("./routes/tempDown");
 const app = express();
@@ -51,6 +52,7 @@ app.use("/edu", tempDown);	// working, but intentionally down
 app.use("/shorten", tempDown);
 app.use("/gh", tempDown);
 app.use("/bookmarker", tempDown);
+app.use("/anime", animeRouter);
 
 app.get("/useFire", (req, res) => {
 	// Set the api to use firebase for this session

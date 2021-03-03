@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const fetch = require("node-fetch");
+const request = require("request-compose").client;
 
 const router = Router();
 
@@ -42,6 +42,7 @@ router.get("/glassdoor", async (req, res) => {
      * action   |    The particular API call that you would like to make - see jobs, reviews, salaries, etc. sub-sections for details    |    Yes
      * other    |    Each API action will require different parameters - in the example above, an employerId is passed in order to retrieve reviews.    |    Varies
      */
+    /**@todo - Replace with request-cmoposer calls */
 	await fetch(ENDPOINTS.glassdoor + "?v=1.1" + "something");
 
 	res.send({

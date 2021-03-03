@@ -5,7 +5,7 @@
 */
 
 const { Router } = require("express");
-const fetch = require("node-fetch");
+const request = require("request-compose").client;
 const { checkStatus, containsTodo, convertTo } = require("../util-functions/util");
 const todoModel = require("../models/schemas/todo");
 // eslint-disable-next-line no-unused-vars

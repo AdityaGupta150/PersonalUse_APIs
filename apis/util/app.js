@@ -1,6 +1,6 @@
 const app = require("express")();
 require("dotenv").config({ path: "./" });
-const fetch = require("node-fetch");
+const request = require("request-compose").client;
 
 const theStart100Days = Date.parse("Fri Jul 17 2020 00:00:01 GMT+0530 (India Standard Time)");
 
@@ -54,11 +54,13 @@ app.get("/whatIsMyIpLoc", async (req, res) => {
 	// eslint-disable-next-line no-unused-vars
 	const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
+	/**@todo - Replace with request-compose call */
 	await fetch("https://adig15.herokuapp.com/util/whatIsMyIp")
 		.then(data => data.json())
 		.then(data => res.send(data))
 		.catch(err => console.error("Error in fetching IP", err.code));
 
+	/**@todo - Replace with request-compose call */
 	fetch("https://geo.ipify.org/api/v1?apiKey=" + process.env.IPIFY_API_TOKEN,
 		{
 			/* Parameters to pass ->
