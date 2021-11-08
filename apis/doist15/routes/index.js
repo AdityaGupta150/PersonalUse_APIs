@@ -29,7 +29,7 @@ async function saveOffline (json) {
 			writeFile("./offlineData/todos.json", JSON.stringify(json));
 		} catch {
 			console.error("[doist15/routes/index.js:saveOffline] Problem Saving offline");
-		});
+		}
 	}).catch((err) => {
 		console.debug("[DEBUG] CanNOT access it", err);
 	});
