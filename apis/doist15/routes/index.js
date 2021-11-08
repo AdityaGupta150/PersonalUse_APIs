@@ -14,7 +14,7 @@ const todoModel = require("../models/schemas/todo.js");
 const categoryModel = require("../models/schemas/category.js");
 const { checkStatus, logError, createTodo } = require("../util-functions/util");
 const { getConnection } = require("../../util/mongoConnection.js");
-const { write, writeFile } = require("fs");
+const { write } = require("fs");
 
 const router = Router();
 
@@ -23,13 +23,11 @@ async function saveOffline (json) {
 
 	await fs.access("./offlineData/todos.json").then(() => {
 		console.debug("[DEBUG] Can access it");
-		// @Issue - Why is ./ considered doist15/ directory ???
+		// @Question - Why is ./ being considered doist15/ directory here ???
 		// Ans. Probably since the working directory was doist15/, @adig verify it in future if you try it :) 
-		try{
-			writeFile("./offlineData/todos.json", JSON.stringify(json));
-		} catch {
+		fs.writeFile("./offlineData/todos.json", JSON.stringify(json)).catch(err => {
 			console.error("[doist15/routes/index.js:saveOffline] Problem Saving offline");
-		}
+		});
 	}).catch((err) => {
 		console.debug("[DEBUG] CanNOT access it", err);
 	});
